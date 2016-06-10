@@ -19,6 +19,10 @@ namespace FreeSims
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Cursor cursor;
+
+        Texture2D cursorSprite;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -47,7 +51,10 @@ namespace FreeSims
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            cursorSprite = Content.Load<Texture2D>("cursor");
             // TODO: use this.Content to load your game content here
+
+            cursor = new Cursor(Window.ClientBounds.Width, Window.ClientBounds.Height, cursorSprite);
         }
 
         /// <summary>
@@ -70,6 +77,8 @@ namespace FreeSims
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            cursor.Update(gameTime);
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -83,6 +92,9 @@ namespace FreeSims
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            spriteBatch.Begin();
+            cursor.Draw(gameTime, spriteBatch);
+            spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
