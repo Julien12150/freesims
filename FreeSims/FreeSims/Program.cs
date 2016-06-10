@@ -1,6 +1,6 @@
 using System;
 
-namespace FreeSims
+namespace Julien12150.FreeSims
 {
 #if WINDOWS || XBOX
     static class Program

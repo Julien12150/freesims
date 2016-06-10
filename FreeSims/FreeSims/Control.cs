@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace FreeSims
+namespace Julien12150.FreeSims
 {
     public class Control
     {

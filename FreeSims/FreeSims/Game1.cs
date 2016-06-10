@@ -8,8 +8,9 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Julien12150.FreeSims.Game;
 
-namespace FreeSims
+namespace Julien12150.FreeSims
 {
     /// <summary>
     /// This is the main type for your game
@@ -26,6 +27,9 @@ namespace FreeSims
         Texture2D cursorSprite;
 
         Control control;
+        Menu menu;
+        SpriteFont mainFont;
+        GameState state = GameState.Menu;
 
         public Game1(string[] args)
         {
@@ -67,7 +71,10 @@ namespace FreeSims
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             cursorSprite = Content.Load<Texture2D>("cursor");
+            mainFont = Content.Load<SpriteFont>("font");
+
             control = new Control(isControllerMode);
+            menu = new Menu(spriteBatch, control, mainFont, this);
             // TODO: use this.Content to load your game content here
 
             cursor = new Cursor(Window.ClientBounds.Width, Window.ClientBounds.Height, cursorSprite, control);
@@ -89,14 +96,16 @@ namespace FreeSims
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            if (!IsMouseVisible && state == GameState.Menu)
+                IsMouseVisible = true;
+            else if (IsMouseVisible && state == GameState.Game)
+                IsMouseVisible = false;
             // Allows the game to exit
-            if (control.Back)
-            {
-                GamePad.SetVibration(PlayerIndex.One, 0, 0);
-                Exit();
-            }
 
-            cursor.Update(gameTime);
+            if (state == GameState.Game)
+                cursor.Update(gameTime);
+            else if (state == GameState.Menu)
+                menu.Update(gameTime);
 
             // TODO: Add your update logic here
 
@@ -109,14 +118,23 @@ namespace FreeSims
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.White);
 
             spriteBatch.Begin();
-            cursor.Draw(gameTime, spriteBatch);
+            if (state == GameState.Game)
+                cursor.Draw(gameTime, spriteBatch);
+            else if (state == GameState.Menu)
+                menu.Draw(gameTime);
             spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+        }
+
+
+        public void ChangeState(GameState state)
+        {
+            this.state = state;
         }
     }
 }
