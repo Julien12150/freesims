@@ -11,15 +11,18 @@ namespace FreeSims
     public class Cursor
     {
         int width, height;
-        public int posX, posY;
+        public float posX, posY;
 
         int mX, mY;
 
         Texture2D sprite;
 
-        public Cursor(int width, int height, Texture2D sprite)
+        Control control;
+
+        public Cursor(int width, int height, Texture2D sprite, Control control)
         {
             this.sprite = sprite;
+            this.control = control;
 
             this.width = width;
             this.height = height;
@@ -35,7 +38,29 @@ namespace FreeSims
             mX = mouseState.X;
             mY = mouseState.Y;
 
-            Move(mX, mY);
+            if(!control.isControllerMode)
+                GoTo(mX, mY);
+            else
+            {
+                /*if (control.DPadLeft)
+                    posX--;
+                if (control.DPadUp)
+                    posY--;
+                if (control.DPadRight)
+                    posX++;
+                if (control.DPadDown)
+                    posY++;*/
+                Move(control.LeftStickX, control.LeftStickY * -1);
+
+                if (posX > width)
+                    posX = width;
+                else if (posX < 0)
+                    posX = 0;
+                if (posY > height)
+                    posY = height;
+                else if (posY < 0)
+                    posY = 0;
+            }
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -43,10 +68,16 @@ namespace FreeSims
             spriteBatch.Draw(sprite, new Vector2(posX - (sprite.Width / 2), posY - (sprite.Height / 2)), Color.White);
         }
 
-        public void Move(int x, int y)
+        public void GoTo(int x, int y)
         {
             posX = x;
             posY = y;
+        }
+
+        public void Move(float x, float y)
+        {
+            posX = posX + x * 4;
+            posY = posY + y * 4;
         }
     }
 }

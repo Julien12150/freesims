@@ -16,6 +16,8 @@ namespace FreeSims
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        bool isControllerMode;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -23,10 +25,22 @@ namespace FreeSims
 
         Texture2D cursorSprite;
 
-        public Game1()
+        Control control;
+
+        public Game1(string[] args)
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            if (args.Length >= 1)
+            {
+                if (args[0] == "/c")
+                    isControllerMode = true;
+                else
+                    isControllerMode = false;
+            }
+            else
+                isControllerMode = false;
         }
 
         /// <summary>
@@ -40,6 +54,7 @@ namespace FreeSims
             // TODO: Add your initialization logic here
 
             base.Initialize();
+
         }
 
         /// <summary>
@@ -52,9 +67,10 @@ namespace FreeSims
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             cursorSprite = Content.Load<Texture2D>("cursor");
+            control = new Control(isControllerMode);
             // TODO: use this.Content to load your game content here
 
-            cursor = new Cursor(Window.ClientBounds.Width, Window.ClientBounds.Height, cursorSprite);
+            cursor = new Cursor(Window.ClientBounds.Width, Window.ClientBounds.Height, cursorSprite, control);
         }
 
         /// <summary>
@@ -74,8 +90,11 @@ namespace FreeSims
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
+            if (control.Back)
+            {
+                GamePad.SetVibration(PlayerIndex.One, 0, 0);
+                Exit();
+            }
 
             cursor.Update(gameTime);
 
