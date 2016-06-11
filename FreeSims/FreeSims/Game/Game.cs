@@ -52,7 +52,12 @@ namespace Julien12150.FreeSims.Game
                     if(cursor.posX < humanList[i].posX + (sprites.humanSprite.Width / 2) && cursor.posX > humanList[i].posX - (sprites.humanSprite.Width / 2) &&
                         cursor.posY < humanList[i].posY && cursor.posY > humanList[i].posY - sprites.humanSprite.Height)
                     {
-                        if(control.B)
+                        if(control.isControllerMode && control.B)
+                        {
+                            humanList[i].activity = new Talk(humanList[selectedHuman], humanList[i]);
+                            humanList[selectedHuman].activity = new Talk(humanList[i], humanList[selectedHuman]);
+                        }
+                        else if (!control.isControllerMode && control.RightMouseClick)
                         {
                             humanList[i].activity = new Talk(humanList[selectedHuman], humanList[i]);
                             humanList[selectedHuman].activity = new Talk(humanList[i], humanList[selectedHuman]);
