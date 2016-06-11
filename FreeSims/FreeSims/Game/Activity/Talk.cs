@@ -41,10 +41,10 @@ namespace Julien12150.FreeSims.Game.Activity
         public override void Start(GameTime gameTime)
         {
             Random r = new Random();
-            int rx = r.Next(1, 3);
+            int rx = r.Next(0, 4);
             if (rx == 1)
             {
-                int ry = r.Next(1, 3);
+                int ry = r.Next(1, 4);
                 human.finalPosX = (int)target.posX - 30;
                 if (ry == 1)
                 {
@@ -64,7 +64,7 @@ namespace Julien12150.FreeSims.Game.Activity
             }
             else if (rx == 2)
             {
-                int ry = r.Next(1, 2);
+                int ry = r.Next(1, 3);
                 human.finalPosX = (int)target.posX;
                 if (ry == 1)
                 {
@@ -79,7 +79,7 @@ namespace Julien12150.FreeSims.Game.Activity
             }
             else if (rx == 3)
             {
-                int ry = r.Next(1, 3);
+                int ry = r.Next(1, 4);
                 human.finalPosX = (int)target.posX + 30;
                 if (ry == 1)
                 {
