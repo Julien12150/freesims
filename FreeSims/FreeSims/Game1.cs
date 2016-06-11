@@ -75,7 +75,7 @@ namespace Julien12150.FreeSims
 
             sprites = new Sprite(Content);
 
-            control = new Control(isControllerMode);
+            control = new Control(isControllerMode, Window.ClientBounds.Width, Window.ClientBounds.Height);
             cursor = new Cursor(Window.ClientBounds.Width, Window.ClientBounds.Height, sprites, control);
 
             menu = new Menu(spriteBatch, control, sprites, this);

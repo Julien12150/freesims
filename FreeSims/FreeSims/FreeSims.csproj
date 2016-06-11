@@ -76,6 +76,8 @@
   <ItemGroup>
     <Compile Include="Control.cs" />
     <Compile Include="Cursor.cs" />
+    <Compile Include="Game\Activity\Activity.cs" />
+    <Compile Include="Game\Activity\Talk.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Game\GameState.cs" />
     <Compile Include="Game\Human.cs" />

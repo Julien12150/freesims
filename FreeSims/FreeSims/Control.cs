@@ -9,9 +9,12 @@ namespace Julien12150.FreeSims
 {
     public class Control
     {
-        public Control(bool isControllerMode)
+        int width, height;
+        public Control(bool isControllerMode, int width, int height)
         {
             this.isControllerMode = isControllerMode;
+            this.width = width;
+            this.height = height;
         }
 
         public bool isControllerMode = false;
@@ -256,36 +259,45 @@ namespace Julien12150.FreeSims
         {
             get
             {
-                if (Mouse.GetState().LeftButton == ButtonState.Pressed)
-                {
-                    //isControllerMode = false;
-                    return true;
+                if (Mouse.GetState().X > 0 && Mouse.GetState().X < width && Mouse.GetState().Y > 0 && Mouse.GetState().Y < height)
+                { 
+                    if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                    {
+                        //isControllerMode = false;
+                        return true;
+                    }
                 }
-                else return false;
+                return false;
             }
         }
         public bool RightMouseClick
         {
             get
             {
-                if (Mouse.GetState().RightButton == ButtonState.Pressed)
+                if (Mouse.GetState().X > 0 && Mouse.GetState().X < width && Mouse.GetState().Y > 0 && Mouse.GetState().Y < height)
                 {
-                    //isControllerMode = false;
-                    return true;
+                    if (Mouse.GetState().RightButton == ButtonState.Pressed)
+                    {
+                        //isControllerMode = false;
+                        return true;
+                    }
                 }
-                else return false;
+                return false;
             }
         }
         public bool MiddleMouseClick
         {
             get
             {
-                if (Mouse.GetState().MiddleButton == ButtonState.Pressed)
+                if (Mouse.GetState().X > 0 && Mouse.GetState().X < width && Mouse.GetState().Y > 0 && Mouse.GetState().Y < height)
                 {
-                    //isControllerMode = false;
-                    return true;
+                    if (Mouse.GetState().MiddleButton == ButtonState.Pressed)
+                    {
+                        //isControllerMode = false;
+                        return true;
+                    }
                 }
-                else return false;
+                return false;
             }
         }
     }

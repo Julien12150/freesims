@@ -4,11 +4,16 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Julien12150.FreeSims.Game.Activity;
 
 namespace Julien12150.FreeSims.Game
 {
     public class Human
     {
+        const float TIMER = 5;
+        float timer = TIMER;
+
+
         public bool selected;
 
         public float posX, posY;
@@ -20,9 +25,13 @@ namespace Julien12150.FreeSims.Game
         Cursor cursor;
         SpriteBatch spriteBatch;
 
-        Texture2D sprite;
+        Sprite sprites;
 
-        public Human(float posX, float posY, int angle, Control control, Cursor cursor, Texture2D sprite, SpriteBatch spriteBatch)
+        public int Social;
+
+        public Activity.Activity activity = null;
+
+        public Human(float posX, float posY, int angle, int Social, Control control, Cursor cursor, Sprite sprites, SpriteBatch spriteBatch)
         {
             this.posX = posX;
             this.posY = posY;
@@ -30,26 +39,63 @@ namespace Julien12150.FreeSims.Game
             finalPosY = (int)posY;
 
             this.angle = angle;
-            this.sprite = sprite;
+            this.sprites = sprites;
 
             this.control = control;
             this.cursor = cursor;
             this.spriteBatch = spriteBatch;
+
+            this.Social = Social;
         }
 
         public void Update(GameTime gameTime)
         {
+            float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            timer -= elapsed;
+
+            if (activity != null)
+            {
+                activity.Update(gameTime);
+                if(activity.target.activity == null)
+                {
+                    activity = null;
+                }
+            }
+            else
+            {
+                if (timer < 0)
+                {
+                    timer = TIMER;
+                    Social--;
+                }
+            }
+
+            if (Social > 100)
+                Social = 100;
+            else if (Social < 0)
+                Social = 0;
+
             if(selected)
             {
                 if(control.A && control.isControllerMode)
                 {
                     finalPosX = (int)cursor.posX;
                     finalPosY = (int)cursor.posY;
+                    if (activity != null)
+                    {
+                        activity.target.activity = null;
+                        activity = null;
+                    }
                 }
                 else if(control.LeftMouseClick && !control.isControllerMode)
                 {
                     finalPosX = (int)cursor.posX;
                     finalPosY = (int)cursor.posY;
+                    if (activity != null)
+                    {
+                        activity.target.activity = null;
+                        activity = null;
+                    }
                 }
             }
 
@@ -110,7 +156,11 @@ namespace Julien12150.FreeSims.Game
 
         public void Draw(GameTime gameTime, float height)
         {
-            spriteBatch.Draw(sprite, new Rectangle((int)posX - ((sprite.Width / 8) / 2), (int)posY - sprite.Height + 16, sprite.Width / 8, sprite.Height), new Rectangle((sprite.Width / 8 ) * angle, 0, sprite.Width / 8, sprite.Height), Color.White, 0, Vector2.Zero, SpriteEffects.None, posY / height);
+            spriteBatch.Draw(sprites.humanSprite, new Rectangle((int)posX - ((sprites.humanSprite.Width / 8) / 2), (int)posY - sprites.humanSprite.Height + 16, sprites.humanSprite.Width / 8, sprites.humanSprite.Height), new Rectangle((sprites.humanSprite.Width / 8 ) * angle, 0, sprites.humanSprite.Width / 8, sprites.humanSprite.Height), Color.White, 0, Vector2.Zero, SpriteEffects.None, posY / height);
+            if (activity != null)
+            {
+                activity.Draw(gameTime, spriteBatch, sprites);
+            }
         }
     }
 }
