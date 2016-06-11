@@ -25,9 +25,12 @@ namespace Julien12150.FreeSims
         Cursor cursor;
 
         Texture2D cursorSprite;
+        Texture2D humanSprite;
 
         Control control;
         Menu menu;
+        Game.Game game;
+
         SpriteFont mainFont;
         GameState state = GameState.Menu;
 
@@ -71,13 +74,15 @@ namespace Julien12150.FreeSims
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             cursorSprite = Content.Load<Texture2D>("cursor");
+            humanSprite = Content.Load<Texture2D>("Human/M");
             mainFont = Content.Load<SpriteFont>("font");
 
             control = new Control(isControllerMode);
-            menu = new Menu(spriteBatch, control, mainFont, this);
-            // TODO: use this.Content to load your game content here
-
             cursor = new Cursor(Window.ClientBounds.Width, Window.ClientBounds.Height, cursorSprite, control);
+
+            menu = new Menu(spriteBatch, control, mainFont, this);
+            game = new Game.Game(Window.ClientBounds.Width, Window.ClientBounds.Height, control, cursor, spriteBatch, humanSprite);
+            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -96,18 +101,21 @@ namespace Julien12150.FreeSims
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (!IsMouseVisible && state == GameState.Menu)
-                IsMouseVisible = true;
-            else if (IsMouseVisible && state == GameState.Game)
+            if (control.isControllerMode)
                 IsMouseVisible = false;
-            // Allows the game to exit
 
             if (state == GameState.Game)
+            {
                 cursor.Update(gameTime);
+                game.Update(gameTime);
+
+                if (control.isControllerMode && control.Start)
+                    ChangeState(GameState.Menu);
+                else if (!control.isControllerMode && Keyboard.GetState().IsKeyDown(Keys.Escape))
+                    ChangeState(GameState.Menu);
+            }
             else if (state == GameState.Menu)
                 menu.Update(gameTime);
-
-            // TODO: Add your update logic here
 
             base.Update(gameTime);
         }
@@ -121,12 +129,17 @@ namespace Julien12150.FreeSims
             GraphicsDevice.Clear(Color.White);
 
             spriteBatch.Begin();
-            if (state == GameState.Game)
+            if (state == GameState.Game && !IsMouseVisible)
                 cursor.Draw(gameTime, spriteBatch);
             else if (state == GameState.Menu)
                 menu.Draw(gameTime);
+
+
+            if(state == GameState.Game)
+            {
+                game.Draw(gameTime);
+            }
             spriteBatch.End();
-            // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }
