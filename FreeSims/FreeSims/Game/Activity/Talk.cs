@@ -41,37 +41,37 @@ namespace Julien12150.FreeSims.Game.Activity
         public override void Start(GameTime gameTime)
         {
             Random r = new Random();
-            int rx = r.Next(2);
-            if (rx == 0)
+            int rx = r.Next(1, 3);
+            if (rx == 1)
             {
-                int ry = r.Next(2);
+                int ry = r.Next(1, 3);
                 human.finalPosX = (int)target.posX - 30;
-                if (ry == 0)
+                if (ry == 1)
                 {
                     human.finalPosY = (int)target.posY - 30;
                     target.angle = 5;
                 }
-                else if (ry == 1)
+                else if (ry == 2)
                 {
                     human.finalPosY = (int)target.posY;
                     target.angle = 6;
                 }
-                else if (ry == 2)
+                else if (ry == 3)
                 {
                     human.finalPosY = (int)target.posY + 30;
                     target.angle = 7;
                 }
             }
-            else if (rx == 1)
+            else if (rx == 2)
             {
-                int ry = r.Next(1);
+                int ry = r.Next(1, 2);
                 human.finalPosX = (int)target.posX;
-                if (ry == 0)
+                if (ry == 1)
                 {
                     human.finalPosY = (int)target.posY - 30;
                     target.angle = 4;
                 }
-                else if (ry == 1)
+                else if (ry == 2)
                 {
                     human.finalPosY = (int)target.posY + 30;
                     target.angle = 0;
@@ -79,22 +79,22 @@ namespace Julien12150.FreeSims.Game.Activity
             }
             else if (rx == 3)
             {
-                int ry = r.Next(2);
+                int ry = r.Next(1, 3);
                 human.finalPosX = (int)target.posX + 30;
-                if (ry == 0)
+                if (ry == 1)
                 {
                     human.finalPosY = (int)target.posY - 30;
-                    target.angle = 5;
-                }
-                else if (ry == 1)
-                {
-                    human.finalPosY = (int)target.posY;
-                    target.angle = 6;
+                    target.angle = 3;
                 }
                 else if (ry == 2)
                 {
+                    human.finalPosY = (int)target.posY;
+                    target.angle = 2;
+                }
+                else if (ry == 3)
+                {
                     human.finalPosY = (int)target.posY + 30;
-                    target.angle = 7;
+                    target.angle = 1;
                 }
             }
 

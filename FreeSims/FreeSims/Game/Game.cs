@@ -49,8 +49,10 @@ namespace Julien12150.FreeSims.Game
                 {
                     humanList[i].selected = false;
 
-                    if(cursor.posX < humanList[i].posX + (sprites.humanSprites.mNoColor.Width / 2) && cursor.posX > humanList[i].posX - (sprites.humanSprites.mNoColor.Width / 2) &&
-                        cursor.posY < humanList[i].posY && cursor.posY > humanList[i].posY - sprites.humanSprites.mNoColor.Height)
+                    if(cursor.posX < humanList[i].posX + ((sprites.humanSprites.mNoColor.Width / 8) / 2) &&
+                        cursor.posX > humanList[i].posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2) &&
+                        cursor.posY < humanList[i].posY &&
+                        cursor.posY > humanList[i].posY - sprites.humanSprites.mNoColor.Height)
                     {
                         if(control.isControllerMode && control.B)
                         {
