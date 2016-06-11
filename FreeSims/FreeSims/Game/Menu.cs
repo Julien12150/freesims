@@ -21,11 +21,11 @@ namespace Julien12150.FreeSims.Game
 
         bool hasPressedButton = false;
 
-        public Menu(SpriteBatch spriteBatch, Control control, SpriteFont font, Game1 game)
+        public Menu(SpriteBatch spriteBatch, Control control, Sprite sprites, Game1 game)
         {
             this.spriteBatch = spriteBatch;
             this.control = control;
-            this.font = font;
+            font = sprites.mainFont;
             this.game = game;
         }
 
@@ -45,66 +45,43 @@ namespace Julien12150.FreeSims.Game
         {
             if (control.isControllerMode)
             {
-                if (control.DPadDown && !hasPressedButton)
-                {
-                    if (menuSelection == menu.Length - 1) menuSelection = 0;
-                    else menuSelection++;
-
-                    hasPressedButton = true;
-                }
-                if (control.DPadUp && !hasPressedButton)
-                {
-                    if (menuSelection == 0) menuSelection = menu.Length - 1;
-                    else menuSelection--;
-
-                    hasPressedButton = true;
-                }
-
-                if (!control.DPadUp && !control.DPadDown) hasPressedButton = false;
-
-
-                if (control.A)
-                {
-                    if (menuSelection == 0)
-                    {
-                        game.ChangeState(GameState.Game);
-                    }
-                    else if(menuSelection == 2)
-                    {
-                        game.Exit();
-                    }
-                }
+                ChangeMenu(control.DPadUp, control.DPadDown, control.A);
             }
             else
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.Down) && !hasPressedButton)
-                {
-                    if (menuSelection == menu.Length - 1) menuSelection = 0;
-                    else menuSelection++;
+                ChangeMenu(Keyboard.GetState().IsKeyDown(Keys.Up), Keyboard.GetState().IsKeyDown(Keys.Down), Keyboard.GetState().IsKeyDown(Keys.Space) || Keyboard.GetState().IsKeyDown(Keys.Enter));
+            }
+        }
 
-                    hasPressedButton = true;
+        void ChangeMenu(bool up, bool down, bool select)
+        {
+            if (down && !hasPressedButton)
+            {
+                if (menuSelection == menu.Length - 1) menuSelection = 0;
+                else menuSelection++;
+
+                hasPressedButton = true;
+            }
+            if (up && !hasPressedButton)
+            {
+                if (menuSelection == 0) menuSelection = menu.Length - 1;
+                else menuSelection--;
+
+                hasPressedButton = true;
+            }
+
+            if (!up && !down) hasPressedButton = false;
+
+
+            if (select)
+            {
+                if (menuSelection == 0)
+                {
+                    game.ChangeState(GameState.Game);
                 }
-                if (Keyboard.GetState().IsKeyDown(Keys.Up) && !hasPressedButton)
+                else if (menuSelection == 2)
                 {
-                    if (menuSelection == 0) menuSelection = menu.Length - 1;
-                    else menuSelection--;
-
-                    hasPressedButton = true;
-                }
-
-                if (!Keyboard.GetState().IsKeyDown(Keys.Down) && !Keyboard.GetState().IsKeyDown(Keys.Up)) hasPressedButton = false;
-
-
-                if (Keyboard.GetState().IsKeyDown(Keys.Enter) || Keyboard.GetState().IsKeyDown(Keys.Space))
-                {
-                    if (menuSelection == 0)
-                    {
-                        game.ChangeState(GameState.Game);
-                    }
-                    else if (menuSelection == 2)
-                    {
-                        game.Exit();
-                    }
+                    game.Exit();
                 }
             }
         }

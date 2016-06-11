@@ -19,9 +19,9 @@ namespace Julien12150.FreeSims
 
         Control control;
 
-        public Cursor(int width, int height, Texture2D sprite, Control control)
+        public Cursor(int width, int height, Sprite sprites, Control control)
         {
-            this.sprite = sprite;
+            sprite = sprites.cursorSprite;
             this.control = control;
 
             this.width = width;

@@ -24,14 +24,14 @@ namespace Julien12150.FreeSims
 
         Cursor cursor;
 
-        Texture2D cursorSprite;
-        Texture2D humanSprite;
+        Sprite sprites;
+
+        
 
         Control control;
         Menu menu;
         Game.Game game;
 
-        SpriteFont mainFont;
         GameState state = GameState.Menu;
 
         public Game1(string[] args)
@@ -73,15 +73,13 @@ namespace Julien12150.FreeSims
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            cursorSprite = Content.Load<Texture2D>("cursor");
-            humanSprite = Content.Load<Texture2D>("Human/M");
-            mainFont = Content.Load<SpriteFont>("font");
+            sprites = new Sprite(Content);
 
             control = new Control(isControllerMode);
-            cursor = new Cursor(Window.ClientBounds.Width, Window.ClientBounds.Height, cursorSprite, control);
+            cursor = new Cursor(Window.ClientBounds.Width, Window.ClientBounds.Height, sprites, control);
 
-            menu = new Menu(spriteBatch, control, mainFont, this);
-            game = new Game.Game(Window.ClientBounds.Width, Window.ClientBounds.Height, control, cursor, spriteBatch, humanSprite);
+            menu = new Menu(spriteBatch, control, sprites, this);
+            game = new Game.Game(Window.ClientBounds.Width, Window.ClientBounds.Height, control, cursor, spriteBatch, sprites);
             // TODO: use this.Content to load your game content here
         }
 
@@ -103,6 +101,8 @@ namespace Julien12150.FreeSims
         {
             if (control.isControllerMode)
                 IsMouseVisible = false;
+            else
+                IsMouseVisible = true;
 
             if (state == GameState.Game)
             {
@@ -128,17 +128,18 @@ namespace Julien12150.FreeSims
         {
             GraphicsDevice.Clear(Color.White);
 
-            spriteBatch.Begin();
-            if (state == GameState.Game && !IsMouseVisible)
-                cursor.Draw(gameTime, spriteBatch);
-            else if (state == GameState.Menu)
-                menu.Draw(gameTime);
-
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
 
             if(state == GameState.Game)
             {
                 game.Draw(gameTime);
             }
+
+            if (state == GameState.Game && !IsMouseVisible)
+                cursor.Draw(gameTime, spriteBatch);
+            else if (state == GameState.Menu)
+                menu.Draw(gameTime);
+
             spriteBatch.End();
 
             base.Draw(gameTime);

@@ -9,23 +9,28 @@ namespace Julien12150.FreeSims.Game
 {
     public class Human
     {
-        bool selected = true;
+        public bool selected;
 
-        float posX, posY;
+        public float posX, posY;
         int finalPosX, finalPosY;
 
-        int angle = 0;
+        int angle;
 
         Control control;
         Cursor cursor;
         SpriteBatch spriteBatch;
 
-        public Human(float posX, float posY, Control control, Cursor cursor, SpriteBatch spriteBatch)
+        Texture2D sprite;
+
+        public Human(float posX, float posY, int angle, Control control, Cursor cursor, Texture2D sprite, SpriteBatch spriteBatch)
         {
             this.posX = posX;
             this.posY = posY;
             finalPosX = (int)posX;
             finalPosY = (int)posY;
+
+            this.angle = angle;
+            this.sprite = sprite;
 
             this.control = control;
             this.cursor = cursor;
@@ -103,9 +108,9 @@ namespace Julien12150.FreeSims.Game
             }
         }
 
-        public void Draw(GameTime gameTime, Texture2D sprite)
+        public void Draw(GameTime gameTime, float height)
         {
-            spriteBatch.Draw(sprite, new Vector2(posX - ((sprite.Width / 8 ) / 2), posY - sprite.Height + 16), new Rectangle((sprite.Width / 8 ) * angle, 0, sprite.Width / 8, sprite.Height), Color.White);
+            spriteBatch.Draw(sprite, new Rectangle((int)posX - ((sprite.Width / 8) / 2), (int)posY - sprite.Height + 16, sprite.Width / 8, sprite.Height), new Rectangle((sprite.Width / 8 ) * angle, 0, sprite.Width / 8, sprite.Height), Color.White, 0, Vector2.Zero, SpriteEffects.None, posY / height);
         }
     }
 }

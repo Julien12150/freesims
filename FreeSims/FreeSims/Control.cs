@@ -258,7 +258,7 @@ namespace Julien12150.FreeSims
             {
                 if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                 {
-                    isControllerMode = false;
+                    //isControllerMode = false;
                     return true;
                 }
                 else return false;
@@ -270,7 +270,7 @@ namespace Julien12150.FreeSims
             {
                 if (Mouse.GetState().RightButton == ButtonState.Pressed)
                 {
-                    isControllerMode = false;
+                    //isControllerMode = false;
                     return true;
                 }
                 else return false;
@@ -282,7 +282,7 @@ namespace Julien12150.FreeSims
             {
                 if (Mouse.GetState().MiddleButton == ButtonState.Pressed)
                 {
-                    isControllerMode = false;
+                    //isControllerMode = false;
                     return true;
                 }
                 else return false;
