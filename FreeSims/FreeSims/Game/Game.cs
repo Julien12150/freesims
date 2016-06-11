@@ -49,18 +49,20 @@ namespace Julien12150.FreeSims.Game
                 {
                     humanList[i].selected = false;
 
-                    if(cursor.posX < humanList[i].posX + (sprites.humanSprite.Width / 2) && cursor.posX > humanList[i].posX - (sprites.humanSprite.Width / 2) &&
-                        cursor.posY < humanList[i].posY && cursor.posY > humanList[i].posY - sprites.humanSprite.Height)
+                    if(cursor.posX < humanList[i].posX + (sprites.humanSprites.mNoColor.Width / 2) && cursor.posX > humanList[i].posX - (sprites.humanSprites.mNoColor.Width / 2) &&
+                        cursor.posY < humanList[i].posY && cursor.posY > humanList[i].posY - sprites.humanSprites.mNoColor.Height)
                     {
                         if(control.isControllerMode && control.B)
                         {
                             humanList[i].activity = new Talk(humanList[selectedHuman], humanList[i]);
                             humanList[selectedHuman].activity = new Talk(humanList[i], humanList[selectedHuman]);
+                            humanList[i].activity.Start(gameTime);
                         }
                         else if (!control.isControllerMode && control.RightMouseClick)
                         {
                             humanList[i].activity = new Talk(humanList[selectedHuman], humanList[i]);
                             humanList[selectedHuman].activity = new Talk(humanList[i], humanList[selectedHuman]);
+                            humanList[i].activity.Start(gameTime);
                         }
                     }
                 }
@@ -83,7 +85,7 @@ namespace Julien12150.FreeSims.Game
                 humanList[i].Draw(gameTime, height);
                 if (selectedHuman == i)
                 {
-                    spriteBatch.Draw(sprites.humanSelectSprite, new Vector2(humanList[i].posX - 9, humanList[i].posY - sprites.humanSprite.Height - 8), Color.White);
+                    spriteBatch.Draw(sprites.humanSelectSprite, new Vector2(humanList[i].posX - 9, humanList[i].posY - sprites.humanSprites.mNoColor.Height - 8), Color.White);
                     spriteBatch.Draw(sprites.statBar, new Vector2(5, 5), new Rectangle(0, 0, sprites.statBar.Width, sprites.statBar.Height / 2), Color.White);
                     spriteBatch.Draw(sprites.statBar, new Vector2(5, 5), new Rectangle(0, sprites.statBar.Height / 2, 2 + humanList[i].Social * 2, sprites.statBar.Height / 2), Color.White);
                 }

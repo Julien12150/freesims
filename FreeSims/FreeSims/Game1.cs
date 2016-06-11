@@ -26,8 +26,6 @@ namespace Julien12150.FreeSims
 
         Sprite sprites;
 
-        
-
         Control control;
         Menu menu;
         Game.Game game;
