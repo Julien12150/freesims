@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Julien12150.FreeSims.Game.Activity;
 
 namespace Julien12150.FreeSims.Game
 {
@@ -27,6 +22,7 @@ namespace Julien12150.FreeSims.Game
         Sprite sprites;
 
         public int Social;
+        public int Fun;
 
         public Activity.Activity activity = null;
 
@@ -37,7 +33,7 @@ namespace Julien12150.FreeSims.Game
         Color shoes;
         Color skin;
 
-        public Human(float posX, float posY, int angle, int Social, Control control, Cursor cursor, Sprite sprites, SpriteBatch spriteBatch, Color pants, Color hair, Color eyes, Color shirt, Color shoes, Color skin)
+        public Human(float posX, float posY, int angle, int Social, int Fun, Control control, Cursor cursor, Sprite sprites, SpriteBatch spriteBatch, Color pants, Color hair, Color eyes, Color shirt, Color shoes, Color skin)
         {
             this.posX = posX;
             this.posY = posY;
@@ -52,7 +48,7 @@ namespace Julien12150.FreeSims.Game
             this.spriteBatch = spriteBatch;
 
             this.Social = Social;
-
+            this.Fun = Fun;
 
             this.pants = pants;
             this.hair = hair;
@@ -70,9 +66,25 @@ namespace Julien12150.FreeSims.Game
             if (activity != null)
             {
                 activity.Update(gameTime);
-                if(activity.target.activity == null)
+                if (activity.type == "Talk")
                 {
-                    activity = null;
+                    if (timer < 0)
+                    {
+                        timer = TIMER;
+                        Fun--;
+                    }
+                    if (activity.targetH.activity == null)
+                    {
+                        activity = null;
+                    }
+                }
+                else if(activity.type == "TVWatch")
+                {
+                    if (timer < 0)
+                    {
+                        timer = TIMER;
+                        Social--;
+                    }
                 }
             }
             else
@@ -81,6 +93,7 @@ namespace Julien12150.FreeSims.Game
                 {
                     timer = TIMER;
                     Social--;
+                    Fun--;
                 }
             }
 
@@ -89,7 +102,12 @@ namespace Julien12150.FreeSims.Game
             else if (Social < 0)
                 Social = 0;
 
-            if(selected)
+            if (Fun > 100)
+                Fun = 100;
+            else if (Fun < 0)
+                Fun = 0;
+
+            if (selected)
             {
                 if(control.A && control.isControllerMode)
                 {
@@ -97,7 +115,8 @@ namespace Julien12150.FreeSims.Game
                     finalPosY = (int)cursor.posY;
                     if (activity != null)
                     {
-                        activity.target.activity = null;
+                        if(activity.type == "Talk")
+                            activity.targetH.activity = null;
                         activity = null;
                     }
                 }
@@ -107,7 +126,13 @@ namespace Julien12150.FreeSims.Game
                     finalPosY = (int)cursor.posY;
                     if (activity != null)
                     {
-                        activity.target.activity = null;
+                        if (activity.type == "Talk")
+                            activity.targetH.activity = null;
+                        else if (activity.type == "TVWatch")
+                        {
+                            activity.targetI = null;
+                        }
+                        
                         activity = null;
                     }
                 }

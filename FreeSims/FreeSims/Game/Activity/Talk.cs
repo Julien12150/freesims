@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -12,10 +9,11 @@ namespace Julien12150.FreeSims.Game.Activity
         const float TIMER = 5;
         float timer = TIMER;
 
-        public Talk(Human human, Human target)
+        public Talk(Human human, Human targetH)
         {
-            this.target = target;
+            this.targetH = targetH;
             this.human = human;
+            type = "Talk";
         }
 
         public override void Update(GameTime gameTime)
@@ -45,56 +43,56 @@ namespace Julien12150.FreeSims.Game.Activity
             if (rx == 1)
             {
                 int ry = r.Next(1, 4);
-                human.finalPosX = (int)target.posX - 30;
+                human.finalPosX = (int)targetH.posX - 30;
                 if (ry == 1)
                 {
-                    human.finalPosY = (int)target.posY - 30;
-                    target.angle = 5;
+                    human.finalPosY = (int)targetH.posY - 30;
+                    targetH.angle = 5;
                 }
                 else if (ry == 2)
                 {
-                    human.finalPosY = (int)target.posY;
-                    target.angle = 6;
+                    human.finalPosY = (int)targetH.posY;
+                    targetH.angle = 6;
                 }
                 else if (ry == 3)
                 {
-                    human.finalPosY = (int)target.posY + 30;
-                    target.angle = 7;
+                    human.finalPosY = (int)targetH.posY + 30;
+                    targetH.angle = 7;
                 }
             }
             else if (rx == 2)
             {
                 int ry = r.Next(1, 3);
-                human.finalPosX = (int)target.posX;
+                human.finalPosX = (int)targetH.posX;
                 if (ry == 1)
                 {
-                    human.finalPosY = (int)target.posY - 30;
-                    target.angle = 4;
+                    human.finalPosY = (int)targetH.posY - 30;
+                    targetH.angle = 4;
                 }
                 else if (ry == 2)
                 {
-                    human.finalPosY = (int)target.posY + 30;
-                    target.angle = 0;
+                    human.finalPosY = (int)targetH.posY + 30;
+                    targetH.angle = 0;
                 }
             }
             else if (rx == 3)
             {
                 int ry = r.Next(1, 4);
-                human.finalPosX = (int)target.posX + 30;
+                human.finalPosX = (int)targetH.posX + 30;
                 if (ry == 1)
                 {
-                    human.finalPosY = (int)target.posY - 30;
-                    target.angle = 3;
+                    human.finalPosY = (int)targetH.posY - 30;
+                    targetH.angle = 3;
                 }
                 else if (ry == 2)
                 {
-                    human.finalPosY = (int)target.posY;
-                    target.angle = 2;
+                    human.finalPosY = (int)targetH.posY;
+                    targetH.angle = 2;
                 }
                 else if (ry == 3)
                 {
-                    human.finalPosY = (int)target.posY + 30;
-                    target.angle = 1;
+                    human.finalPosY = (int)targetH.posY + 30;
+                    targetH.angle = 1;
                 }
             }
 

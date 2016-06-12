@@ -1,5 +1,3 @@
-using System;
-
 namespace Julien12150.FreeSims
 {
 #if WINDOWS || XBOX

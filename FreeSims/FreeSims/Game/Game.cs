@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
@@ -35,10 +32,10 @@ namespace Julien12150.FreeSims.Game
             this.sprites = sprites;
             this.cursor = cursor;
             this.itemSprites = itemSprites;
-            humanList.Add(new Human(width / 2, height / 2, 2, 50, control, cursor, sprites, spriteBatch, new Color(22, 22, 22), new Color(255, 155, 43), new Color(68, 21, 0), new Color(183, 43, 0), new Color(150, 150, 150), new Color(183, 124, 95)));
-            humanList.Add(new Human(width / 2, height / 2, 6, 75, control, cursor, sprites, spriteBatch, new Color(0, 31, 255), new Color(66, 33, 0), new Color(0, 0, 56), new Color(255, 255, 255), new Color(96, 96, 96), new Color(255, 179, 160)));
-            humanList.Add(new Human(width / 2 + 80, height / 2 + 60, 0, 25, control, cursor, sprites, spriteBatch, new Color(193, 193, 193), new Color(40, 9, 0), new Color(0, 47, 0), new Color(22, 22, 22), new Color(56, 20, 0), new Color(255, 202, 191)));
-            itemList.Add(new OldTV(itemSprites, 60, 80, 1));
+            humanList.Add(new Human(width / 2, height / 2, 2, 50, 50, control, cursor, sprites, spriteBatch, new Color(22, 22, 22), new Color(255, 155, 43), new Color(68, 21, 0), new Color(183, 43, 0), new Color(150, 150, 150), new Color(183, 124, 95)));
+            humanList.Add(new Human(width / 2, height / 2, 6, 75, 25, control, cursor, sprites, spriteBatch, new Color(0, 31, 255), new Color(66, 33, 0), new Color(0, 0, 56), new Color(255, 255, 255), new Color(96, 96, 96), new Color(255, 179, 160)));
+            humanList.Add(new Human(width / 2 + 80, height / 2 + 60, 0, 25, 75, control, cursor, sprites, spriteBatch, new Color(193, 193, 193), new Color(40, 9, 0), new Color(0, 47, 0), new Color(22, 22, 22), new Color(56, 20, 0), new Color(255, 202, 191)));
+            itemList.Add(new TV(itemSprites, 60, 80, 1, new List<Human>()));
         }
 
         public void Update(GameTime gameTime)
@@ -77,6 +74,31 @@ namespace Julien12150.FreeSims.Game
             for(int i = 0; i < itemList.ToArray().Length; i++)
             {
                 itemList[i].Update(gameTime);
+
+                if (cursor.posX < itemList[i].posX + (itemList[i].Sprite.Width / 8) &&
+                        cursor.posX > itemList[i].posX &&
+                        cursor.posY < itemList[i].posY + (itemList[i].Sprite.Height / 2) &&
+                        cursor.posY > itemList[i].posY)
+                {
+                    if (control.isControllerMode && control.B)
+                    {
+                        if (itemList[i].type == "TV")
+                        {
+                            humanList[selectedHuman].activity = new TVWatch(humanList[selectedHuman], (TV)itemList[i]);
+                            itemList[i].humanList.Add(humanList[selectedHuman]);
+                            humanList[selectedHuman].activity.Start(gameTime);
+                        }
+                    }
+                    else if (!control.isControllerMode && control.RightMouseClick)
+                    {
+                        if (itemList[i].type == "TV")
+                        {
+                            humanList[selectedHuman].activity = new TVWatch(humanList[selectedHuman], (TV)itemList[i]);
+                            itemList[i].humanList.Add(humanList[selectedHuman]);
+                            humanList[selectedHuman].activity.Start(gameTime);
+                        }
+                    }
+                }
             }
 
             if(control.isControllerMode)
@@ -101,8 +123,11 @@ namespace Julien12150.FreeSims.Game
                 if (selectedHuman == i)
                 {
                     spriteBatch.Draw(sprites.humanSelectSprite, new Vector2(humanList[i].posX - 9, humanList[i].posY - sprites.humanSprites.mNoColor.Height - 8), Color.White);
-                    spriteBatch.Draw(sprites.statBar, new Vector2(5, 5), new Rectangle(0, 0, sprites.statBar.Width, sprites.statBar.Height / 2), Color.White);
+                    spriteBatch.Draw(sprites.statBar, new Vector2(5, 5), new Rectangle(0, 0, sprites.statBar.Width, sprites.statBar.Height / 2), Color.White); //Social
                     spriteBatch.Draw(sprites.statBar, new Vector2(5, 5), new Rectangle(0, sprites.statBar.Height / 2, 2 + humanList[i].Social * 2, sprites.statBar.Height / 2), Color.White);
+
+                    spriteBatch.Draw(sprites.statBar, new Vector2(5, 5 + sprites.statBar.Height / 2), new Rectangle(0, 0, sprites.statBar.Width, sprites.statBar.Height / 2), Color.White); //Fun
+                    spriteBatch.Draw(sprites.statBar, new Vector2(5, 5 + sprites.statBar.Height / 2), new Rectangle(0, sprites.statBar.Height / 2, 2 + humanList[i].Fun * 2, sprites.statBar.Height / 2), Color.White);
                 }
             }
         }

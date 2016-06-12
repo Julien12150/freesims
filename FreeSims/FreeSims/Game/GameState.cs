@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Julien12150.FreeSims.Game
+﻿namespace Julien12150.FreeSims.Game
 {
     public enum GameState
     {
