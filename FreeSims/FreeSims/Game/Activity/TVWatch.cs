@@ -35,17 +35,9 @@ namespace Julien12150.FreeSims.Game.Activity
 
             if (targetI != null)
             {
-                if (targetI.humanList != null)
+                if (targetI.humanList == null)
                 {
-                    if (targetI.humanList.Find(ph) == null)
-                    {
-                        human.activity = null;
-                        human = null;
-                        targetI = null;
-                    }
-                }
-                else
-                {
+                    human.activity.targetI.humanList.RemoveAll(ph);
                     human.activity = null;
                     human = null;
                     targetI = null;
@@ -53,6 +45,7 @@ namespace Julien12150.FreeSims.Game.Activity
             }
             else
             {
+                human.activity.targetI.humanList.RemoveAll(ph);
                 human.activity = null;
                 human = null;
                 targetI = null;

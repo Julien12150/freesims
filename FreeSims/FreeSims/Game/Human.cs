@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Julien12150.FreeSims.Game
 {
@@ -58,8 +59,17 @@ namespace Julien12150.FreeSims.Game
             this.skin = skin;
         }
 
+        private bool FindHuman(Human obj)
+        {
+            if (obj == this)
+                return true;
+            return false;
+        }
+
         public void Update(GameTime gameTime)
         {
+            Predicate<Human> ph = FindHuman;
+
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
             timer -= elapsed;
 
@@ -117,6 +127,10 @@ namespace Julien12150.FreeSims.Game
                     {
                         if(activity.type == "Talk")
                             activity.targetH.activity = null;
+                        else if (activity.type == "TVWatch")
+                        {
+                            activity.targetI.humanList.RemoveAll(ph);
+                        }
                         activity = null;
                     }
                 }
@@ -130,7 +144,7 @@ namespace Julien12150.FreeSims.Game
                             activity.targetH.activity = null;
                         else if (activity.type == "TVWatch")
                         {
-                            activity.targetI = null;
+                            activity.targetI.humanList.RemoveAll(ph);
                         }
                         
                         activity = null;

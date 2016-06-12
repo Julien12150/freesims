@@ -54,5 +54,9 @@ namespace Julien12150.FreeSims.Game.Item
                 spriteBatch.Draw(Sprite, new Vector2(posX, posY), new Rectangle(Sprite.Width * angle / 8, 0, Sprite.Width / 8, Sprite.Height / 2), Color.White);
             base.Draw(gameTime, spriteBatch);
         }
+        public void Remove(Human h)
+        {
+            humanList.Remove(h);
+        }
     }
 }
