@@ -6,12 +6,14 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using Julien12150.FreeSims.Game.Activity;
+using Julien12150.FreeSims.Game.Item;
 
 namespace Julien12150.FreeSims.Game
 {
     public class Game
     {
         List<Human> humanList = new List<Human>();
+        List<Item.Item> itemList = new List<Item.Item>();
 
         int selectedHuman = 0;
 
@@ -20,20 +22,23 @@ namespace Julien12150.FreeSims.Game
         Control control;
         SpriteBatch spriteBatch;
         Sprite sprites;
+        ItemSprite itemSprites;
         Cursor cursor;
 
         bool pressedButton = false;
 
-        public Game(int height, int width, Control control, Cursor cursor, SpriteBatch spriteBatch, Sprite sprites)
+        public Game(int height, int width, Control control, Cursor cursor, SpriteBatch spriteBatch, Sprite sprites, ItemSprite itemSprites)
         {
-            humanList.Add(new Human(width / 2, height / 2, 2, 50, control, cursor, sprites, spriteBatch, new Color(22, 22, 22), new Color(255, 155, 43), new Color(68, 21, 0), new Color(183, 43, 0), new Color(150, 150, 150), new Color(183, 124, 95)));
-            humanList.Add(new Human(width / 2, height / 2, 6, 75, control, cursor, sprites, spriteBatch, new Color(0, 31, 255), new Color(66, 33, 0), new Color(0, 0, 56), new Color(255, 255, 255), new Color(96, 96, 96), new Color(255, 179, 160)));
-            humanList.Add(new Human(width / 2 + 80, height / 2 + 60, 0, 25, control, cursor, sprites, spriteBatch, new Color(193, 193, 193), new Color(40, 9, 0), new Color(0, 47, 0), new Color(22, 22, 22), new Color(56, 20, 0), new Color(255, 202, 191)));
             this.control = control;
             this.height = height;
             this.spriteBatch = spriteBatch;
             this.sprites = sprites;
             this.cursor = cursor;
+            this.itemSprites = itemSprites;
+            humanList.Add(new Human(width / 2, height / 2, 2, 50, control, cursor, sprites, spriteBatch, new Color(22, 22, 22), new Color(255, 155, 43), new Color(68, 21, 0), new Color(183, 43, 0), new Color(150, 150, 150), new Color(183, 124, 95)));
+            humanList.Add(new Human(width / 2, height / 2, 6, 75, control, cursor, sprites, spriteBatch, new Color(0, 31, 255), new Color(66, 33, 0), new Color(0, 0, 56), new Color(255, 255, 255), new Color(96, 96, 96), new Color(255, 179, 160)));
+            humanList.Add(new Human(width / 2 + 80, height / 2 + 60, 0, 25, control, cursor, sprites, spriteBatch, new Color(193, 193, 193), new Color(40, 9, 0), new Color(0, 47, 0), new Color(22, 22, 22), new Color(56, 20, 0), new Color(255, 202, 191)));
+            itemList.Add(new OldTV(itemSprites, 60, 80, 1));
         }
 
         public void Update(GameTime gameTime)
@@ -69,6 +74,10 @@ namespace Julien12150.FreeSims.Game
                     }
                 }
             }
+            for(int i = 0; i < itemList.ToArray().Length; i++)
+            {
+                itemList[i].Update(gameTime);
+            }
 
             if(control.isControllerMode)
             {
@@ -82,6 +91,10 @@ namespace Julien12150.FreeSims.Game
 
         public void Draw(GameTime gameTime)
         {
+            for (int i = 0; i < itemList.ToArray().Length; i++)
+            {
+                itemList[i].Draw(gameTime, spriteBatch);
+            }
             for (int i = 0; i < humanList.ToArray().Length; i++)
             {
                 humanList[i].Draw(gameTime, height);

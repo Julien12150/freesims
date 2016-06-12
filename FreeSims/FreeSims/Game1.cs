@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Julien12150.FreeSims.Game;
+using Julien12150.FreeSims.Game.Item;
 
 namespace Julien12150.FreeSims
 {
@@ -25,6 +26,7 @@ namespace Julien12150.FreeSims
         Cursor cursor;
 
         Sprite sprites;
+        ItemSprite itemSprites;
 
         Control control;
         Menu menu;
@@ -72,12 +74,13 @@ namespace Julien12150.FreeSims
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             sprites = new Sprite(Content);
+            itemSprites = new ItemSprite(Content);
 
             control = new Control(isControllerMode, Window.ClientBounds.Width, Window.ClientBounds.Height);
             cursor = new Cursor(Window.ClientBounds.Width, Window.ClientBounds.Height, sprites, control);
 
             menu = new Menu(spriteBatch, control, sprites, this);
-            game = new Game.Game(Window.ClientBounds.Width, Window.ClientBounds.Height, control, cursor, spriteBatch, sprites);
+            game = new Game.Game(Window.ClientBounds.Width, Window.ClientBounds.Height, control, cursor, spriteBatch, sprites, itemSprites);
             // TODO: use this.Content to load your game content here
         }
 
