@@ -82,6 +82,7 @@
     <Compile Include="Game\Game.cs" />
     <Compile Include="Game\GameState.cs" />
     <Compile Include="Game\Human.cs" />
+    <Compile Include="Game\HumanMaker\HMNFileManager.cs" />
     <Compile Include="Game\Item\Item.cs" />
     <Compile Include="Game\Item\ItemSprite.cs" />
     <Compile Include="Game\Item\TV.cs" />
