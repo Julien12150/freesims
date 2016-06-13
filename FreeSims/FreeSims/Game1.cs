@@ -23,7 +23,7 @@ namespace Julien12150.FreeSims
 
         Control control;
         Menu menu;
-        Game.Game game;
+        public Game.Game game;
 
         GameState state = GameState.Menu;
 
@@ -72,8 +72,7 @@ namespace Julien12150.FreeSims
             control = new Control(isControllerMode, Window.ClientBounds.Width, Window.ClientBounds.Height);
             cursor = new Cursor(Window.ClientBounds.Width, Window.ClientBounds.Height, sprites, control);
 
-            menu = new Menu(spriteBatch, control, sprites, this);
-            game = new Game.Game(Window.ClientBounds.Width, Window.ClientBounds.Height, control, cursor, spriteBatch, sprites, itemSprites);
+            menu = new Menu(Window.ClientBounds.Width, Window.ClientBounds.Height, spriteBatch, control, sprites, this, cursor, itemSprites);
             // TODO: use this.Content to load your game content here
         }
 

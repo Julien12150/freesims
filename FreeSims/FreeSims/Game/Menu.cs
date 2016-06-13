@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Julien12150.FreeSims.Game.Item;
 using Microsoft.Xna.Framework;
 
 namespace Julien12150.FreeSims.Game
@@ -9,7 +10,13 @@ namespace Julien12150.FreeSims.Game
         SpriteBatch spriteBatch;
         Control control;
         SpriteFont font;
-        Game1 game;
+        Cursor cursor;
+        Sprite sprites;
+        ItemSprite itemSprites;
+        Game1 game1;
+        Game game;
+
+        int width, height;
 
         int menuSelection = 0;
         string title = "FreeSims";
@@ -17,12 +24,17 @@ namespace Julien12150.FreeSims.Game
 
         bool hasPressedButton = false;
 
-        public Menu(SpriteBatch spriteBatch, Control control, Sprite sprites, Game1 game)
+        public Menu(int width, int height, SpriteBatch spriteBatch, Control control, Sprite sprites, Game1 game1, Cursor cursor, ItemSprite itemSprites)
         {
             this.spriteBatch = spriteBatch;
             this.control = control;
+            this.cursor = cursor;
+            this.sprites = sprites;
+            this.itemSprites = itemSprites;
+            this.width = width;
+            this.height = height;
             font = sprites.mainFont;
-            this.game = game;
+            this.game1 = game1;
         }
 
         public void Draw(GameTime gameTime)
@@ -73,11 +85,15 @@ namespace Julien12150.FreeSims.Game
             {
                 if (menuSelection == 0)
                 {
-                    game.ChangeState(GameState.Game);
+                    game1.ChangeState(GameState.Game);
+                    if(game1.game == null)
+                    {
+                        game1.game = new Game(width, height, control, cursor, spriteBatch, sprites, itemSprites);
+                    }
                 }
                 else if (menuSelection == 2)
                 {
-                    game.Exit();
+                    game1.Exit();
                 }
             }
         }
