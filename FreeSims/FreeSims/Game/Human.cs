@@ -27,6 +27,7 @@ namespace Julien12150.FreeSims.Game
 
         public Activity.Activity activity = null;
 
+        bool female;
         Color pants;
         Color hair;
         Color eyes;
@@ -34,7 +35,7 @@ namespace Julien12150.FreeSims.Game
         Color shoes;
         Color skin;
 
-        public Human(float posX, float posY, int angle, int Social, int Fun, Control control, Cursor cursor, Sprite sprites, SpriteBatch spriteBatch, Color pants, Color hair, Color eyes, Color shirt, Color shoes, Color skin)
+        public Human(float posX, float posY, int angle, int Social, int Fun, Control control, Cursor cursor, Sprite sprites, SpriteBatch spriteBatch, bool female, Color pants, Color hair, Color eyes, Color shirt, Color shoes, Color skin)
         {
             this.posX = posX;
             this.posY = posY;
@@ -51,6 +52,7 @@ namespace Julien12150.FreeSims.Game
             this.Social = Social;
             this.Fun = Fun;
 
+            this.female = female;
             this.pants = pants;
             this.hair = hair;
             this.eyes = eyes;
@@ -210,14 +212,26 @@ namespace Julien12150.FreeSims.Game
         public void Draw(GameTime gameTime, float height)
         {
             //spriteBatch.Draw(sprites.humanSprite, new Rectangle((int)posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.mNoColor.Height + 16, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), new Rectangle((sprites.humanSprites.mNoColor.Width / 8 ) * angle, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), Color.White, 0, Vector2.Zero, SpriteEffects.None, posY / height);
-            spriteBatch.Draw(sprites.humanSprites.mEyes, new Rectangle((int)posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.mNoColor.Height + 16, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * angle, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), eyes, 0, Vector2.Zero, SpriteEffects.None, posY / height);
-            spriteBatch.Draw(sprites.humanSprites.mHair, new Rectangle((int)posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.mNoColor.Height + 16, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * angle, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), hair, 0, Vector2.Zero, SpriteEffects.None, posY / height);
-            spriteBatch.Draw(sprites.humanSprites.mNoColor, new Rectangle((int)posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.mNoColor.Height + 16, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * angle, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), Color.White, 0, Vector2.Zero, SpriteEffects.None, posY / height);
-            spriteBatch.Draw(sprites.humanSprites.mPants, new Rectangle((int)posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.mNoColor.Height + 16, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * angle, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), pants, 0, Vector2.Zero, SpriteEffects.None, posY / height);
-            spriteBatch.Draw(sprites.humanSprites.mShirt, new Rectangle((int)posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.mNoColor.Height + 16, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * angle, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), shirt, 0, Vector2.Zero, SpriteEffects.None, posY / height);
-            spriteBatch.Draw(sprites.humanSprites.mShoes, new Rectangle((int)posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.mNoColor.Height + 16, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * angle, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), shoes, 0, Vector2.Zero, SpriteEffects.None, posY / height);
-            spriteBatch.Draw(sprites.humanSprites.mSkin, new Rectangle((int)posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.mNoColor.Height + 16, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * angle, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), skin, 0, Vector2.Zero, SpriteEffects.None, posY / height);
-
+            if (!female)
+            {
+                spriteBatch.Draw(sprites.humanSprites.mEyes, new Rectangle((int)posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.mNoColor.Height + 16, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * angle, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), eyes, 0, Vector2.Zero, SpriteEffects.None, posY / height);
+                spriteBatch.Draw(sprites.humanSprites.mHair, new Rectangle((int)posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.mNoColor.Height + 16, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * angle, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), hair, 0, Vector2.Zero, SpriteEffects.None, posY / height);
+                spriteBatch.Draw(sprites.humanSprites.mPants, new Rectangle((int)posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.mNoColor.Height + 16, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * angle, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), pants, 0, Vector2.Zero, SpriteEffects.None, posY / height);
+                spriteBatch.Draw(sprites.humanSprites.mShirt, new Rectangle((int)posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.mNoColor.Height + 16, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * angle, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), shirt, 0, Vector2.Zero, SpriteEffects.None, posY / height);
+                spriteBatch.Draw(sprites.humanSprites.mShoes, new Rectangle((int)posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.mNoColor.Height + 16, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * angle, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), shoes, 0, Vector2.Zero, SpriteEffects.None, posY / height);
+                spriteBatch.Draw(sprites.humanSprites.mSkin, new Rectangle((int)posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.mNoColor.Height + 16, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * angle, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), skin, 0, Vector2.Zero, SpriteEffects.None, posY / height);
+                spriteBatch.Draw(sprites.humanSprites.mNoColor, new Rectangle((int)posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.mNoColor.Height + 16, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * angle, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), Color.White, 0, Vector2.Zero, SpriteEffects.None, posY / height);
+            }
+            else
+            {
+                spriteBatch.Draw(sprites.humanSprites.fEyes, new Rectangle((int)posX - ((sprites.humanSprites.fNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.fNoColor.Height + 16, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height), new Rectangle((sprites.humanSprites.fNoColor.Width / 8) * angle, 0, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height), eyes, 0, Vector2.Zero, SpriteEffects.None, posY / height);
+                spriteBatch.Draw(sprites.humanSprites.fHair, new Rectangle((int)posX - ((sprites.humanSprites.fNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.fNoColor.Height + 16, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height), new Rectangle((sprites.humanSprites.fNoColor.Width / 8) * angle, 0, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height), hair, 0, Vector2.Zero, SpriteEffects.None, posY / height);
+                spriteBatch.Draw(sprites.humanSprites.fPants, new Rectangle((int)posX - ((sprites.humanSprites.fNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.fNoColor.Height + 16, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height), new Rectangle((sprites.humanSprites.fNoColor.Width / 8) * angle, 0, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height), pants, 0, Vector2.Zero, SpriteEffects.None, posY / height);
+                spriteBatch.Draw(sprites.humanSprites.fShirt, new Rectangle((int)posX - ((sprites.humanSprites.fNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.fNoColor.Height + 16, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height), new Rectangle((sprites.humanSprites.fNoColor.Width / 8) * angle, 0, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height), shirt, 0, Vector2.Zero, SpriteEffects.None, posY / height);
+                spriteBatch.Draw(sprites.humanSprites.fShoes, new Rectangle((int)posX - ((sprites.humanSprites.fNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.fNoColor.Height + 16, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height), new Rectangle((sprites.humanSprites.fNoColor.Width / 8) * angle, 0, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height), shoes, 0, Vector2.Zero, SpriteEffects.None, posY / height);
+                spriteBatch.Draw(sprites.humanSprites.fSkin, new Rectangle((int)posX - ((sprites.humanSprites.fNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.fNoColor.Height + 16, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height), new Rectangle((sprites.humanSprites.fNoColor.Width / 8) * angle, 0, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height), skin, 0, Vector2.Zero, SpriteEffects.None, posY / height);
+                spriteBatch.Draw(sprites.humanSprites.fNoColor, new Rectangle((int)posX - ((sprites.humanSprites.fNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.fNoColor.Height + 16, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height), new Rectangle((sprites.humanSprites.fNoColor.Width / 8) * angle, 0, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height), Color.White, 0, Vector2.Zero, SpriteEffects.None, posY / height);
+            }
             if (activity != null)
             {
                 activity.Draw(gameTime, spriteBatch, sprites);

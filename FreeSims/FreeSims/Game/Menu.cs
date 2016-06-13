@@ -14,8 +14,6 @@ namespace Julien12150.FreeSims.Game
         Sprite sprites;
         ItemSprite itemSprites;
         Game1 game1;
-        Game game;
-
         int width, height;
 
         int menuSelection = 0;
