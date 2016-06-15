@@ -113,6 +113,10 @@ namespace Julien12150.FreeSims.Game.HumanMaker
 
                 return true;
             }
+            catch (DirectoryNotFoundException)
+            {
+                Console.WriteLine("reading the file failed or something");
+            }
             catch (FileNotFoundException)
             {
                 Console.WriteLine("reading the file failed or something");
@@ -149,8 +153,8 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                     file.Write(bc);
                 }
                 file.Write((byte)0x01);
-                if (female[i]) file.Write(0x01);
-                else file.Write(0x00);
+                if (female[i]) file.Write((byte)0x01);
+                else file.Write((byte)0x00);
                 file.Write(pants[i].R);
                 file.Write(pants[i].G);
                 file.Write(pants[i].B);

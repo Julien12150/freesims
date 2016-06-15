@@ -9,6 +9,12 @@ namespace Julien12150.FreeSims
         public Texture2D humanSelectSprite;
         public Texture2D statBar;
         public Texture2D talkBuble;
+        public Texture2D colorBar;
+        public Texture2D tabTop;
+        public Texture2D arrows;
+        public Texture2D colorCursor;
+        public Texture2D genderButton;
+
         public SpriteFont mainFont;
 
         public HumanSprite humanSprites;
@@ -18,6 +24,11 @@ namespace Julien12150.FreeSims
             humanSelectSprite = Content.Load<Texture2D>("Gui/SelectedHuman");
             statBar = Content.Load<Texture2D>("Gui/StatBar");
             talkBuble = Content.Load<Texture2D>("Gui/TalkBuble");
+            colorBar = Content.Load<Texture2D>("Gui/HumanMaker/ColorBar");
+            tabTop = Content.Load<Texture2D>("Gui/Human/TabTop");
+            arrows = Content.Load<Texture2D>("Gui/HumanMaker/Arrows");
+            colorCursor = Content.Load<Texture2D>("Gui/HumanMaker/ColorCursor");
+            genderButton = Content.Load<Texture2D>("Gui/HumanMaker/ExitButton");
 
             mainFont = Content.Load<SpriteFont>("font");
 

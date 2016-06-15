@@ -27,13 +27,13 @@ namespace Julien12150.FreeSims.Game
 
         public Activity.Activity activity = null;
 
-        bool female;
-        Color pants;
-        Color hair;
-        Color eyes;
-        Color shirt;
-        Color shoes;
-        Color skin;
+        public bool female;
+        public Color pants;
+        public Color hair;
+        public Color eyes;
+        public Color shirt;
+        public Color shoes;
+        public Color skin;
 
         public Human(float posX, float posY, int angle, int Social, int Fun, Control control, Cursor cursor, Sprite sprites, SpriteBatch spriteBatch, bool female, Color pants, Color hair, Color eyes, Color shirt, Color shoes, Color skin)
         {

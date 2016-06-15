@@ -3,6 +3,7 @@
     public enum GameState
     {
         Menu = 0,
-        Game = 1
+        Game = 1,
+        HumanMaking = 2
     }
 }
