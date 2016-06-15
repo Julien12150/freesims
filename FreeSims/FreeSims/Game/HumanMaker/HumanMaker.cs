@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Julien12150.FreeSims.Game.HumanMaker
 {
@@ -18,11 +19,15 @@ namespace Julien12150.FreeSims.Game.HumanMaker
 
         int humanSelection = 0;
         int buttonSelected = 0;
-        int maxButton = 5;
+        int maxButton = 7;
         int colorSelected = 3;
         bool pressedHumanButton = false;
         bool pressedButtonButton = false;
         bool buttonPressed = false;
+        static double keyboardTimePressedMax = 0.25;
+        double keyboardTimePressed = 0;
+
+        Keys lastKey;
 
         List<string> names = new List<string>();
 
@@ -83,6 +88,8 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                 color = skin[humanSelection];
             else
                 color = shirt[humanSelection];
+
+            spriteBatch.DrawString(sprites.mainFont, names[humanSelection], new Vector2(80, 20), Color.Black);
 
             if (!female[humanSelection])
             {
@@ -240,6 +247,8 @@ namespace Julien12150.FreeSims.Game.HumanMaker
 
             if (control.Start)
             {
+                HMNFileManager.Write(names.ToArray(), female.ToArray(), eyes.ToArray(), hair.ToArray(), pants.ToArray(), shirt.ToArray(), shoes.ToArray(), skin.ToArray());
+
                 game1.ChangeState(GameState.Menu);
                 game1.humanMaker = null;
             }
@@ -474,6 +483,99 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                 else if (!control.A)
                     buttonPressed = false;
             }
+
+            if(buttonSelected == 0)
+            {
+                if (control.A && !buttonPressed)
+                {
+                    female[humanSelection] = false;
+                    buttonPressed = true;
+                }
+                else if (!control.A)
+                    buttonPressed = false;
+            }
+            else if (buttonSelected == 1)
+            {
+                if (control.A && !buttonPressed)
+                {
+                    female[humanSelection] = true;
+                    buttonPressed = true;
+                }
+                else if (!control.A)
+                    buttonPressed = false;
+            }
+
+            if(buttonSelected == 6)
+            {
+                if (control.A && !buttonPressed)
+                {
+                    int newNum = names.ToArray().Length + 1;
+                    names.Add("Human " + newNum);
+                    female.Add(false);
+                    eyes.Add(new Color(0, 0, 56));
+                    hair.Add(new Color(66, 33, 0));
+                    pants.Add(new Color(0, 31, 255));
+                    shirt.Add(Color.White);
+                    shoes.Add(new Color(96, 96, 96));
+                    skin.Add(new Color(255, 179, 160));
+                    humanSelection = names.ToArray().Length - 1;
+                    buttonPressed = true;
+                }
+                else if (!control.A)
+                    buttonPressed = false;
+            }
+            else if(buttonSelected == 7)
+            {
+                if (control.A && !buttonPressed)
+                {
+                    if (names.ToArray().Length > 0)
+                    {
+                        names.RemoveAt(humanSelection);
+                        female.RemoveAt(humanSelection);
+                        eyes.RemoveAt(humanSelection);
+                        hair.RemoveAt(humanSelection);
+                        pants.RemoveAt(humanSelection);
+                        shirt.RemoveAt(humanSelection);
+                        shoes.RemoveAt(humanSelection);
+                        skin.RemoveAt(humanSelection);
+                        humanSelection--;
+                    }
+                    buttonPressed = true;
+                }
+                else if (!control.A)
+                    buttonPressed = false;
+            }
+
+            if (Keyboard.GetState().GetPressedKeys().Length > 0)
+            {
+                if (Keyboard.GetState().GetPressedKeys()[Keyboard.GetState().GetPressedKeys().Length - 1] != lastKey)
+                    keyboardTimePressed = 0;
+                keyboardTimePressed -= gameTime.ElapsedGameTime.TotalSeconds;
+                if (keyboardTimePressed < 0)
+                {
+                    keyboardTimePressed = keyboardTimePressedMax;
+                    if (Keyboard.GetState().IsKeyDown(Keys.Back))
+                    {
+                        if(names[humanSelection].Length > 0)
+                            names[humanSelection] = names[humanSelection].Remove(names[humanSelection].Length - 1);
+                    }
+                    else if(!Keyboard.GetState().IsKeyDown(Keys.LeftShift) || !Keyboard.GetState().IsKeyDown(Keys.RightShift))
+                    {
+                        char? c = Extra.GetChar(Keyboard.GetState().GetPressedKeys()[Keyboard.GetState().GetPressedKeys().Length - 1]);
+                        if (c != null)
+                            names[humanSelection] += c;
+                    }
+                    else if(Keyboard.GetState().IsKeyDown(Keys.LeftShift) || Keyboard.GetState().IsKeyDown(Keys.RightShift))
+                    {
+                        char? c = Extra.GetChar(Keyboard.GetState().GetPressedKeys()[Keyboard.GetState().GetPressedKeys().Length - 1]);
+                        if (c != null)
+                            names[humanSelection] += c;
+                    }
+                }
+                lastKey = Keyboard.GetState().GetPressedKeys()[Keyboard.GetState().GetPressedKeys().Length - 1];
+            }
+            else if(Keyboard.GetState().GetPressedKeys().Length == 0)
+                keyboardTimePressed = 0;
         }
     }
 }
