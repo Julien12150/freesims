@@ -15,6 +15,8 @@ namespace Julien12150.FreeSims
         public Texture2D colorCursor;
         public Texture2D genderButton;
         public Texture2D clothColorButton;
+        public Texture2D addButton;
+        public Texture2D removeButton;
 
         public SpriteFont mainFont;
 
@@ -29,8 +31,10 @@ namespace Julien12150.FreeSims
             tabTop = Content.Load<Texture2D>("Gui/Human/TabTop");
             arrows = Content.Load<Texture2D>("Gui/HumanMaker/Arrows");
             colorCursor = Content.Load<Texture2D>("Gui/HumanMaker/ColorCursor");
-            genderButton = Content.Load<Texture2D>("Gui/HumanMaker/ExitButton");
+            genderButton = Content.Load<Texture2D>("Gui/HumanMaker/GenderButton");
             clothColorButton = Content.Load<Texture2D>("Gui/HumanMaker/ClothButton");
+            addButton = Content.Load<Texture2D>("Gui/HumanMaker/AddButton");
+            removeButton = Content.Load<Texture2D>("Gui/HumanMaker/RemoveButton");
 
             mainFont = Content.Load<SpriteFont>("font");
 
