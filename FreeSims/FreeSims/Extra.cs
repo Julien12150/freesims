@@ -21,11 +21,11 @@ namespace Julien12150.FreeSims
             {
                 return (char)key;
             }
-            else if(key >= Keys.NumPad0 && key <= Keys.NumPad9)
+            /*else if(key >= Keys.NumPad0 && key <= Keys.NumPad9)
             {
                 keyInt = (int)key - 48;
                 return (char)keyInt;
-            }
+            }*/
             else if(key == Keys.Space)
             {
                 return (char)key;

@@ -283,7 +283,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
         }
         public void Update(GameTime gameTime)
         {
-            if (control.LB && !pressedHumanButton)
+            if (control.OtherLeft && !pressedHumanButton)
             {
                 if (humanSelection == 0)
                     humanSelection = names.ToArray().Length - 1;
@@ -291,7 +291,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                     humanSelection--;
                 pressedHumanButton = true;
             }
-            else if (control.RB && !pressedHumanButton)
+            else if (control.OtherRight && !pressedHumanButton)
             {
                 if (humanSelection == names.ToArray().Length - 1)
                     humanSelection = 0;
@@ -299,10 +299,10 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                     humanSelection++;
                 pressedHumanButton = true;
             }
-            else if (!control.LB && !control.RB)
+            else if (!control.OtherLeft && !control.OtherRight)
                 pressedHumanButton = false;
 
-            if (control.DPadUp && !pressedButtonButton)
+            if (control.Up && !pressedButtonButton)
             {
                 if (buttonSelected == 0)
                     buttonSelected = maxButton;
@@ -310,7 +310,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                     buttonSelected--;
                 pressedButtonButton = true;
             }
-            else if (control.DPadDown && !pressedButtonButton)
+            else if (control.Down && !pressedButtonButton)
             {
                 if (buttonSelected == maxButton)
                     buttonSelected = 0;
@@ -318,10 +318,10 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                     buttonSelected++;
                 pressedButtonButton = true;
             }
-            else if (!control.DPadDown && !control.DPadUp)
+            else if (!control.Down && !control.Up)
                 pressedButtonButton = false;
 
-            if (control.Start)
+            if (control.GoBack)
             {
                 HMNFileManager.Write(names.ToArray(), female.ToArray(), eyes.ToArray(), hair.ToArray(), pants.ToArray(), shirt.ToArray(), shoes.ToArray(), skin.ToArray());
 
@@ -333,33 +333,33 @@ namespace Julien12150.FreeSims.Game.HumanMaker
             {
                 if(buttonSelected == 3)
                 {
-                    if(control.DPadRight && eyes[humanSelection].R <= 255)
+                    if(control.Right && eyes[humanSelection].R <= 255)
                     {
                         eyes[humanSelection] = new Color(eyes[humanSelection].R + 1, eyes[humanSelection].G, eyes[humanSelection].B);
                     }
-                    else if(control.DPadLeft && eyes[humanSelection].R >= 0)
+                    else if(control.Left && eyes[humanSelection].R >= 0)
                     {
                         eyes[humanSelection] = new Color(eyes[humanSelection].R - 1, eyes[humanSelection].G, eyes[humanSelection].B);
                     }
                 }
                 else if (buttonSelected == 4)
                 {
-                    if (control.DPadRight && eyes[humanSelection].G <= 255)
+                    if (control.Right && eyes[humanSelection].G <= 255)
                     {
                         eyes[humanSelection] = new Color(eyes[humanSelection].R, eyes[humanSelection].G + 1, eyes[humanSelection].B);
                     }
-                    else if (control.DPadLeft && eyes[humanSelection].G >= 0)
+                    else if (control.Left && eyes[humanSelection].G >= 0)
                     {
                         eyes[humanSelection] = new Color(eyes[humanSelection].R, eyes[humanSelection].G - 1, eyes[humanSelection].B);
                     }
                 }
                 else if (buttonSelected == 5)
                 {
-                    if (control.DPadRight && eyes[humanSelection].B <= 255)
+                    if (control.Right && eyes[humanSelection].B <= 255)
                     {
                         eyes[humanSelection] = new Color(eyes[humanSelection].R, eyes[humanSelection].G, eyes[humanSelection].B + 1);
                     }
-                    else if (control.DPadLeft && eyes[humanSelection].B >= 0)
+                    else if (control.Left && eyes[humanSelection].B >= 0)
                     {
                         eyes[humanSelection] = new Color(eyes[humanSelection].R, eyes[humanSelection].G, eyes[humanSelection].B - 1);
                     }
@@ -369,33 +369,33 @@ namespace Julien12150.FreeSims.Game.HumanMaker
             {
                 if (buttonSelected == 3)
                 {
-                    if (control.DPadRight && hair[humanSelection].R <= 255)
+                    if (control.Right && hair[humanSelection].R <= 255)
                     {
                         hair[humanSelection] = new Color(hair[humanSelection].R + 1, hair[humanSelection].G, hair[humanSelection].B);
                     }
-                    else if (control.DPadLeft && hair[humanSelection].R >= 0)
+                    else if (control.Left && hair[humanSelection].R >= 0)
                     {
                         hair[humanSelection] = new Color(hair[humanSelection].R - 1, hair[humanSelection].G, hair[humanSelection].B);
                     }
                 }
                 else if (buttonSelected == 4)
                 {
-                    if (control.DPadRight && hair[humanSelection].G <= 255)
+                    if (control.Right && hair[humanSelection].G <= 255)
                     {
                         hair[humanSelection] = new Color(hair[humanSelection].R, hair[humanSelection].G + 1, hair[humanSelection].B);
                     }
-                    else if (control.DPadLeft && hair[humanSelection].G >= 0)
+                    else if (control.Left && hair[humanSelection].G >= 0)
                     {
                         hair[humanSelection] = new Color(hair[humanSelection].R, hair[humanSelection].G - 1, hair[humanSelection].B);
                     }
                 }
                 else if (buttonSelected == 5)
                 {
-                    if (control.DPadRight && hair[humanSelection].B <= 255)
+                    if (control.Right && hair[humanSelection].B <= 255)
                     {
                         hair[humanSelection] = new Color(hair[humanSelection].R, hair[humanSelection].G, hair[humanSelection].B + 1);
                     }
-                    else if (control.DPadLeft && hair[humanSelection].B >= 0)
+                    else if (control.Left && hair[humanSelection].B >= 0)
                     {
                         hair[humanSelection] = new Color(hair[humanSelection].R, hair[humanSelection].G, hair[humanSelection].B - 1);
                     }
@@ -405,33 +405,33 @@ namespace Julien12150.FreeSims.Game.HumanMaker
             {
                 if (buttonSelected == 3)
                 {
-                    if (control.DPadRight && pants[humanSelection].R <= 255)
+                    if (control.Right && pants[humanSelection].R <= 255)
                     {
                         pants[humanSelection] = new Color(pants[humanSelection].R + 1, pants[humanSelection].G, pants[humanSelection].B);
                     }
-                    else if (control.DPadLeft && pants[humanSelection].R >= 0)
+                    else if (control.Left && pants[humanSelection].R >= 0)
                     {
                         pants[humanSelection] = new Color(pants[humanSelection].R - 1, pants[humanSelection].G, pants[humanSelection].B);
                     }
                 }
                 else if (buttonSelected == 4)
                 {
-                    if (control.DPadRight && pants[humanSelection].G <= 255)
+                    if (control.Right && pants[humanSelection].G <= 255)
                     {
                         pants[humanSelection] = new Color(pants[humanSelection].R, pants[humanSelection].G + 1, pants[humanSelection].B);
                     }
-                    else if (control.DPadLeft && pants[humanSelection].G >= 0)
+                    else if (control.Left && pants[humanSelection].G >= 0)
                     {
                         pants[humanSelection] = new Color(pants[humanSelection].R, pants[humanSelection].G - 1, pants[humanSelection].B);
                     }
                 }
                 else if (buttonSelected == 5)
                 {
-                    if (control.DPadRight && pants[humanSelection].B <= 255)
+                    if (control.Right && pants[humanSelection].B <= 255)
                     {
                         pants[humanSelection] = new Color(pants[humanSelection].R, pants[humanSelection].G, pants[humanSelection].B + 1);
                     }
-                    else if (control.DPadLeft && pants[humanSelection].B >= 0)
+                    else if (control.Left && pants[humanSelection].B >= 0)
                     {
                         pants[humanSelection] = new Color(pants[humanSelection].R, pants[humanSelection].G, pants[humanSelection].B - 1);
                     }
@@ -441,33 +441,33 @@ namespace Julien12150.FreeSims.Game.HumanMaker
             {
                 if (buttonSelected == 3)
                 {
-                    if (control.DPadRight && shirt[humanSelection].R <= 255)
+                    if (control.Right && shirt[humanSelection].R <= 255)
                     {
                         shirt[humanSelection] = new Color(shirt[humanSelection].R + 1, shirt[humanSelection].G, shirt[humanSelection].B);
                     }
-                    else if (control.DPadLeft && shirt[humanSelection].R >= 0)
+                    else if (control.Left && shirt[humanSelection].R >= 0)
                     {
                         shirt[humanSelection] = new Color(shirt[humanSelection].R - 1, shirt[humanSelection].G, shirt[humanSelection].B);
                     }
                 }
                 else if (buttonSelected == 4)
                 {
-                    if (control.DPadRight && shirt[humanSelection].G <= 255)
+                    if (control.Right && shirt[humanSelection].G <= 255)
                     {
                         shirt[humanSelection] = new Color(shirt[humanSelection].R, shirt[humanSelection].G + 1, shirt[humanSelection].B);
                     }
-                    else if (control.DPadLeft && shirt[humanSelection].G >= 0)
+                    else if (control.Left && shirt[humanSelection].G >= 0)
                     {
                         shirt[humanSelection] = new Color(shirt[humanSelection].R, shirt[humanSelection].G - 1, shirt[humanSelection].B);
                     }
                 }
                 else if (buttonSelected == 5)
                 {
-                    if (control.DPadRight && shirt[humanSelection].B <= 255)
+                    if (control.Right && shirt[humanSelection].B <= 255)
                     {
                         shirt[humanSelection] = new Color(shirt[humanSelection].R, shirt[humanSelection].G, shirt[humanSelection].B + 1);
                     }
-                    else if (control.DPadLeft && shirt[humanSelection].B >= 0)
+                    else if (control.Left && shirt[humanSelection].B >= 0)
                     {
                         shirt[humanSelection] = new Color(shirt[humanSelection].R, shirt[humanSelection].G, shirt[humanSelection].B - 1);
                     }
@@ -477,33 +477,33 @@ namespace Julien12150.FreeSims.Game.HumanMaker
             {
                 if (buttonSelected == 3)
                 {
-                    if (control.DPadRight && shoes[humanSelection].R <= 255)
+                    if (control.Right && shoes[humanSelection].R <= 255)
                     {
                         shoes[humanSelection] = new Color(shoes[humanSelection].R + 1, shoes[humanSelection].G, shoes[humanSelection].B);
                     }
-                    else if (control.DPadLeft && shoes[humanSelection].R >= 0)
+                    else if (control.Left && shoes[humanSelection].R >= 0)
                     {
                         shoes[humanSelection] = new Color(shoes[humanSelection].R - 1, shoes[humanSelection].G, shoes[humanSelection].B);
                     }
                 }
                 else if (buttonSelected == 4)
                 {
-                    if (control.DPadRight && shoes[humanSelection].G <= 255)
+                    if (control.Right && shoes[humanSelection].G <= 255)
                     {
                         shoes[humanSelection] = new Color(shoes[humanSelection].R, shoes[humanSelection].G + 1, shoes[humanSelection].B);
                     }
-                    else if (control.DPadLeft && shoes[humanSelection].G >= 0)
+                    else if (control.Left && shoes[humanSelection].G >= 0)
                     {
                         shoes[humanSelection] = new Color(shoes[humanSelection].R, shoes[humanSelection].G - 1, shoes[humanSelection].B);
                     }
                 }
                 else if (buttonSelected == 5)
                 {
-                    if (control.DPadRight && shoes[humanSelection].B <= 255)
+                    if (control.Right && shoes[humanSelection].B <= 255)
                     {
                         shoes[humanSelection] = new Color(shoes[humanSelection].R, shoes[humanSelection].G, shoes[humanSelection].B + 1);
                     }
-                    else if (control.DPadLeft && shoes[humanSelection].B >= 0)
+                    else if (control.Left && shoes[humanSelection].B >= 0)
                     {
                         shoes[humanSelection] = new Color(shoes[humanSelection].R, shoes[humanSelection].G, shoes[humanSelection].B - 1);
                     }
@@ -513,33 +513,33 @@ namespace Julien12150.FreeSims.Game.HumanMaker
             {
                 if (buttonSelected == 3)
                 {
-                    if (control.DPadRight && skin[humanSelection].R <= 255)
+                    if (control.Right && skin[humanSelection].R <= 255)
                     {
                         skin[humanSelection] = new Color(skin[humanSelection].R + 1, skin[humanSelection].G, skin[humanSelection].B);
                     }
-                    else if (control.DPadLeft && skin[humanSelection].R >= 0)
+                    else if (control.Left && skin[humanSelection].R >= 0)
                     {
                         skin[humanSelection] = new Color(skin[humanSelection].R - 1, skin[humanSelection].G, skin[humanSelection].B);
                     }
                 }
                 else if (buttonSelected == 4)
                 {
-                    if (control.DPadRight && skin[humanSelection].G <= 255)
+                    if (control.Right && skin[humanSelection].G <= 255)
                     {
                         skin[humanSelection] = new Color(skin[humanSelection].R, skin[humanSelection].G + 1, skin[humanSelection].B);
                     }
-                    else if (control.DPadLeft && skin[humanSelection].G >= 0)
+                    else if (control.Left && skin[humanSelection].G >= 0)
                     {
                         skin[humanSelection] = new Color(skin[humanSelection].R, skin[humanSelection].G - 1, skin[humanSelection].B);
                     }
                 }
                 else if (buttonSelected == 5)
                 {
-                    if (control.DPadRight && skin[humanSelection].B <= 255)
+                    if (control.Right && skin[humanSelection].B <= 255)
                     {
                         skin[humanSelection] = new Color(skin[humanSelection].R, skin[humanSelection].G, skin[humanSelection].B + 1);
                     }
-                    else if (control.DPadLeft && skin[humanSelection].B >= 0)
+                    else if (control.Left && skin[humanSelection].B >= 0)
                     {
                         skin[humanSelection] = new Color(skin[humanSelection].R, skin[humanSelection].G, skin[humanSelection].B - 1);
                     }
@@ -548,7 +548,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
 
             if(buttonSelected == 2)
             {
-                if (control.A && !buttonPressed)
+                if (control.Enter && !buttonPressed)
                 {
                     if (colorSelected == 5)
                         colorSelected = 0;
@@ -556,34 +556,34 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                         colorSelected++;
                     buttonPressed = true;
                 }
-                else if (!control.A)
+                else if (!control.Enter)
                     buttonPressed = false;
             }
 
             if(buttonSelected == 0)
             {
-                if (control.A && !buttonPressed)
+                if (control.Enter && !buttonPressed)
                 {
                     female[humanSelection] = false;
                     buttonPressed = true;
                 }
-                else if (!control.A)
+                else if (!control.Enter)
                     buttonPressed = false;
             }
             else if (buttonSelected == 1)
             {
-                if (control.A && !buttonPressed)
+                if (control.Enter && !buttonPressed)
                 {
                     female[humanSelection] = true;
                     buttonPressed = true;
                 }
-                else if (!control.A)
+                else if (!control.Enter)
                     buttonPressed = false;
             }
 
             if(buttonSelected == 6)
             {
-                if (control.A && !buttonPressed)
+                if (control.Enter && !buttonPressed)
                 {
                     int newNum = names.ToArray().Length + 1;
                     names.Add("Human " + newNum);
@@ -597,12 +597,12 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                     humanSelection = names.ToArray().Length - 1;
                     buttonPressed = true;
                 }
-                else if (!control.A)
+                else if (!control.Enter)
                     buttonPressed = false;
             }
             else if(buttonSelected == 7)
             {
-                if (control.A && !buttonPressed)
+                if (control.Enter && !buttonPressed)
                 {
                     if (names.ToArray().Length > 0)
                     {
@@ -618,7 +618,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                     }
                     buttonPressed = true;
                 }
-                else if (!control.A)
+                else if (!control.Enter)
                     buttonPressed = false;
             }
 
