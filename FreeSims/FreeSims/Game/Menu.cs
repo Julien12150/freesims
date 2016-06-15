@@ -92,7 +92,7 @@ namespace Julien12150.FreeSims.Game
                 else if(menuSelection == 2)
                 {
                     game1.ChangeState(GameState.HumanMaking);
-                    game1.humanMaker = new HumanMaker.HumanMaker(spriteBatch, sprites, control, game1);
+                    game1.humanMaker = new HumanMaker.HumanMaker(spriteBatch, sprites, control, game1, width, height);
                 }
                 else if (menuSelection == 3)
                 {
