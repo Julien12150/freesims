@@ -82,12 +82,24 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                 shoes = new Color[] { new Color(96, 96, 96), new Color(150, 150, 150), new Color(56, 20, 0), new Color(200, 0, 0) };
                 skin = new Color[] { new Color(255, 179, 160), new Color(183, 124, 95), new Color(255, 202, 191), new Color(255, 179, 160) };
 
+                for (int i = 0; i < names.Length; i++)
+                {
+                    this.names.Add(names[i]);
+                    this.female.Add(female[i]);
+                    this.pants.Add(pants[i]);
+                    this.hair.Add(hair[i]);
+                    this.eyes.Add(eyes[i]);
+                    this.shirt.Add(shirt[i]);
+                    this.shoes.Add(shoes[i]);
+                    this.skin.Add(skin[i]);
+                }
+
                 Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/Julien12150/");
                 Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/Julien12150/FreeSims/");
 
                 HMNFileManager.Write(names, female, eyes, hair, pants, shirt, shoes, skin);
             }
-            }
+        }
         public void Draw(GameTime gameTime)
         {
             Color color;
@@ -106,7 +118,40 @@ namespace Julien12150.FreeSims.Game.HumanMaker
             else
                 color = shirt[humanSelection];
 
-            spriteBatch.DrawString(sprites.mainFont, names[humanSelection], new Vector2(120, 20), Color.Black);
+            spriteBatch.DrawString(sprites.mainFont, names[humanSelection], new Vector2(50, 50), Color.Black);
+
+            for (int i = 0; i < names.ToArray().Length; i++)
+            {
+                int tabColor;
+                if (humanSelection == i)
+                    tabColor = sprites.humanSprites.tabMNoColor.Height / 2;
+                else
+                    tabColor = 0;
+
+                if (i == 0)
+                    spriteBatch.Draw(sprites.tabTop, new Vector2(52 + (sprites.tabTop.Width / 3) * i, 0), new Rectangle(1 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
+                else if (i == names.ToArray().Length - 1)
+                    spriteBatch.Draw(sprites.tabTop, new Vector2(52 + (sprites.tabTop.Width / 3) * i, 0), new Rectangle(39 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
+                else
+                    spriteBatch.Draw(sprites.tabTop, new Vector2(52 + (sprites.tabTop.Width / 3) * i, 0), new Rectangle(20 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
+
+                if (!female[i])
+                {
+                    spriteBatch.Draw(sprites.humanSprites.tabMEyes, new Vector2(50 + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabMNoColor.Width, sprites.humanSprites.tabMNoColor.Height / 2), eyes[i]);
+                    spriteBatch.Draw(sprites.humanSprites.tabMHair, new Vector2(50 + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabMNoColor.Width, sprites.humanSprites.tabMNoColor.Height / 2), hair[i]);
+                    spriteBatch.Draw(sprites.humanSprites.tabMShirt, new Vector2(50 + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabMNoColor.Width, sprites.humanSprites.tabMNoColor.Height / 2), shirt[i]);
+                    spriteBatch.Draw(sprites.humanSprites.tabMSkin, new Vector2(50 + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabMNoColor.Width, sprites.humanSprites.tabMNoColor.Height / 2), skin[i]);
+                    spriteBatch.Draw(sprites.humanSprites.tabMNoColor, new Vector2(50 + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabMNoColor.Width, sprites.humanSprites.tabMNoColor.Height / 2), Color.White);
+                }
+                else
+                {
+                    spriteBatch.Draw(sprites.humanSprites.tabFEyes, new Vector2(50 + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabMNoColor.Width, sprites.humanSprites.tabMNoColor.Height / 2), eyes[i]);
+                    spriteBatch.Draw(sprites.humanSprites.tabFHair, new Vector2(50 + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabMNoColor.Width, sprites.humanSprites.tabMNoColor.Height / 2), hair[i]);
+                    spriteBatch.Draw(sprites.humanSprites.tabFShirt, new Vector2(50 + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabMNoColor.Width, sprites.humanSprites.tabMNoColor.Height / 2), shirt[i]);
+                    spriteBatch.Draw(sprites.humanSprites.tabFSkin, new Vector2(50 + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabMNoColor.Width, sprites.humanSprites.tabMNoColor.Height / 2), skin[i]);
+                    spriteBatch.Draw(sprites.humanSprites.tabFNoColor, new Vector2(50 + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabMNoColor.Width, sprites.humanSprites.tabMNoColor.Height / 2), Color.White);
+                }
+            }
 
             if (!female[humanSelection])
             {

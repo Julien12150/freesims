@@ -343,7 +343,7 @@ namespace Julien12150.FreeSims
                 }
                 else
                 {
-                    if (Keyboard.GetState().IsKeyDown(Keys.NumPad6))
+                    if (Keyboard.GetState().IsKeyDown(Keys.PageDown))
                         return true;
                 }
                 return false;
@@ -360,7 +360,7 @@ namespace Julien12150.FreeSims
                 }
                 else
                 {
-                    if (Keyboard.GetState().IsKeyDown(Keys.NumPad4))
+                    if (Keyboard.GetState().IsKeyDown(Keys.PageUp))
                         return true;
                 }
                 return false;
