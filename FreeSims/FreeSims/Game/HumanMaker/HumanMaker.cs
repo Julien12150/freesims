@@ -20,7 +20,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
 
         int humanSelection = 0;
         int buttonSelected = 0;
-        int maxButton = 7;
+        int maxButton = 8;
         int colorSelected = 3;
         bool pressedHumanButton = false;
         bool pressedButtonButton = false;
@@ -308,6 +308,15 @@ namespace Julien12150.FreeSims.Game.HumanMaker
             else
             {
                 spriteBatch.Draw(sprites.removeButton, new Vector2(5, 250), new Rectangle(0, 0, sprites.addButton.Width, sprites.addButton.Height / 2), Color.White);
+            }
+
+            if(buttonSelected == 8)
+            {
+                spriteBatch.Draw(sprites.resetButton, new Vector2(5, 300), new Rectangle(0, sprites.addButton.Height / 2, sprites.addButton.Width, sprites.addButton.Height / 2), Color.White);
+            }
+            else
+            {
+                spriteBatch.Draw(sprites.resetButton, new Vector2(5, 300), new Rectangle(0, 0, sprites.addButton.Width, sprites.addButton.Height / 2), Color.White);
             }
 
             if (buttonSelected == 3)
@@ -660,6 +669,44 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                         shoes.RemoveAt(humanSelection);
                         skin.RemoveAt(humanSelection);
                         humanSelection--;
+                    }
+                    buttonPressed = true;
+                }
+                else if (!control.Enter)
+                    buttonPressed = false;
+            }
+            else if(buttonSelected == 8)
+            {
+                if (control.Enter && !buttonPressed)
+                {
+                    string[] names = new string[] { "Julian", "Joe", "Tom", "Christine" };
+                    bool[] female = new bool[] { false, false, false, true };
+                    Color[] pants = new Color[] { new Color(0, 31, 255), new Color(22, 22, 22), new Color(193, 193, 193), new Color(255, 173, 255) };
+                    Color[] hair = new Color[] { new Color(66, 33, 0), new Color(255, 155, 43), new Color(40, 9, 0), new Color(66, 33, 0) };
+                    Color[] eyes = new Color[] { new Color(0, 0, 56), new Color(68, 21, 0), new Color(0, 47, 0), new Color(0, 0, 56) };
+                    Color[] shirt = new Color[] { new Color(255, 255, 255), new Color(183, 43, 0), new Color(22, 22, 22), new Color(255, 255, 255) };
+                    Color[] shoes = new Color[] { new Color(96, 96, 96), new Color(150, 150, 150), new Color(56, 20, 0), new Color(200, 0, 0) };
+                    Color[] skin = new Color[] { new Color(255, 179, 160), new Color(183, 124, 95), new Color(255, 202, 191), new Color(255, 179, 160) };
+
+                    this.names = new List<string>();
+                    this.female = new List<bool>();
+                    this.pants = new List<Color>();
+                    this.hair = new List<Color>();
+                    this.eyes = new List<Color>();
+                    this.shirt = new List<Color>();
+                    this.shoes = new List<Color>();
+                    this.skin = new List<Color>();
+
+                    for (int i = 0; i < names.Length; i++)
+                    {
+                        this.names.Add(names[i]);
+                        this.female.Add(female[i]);
+                        this.pants.Add(pants[i]);
+                        this.hair.Add(hair[i]);
+                        this.eyes.Add(eyes[i]);
+                        this.shirt.Add(shirt[i]);
+                        this.shoes.Add(shoes[i]);
+                        this.skin.Add(skin[i]);
                     }
                     buttonPressed = true;
                 }

@@ -159,6 +159,8 @@ namespace Julien12150.FreeSims.Game
             {
                 int tabColor;
 
+                humanList[i].Draw(gameTime, height);
+
                 if (i == 0)
                     spriteBatch.Draw(sprites.tabTop, new Vector2((sprites.statBar.Width + 30) + (sprites.tabTop.Width / 3) * i, 0), new Rectangle(1 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
                 else if(i == humanList.ToArray().Length - 1)
@@ -196,7 +198,6 @@ namespace Julien12150.FreeSims.Game
                     spriteBatch.Draw(sprites.humanSprites.tabFSkin, new Vector2((sprites.statBar.Width + 28) + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabMNoColor.Width, sprites.humanSprites.tabMNoColor.Height / 2), humanList[i].skin);
                     spriteBatch.Draw(sprites.humanSprites.tabFNoColor, new Vector2((sprites.statBar.Width + 28) + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabMNoColor.Width, sprites.humanSprites.tabMNoColor.Height / 2), Color.White);
                 }
-                humanList[i].Draw(gameTime, height);
             }
         }
 

@@ -21,6 +21,9 @@ namespace Julien12150.FreeSims
         public SpriteFont mainFont;
 
         public HumanSprite humanSprites;
+
+        public Texture2D resetButton;
+
         public Sprite(ContentManager Content)
         {
             cursorSprite = Content.Load<Texture2D>("Gui/cursor");
@@ -35,6 +38,7 @@ namespace Julien12150.FreeSims
             clothColorButton = Content.Load<Texture2D>("Gui/HumanMaker/ClothButton");
             addButton = Content.Load<Texture2D>("Gui/HumanMaker/AddButton");
             removeButton = Content.Load<Texture2D>("Gui/HumanMaker/RemoveButton");
+            resetButton = Content.Load<Texture2D>("Gui/HumanMaker/ResetButton");
 
             mainFont = Content.Load<SpriteFont>("font");
 
