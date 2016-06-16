@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Julien12150.FreeSims.Game;
 using Julien12150.FreeSims.Game.Item;
+using Julien12150.FreeSims.Game.HumanMaker;
 
 namespace Julien12150.FreeSims
 {
@@ -24,6 +25,7 @@ namespace Julien12150.FreeSims
         Control control;
         Menu menu;
         public Game.Game game;
+        public HumanMaker humanMaker;
 
         GameState state = GameState.Menu;
 
@@ -109,6 +111,8 @@ namespace Julien12150.FreeSims
             }
             else if (state == GameState.Menu)
                 menu.Update(gameTime);
+            else if (state == GameState.HumanMaking)
+                humanMaker.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -132,6 +136,8 @@ namespace Julien12150.FreeSims
                 cursor.Draw(gameTime, spriteBatch);
             else if (state == GameState.Menu)
                 menu.Draw(gameTime);
+            else if (state == GameState.HumanMaking)
+                humanMaker.Draw(gameTime);
 
             spriteBatch.End();
 

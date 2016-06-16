@@ -16,4 +16,3 @@ namespace Julien12150.FreeSims
     }
 #endif
 }
-

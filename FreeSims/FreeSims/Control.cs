@@ -296,5 +296,144 @@ namespace Julien12150.FreeSims
                 return false;
             }
         }
+
+        
+        public bool Right
+        {
+            get
+            {
+                if (isControllerMode)
+                {
+                    if (DPadRight)
+                        return true;
+                }
+                else
+                {
+                    if (Keyboard.GetState().IsKeyDown(Keys.Right))
+                        return true;
+                }
+                return false;
+            }
+        }
+        public bool Left
+        {
+            get
+            {
+                if (isControllerMode)
+                {
+                    if (DPadLeft)
+                        return true;
+                }
+                else
+                {
+                    if (Keyboard.GetState().IsKeyDown(Keys.Left))
+                        return true;
+                }
+                return false;
+            }
+        }
+        public bool OtherRight
+        {
+            get
+            {
+                if (isControllerMode)
+                {
+                    if (RB)
+                        return true;
+                }
+                else
+                {
+                    if (Keyboard.GetState().IsKeyDown(Keys.PageDown))
+                        return true;
+                }
+                return false;
+            }
+        }
+        public bool OtherLeft
+        {
+            get
+            {
+                if (isControllerMode)
+                {
+                    if (LB)
+                        return true;
+                }
+                else
+                {
+                    if (Keyboard.GetState().IsKeyDown(Keys.PageUp))
+                        return true;
+                }
+                return false;
+            }
+        }
+        public bool Up
+        {
+            get
+            {
+                if (isControllerMode)
+                {
+                    if (DPadUp)
+                        return true;
+                }
+                else
+                {
+                    if (Keyboard.GetState().IsKeyDown(Keys.Up))
+                        return true;
+                }
+                return false;
+            }
+        }
+        public bool Down
+        {
+            get
+            {
+                if (isControllerMode)
+                {
+                    if (DPadDown)
+                        return true;
+                }
+                else
+                {
+                    if (Keyboard.GetState().IsKeyDown(Keys.Down))
+                        return true;
+                }
+                return false;
+            }
+        }
+
+        public bool Enter
+        {
+            get
+            {
+                if (isControllerMode)
+                {
+                    if (A)
+                        return true;
+                }
+                else
+                {
+                    if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                        return true;
+                }
+                return false;
+            }
+        }
+        public bool GoBack
+        {
+            get
+            {
+                if (isControllerMode)
+                {
+                    if (Start)
+                        return true;
+                }
+                else
+                {
+                    if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                        return true;
+                }
+                return false;
+            }
+        }
     }
 }

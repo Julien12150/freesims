@@ -18,7 +18,7 @@ namespace Julien12150.FreeSims.Game
 
         int menuSelection = 0;
         string title = "FreeSims";
-        string[] menu = new string[] { "Play", "Option", "Quit" };
+        string[] menu = new string[] { "Play", "Option", "Human Maker", "Quit" };
 
         bool hasPressedButton = false;
 
@@ -89,7 +89,12 @@ namespace Julien12150.FreeSims.Game
                         game1.game = new Game(width, height, control, cursor, spriteBatch, sprites, itemSprites);
                     }
                 }
-                else if (menuSelection == 2)
+                else if(menuSelection == 2)
+                {
+                    game1.ChangeState(GameState.HumanMaking);
+                    game1.humanMaker = new HumanMaker.HumanMaker(spriteBatch, sprites, control, game1, width, height);
+                }
+                else if (menuSelection == 3)
                 {
                     game1.Exit();
                 }
