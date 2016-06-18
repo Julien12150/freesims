@@ -100,6 +100,7 @@
     <Content Include="GameThumbnail.png">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </Content>
+    <Content Include="setup.iss" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FreeSimsContent\FreeSimsContent.contentproj">
