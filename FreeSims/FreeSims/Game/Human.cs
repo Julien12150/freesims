@@ -98,6 +98,15 @@ namespace Julien12150.FreeSims.Game
                         Social--;
                     }
                 }
+                else
+                {
+                    if (timer < 0)
+                    {
+                        timer = TIMER;
+                        Social--;
+                        Fun--;
+                    }
+                }
             }
             else
             {
@@ -127,12 +136,12 @@ namespace Julien12150.FreeSims.Game
                     finalPosY = (int)cursor.posY;
                     if (activity != null)
                     {
-                        if(activity.type == "Talk")
+                        if (activity.type == "Talk")
                             activity.targetH.activity = null;
                         else if (activity.type == "TVWatch")
-                        {
                             activity.targetI.humanList.RemoveAll(ph);
-                        }
+                        else if (activity.type == "SitChair")
+                            activity.targetI.humanList.Remove(this);
                         activity = null;
                     }
                 }
@@ -145,10 +154,10 @@ namespace Julien12150.FreeSims.Game
                         if (activity.type == "Talk")
                             activity.targetH.activity = null;
                         else if (activity.type == "TVWatch")
-                        {
                             activity.targetI.humanList.RemoveAll(ph);
-                        }
-                        
+                        else if (activity.type == "SitChair")
+                            activity.targetI.humanList.Remove(this);
+
                         activity = null;
                     }
                 }

@@ -73,6 +73,9 @@ namespace Julien12150.FreeSims.Game
                 }
             }
             itemList.Add(new TV(itemSprites, 60, 80, 1, new List<Human>()));
+            itemList.Add(new Chair(itemSprites, 130, 80, 1));
+            itemList.Add(new Chair(itemSprites, 180, 80, 7));
+            itemList.Add(new Chair(itemSprites, 155, 120, 4));
         }
 
         public void Update(GameTime gameTime)
@@ -126,12 +129,24 @@ namespace Julien12150.FreeSims.Game
                             itemList[i].humanList.Add(humanList[selectedHuman]);
                             humanList[selectedHuman].activity.Start(gameTime);
                         }
+                        else if(itemList[i].type == "Chair")
+                        {
+                            humanList[selectedHuman].activity = new SitChair(humanList[selectedHuman], (Chair)itemList[i]);
+                            itemList[i].humanList.Add(humanList[selectedHuman]);
+                            humanList[selectedHuman].activity.Start(gameTime);
+                        }
                     }
                     else if (!control.isControllerMode && control.RightMouseClick)
                     {
                         if (itemList[i].type == "TV")
                         {
                             humanList[selectedHuman].activity = new TVWatch(humanList[selectedHuman], (TV)itemList[i]);
+                            itemList[i].humanList.Add(humanList[selectedHuman]);
+                            humanList[selectedHuman].activity.Start(gameTime);
+                        }
+                        else if (itemList[i].type == "Chair")
+                        {
+                            humanList[selectedHuman].activity = new SitChair(humanList[selectedHuman], (Chair)itemList[i]);
                             itemList[i].humanList.Add(humanList[selectedHuman]);
                             humanList[selectedHuman].activity.Start(gameTime);
                         }

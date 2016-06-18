@@ -78,6 +78,7 @@
     <Compile Include="Cursor.cs" />
     <Compile Include="Extra.cs" />
     <Compile Include="Game\Activity\Activity.cs" />
+    <Compile Include="Game\Activity\SitChair.cs" />
     <Compile Include="Game\Activity\Talk.cs" />
     <Compile Include="Game\Activity\TVWatch.cs" />
     <Compile Include="Game\Game.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Game\Human.cs" />
     <Compile Include="Game\HumanMaker\HMNFileManager.cs" />
     <Compile Include="Game\HumanMaker\HumanMaker.cs" />
+    <Compile Include="Game\Item\Chair.cs" />
     <Compile Include="Game\Item\Item.cs" />
     <Compile Include="Game\Item\ItemSprite.cs" />
     <Compile Include="Game\Item\TV.cs" />
