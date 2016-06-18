@@ -24,7 +24,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
-Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+Name: "desktopicon\controller"; Description: "Create a desktop shortcut to open the game with controller support"; Flags: unchecked
+Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked  
 
 [Files]
 Source: "bin\x86\Release\FreeSims.exe"; DestDir: "{app}"; Flags: ignoreversion
@@ -32,9 +33,12 @@ Source: "bin\x86\Release\Content\*"; DestDir: "{app}\Content"; Flags: ignorevers
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{commonprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
-Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
-Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: quicklaunchicon
+Name: "{commonprograms}\Julien12150\FreeSims\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"   
+Name: "{commonprograms}\Julien12150\FreeSims\{#MyAppName} with Controller"; Filename: "{app}\{#MyAppExeName}"; Parameters: "/c"
+Name: "{commonprograms}\Julien12150\FreeSims\Uninstall"; Filename: "{app}\unins000.exe";
+Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon     
+Name: "{commondesktop}\{#MyAppName} with Controller"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon\controller; Parameters: "/c"
+Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\Julien12150\Freesims\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: quicklaunchicon       
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
