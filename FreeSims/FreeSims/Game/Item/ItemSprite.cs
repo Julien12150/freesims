@@ -6,10 +6,12 @@ namespace Julien12150.FreeSims.Game.Item
     public class ItemSprite
     {
         public Texture2D oldTv;
-
+        public Texture2D Chair;
+		
         public ItemSprite(ContentManager Content)
         {
             oldTv = Content.Load<Texture2D>("Item/OldTV");
+			Chair = Content.Load<Texture2D>("Item/Chair");
         }
     }
 }
