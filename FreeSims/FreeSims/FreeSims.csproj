@@ -89,6 +89,7 @@
     <Compile Include="Game\Item\Chair.cs" />
     <Compile Include="Game\Item\Item.cs" />
     <Compile Include="Game\Item\ItemSprite.cs" />
+    <Compile Include="Game\Item\Table.cs" />
     <Compile Include="Game\Item\TV.cs" />
     <Compile Include="Game\Menu.cs" />
     <Compile Include="HumanSprite.cs" />

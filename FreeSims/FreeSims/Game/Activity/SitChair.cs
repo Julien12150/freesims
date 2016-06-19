@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Julien12150.FreeSims.Game.Item;
 
 namespace Julien12150.FreeSims.Game.Activity

@@ -73,18 +73,18 @@ namespace Julien12150.FreeSims.Game
                 }
             }
             itemList.Add(new TV(itemSprites, 60, 80, 1, new List<Human>()));
-            itemList.Add(new Chair(itemSprites, 130, 80, 1));
-            itemList.Add(new Chair(itemSprites, 180, 80, 7));
-            itemList.Add(new Chair(itemSprites, 155, 120, 4));
+            itemList.Add(new Chair(itemSprites, 200, 150, 1));
+            itemList.Add(new Chair(itemSprites, 240, 150, 7));
+            itemList.Add(new Table(itemSprites, 200, 180, 1));
         }
 
         public void Update(GameTime gameTime)
         {
-            for(int i = 0; i < humanList.ToArray().Length; i++)
+            for (int i = 0; i < humanList.ToArray().Length; i++)
             {
                 humanList[i].Update(gameTime);
-                
-                if(selectedHuman == i)
+
+                if (selectedHuman == i)
                 {
                     humanList[i].selected = true;
                 }
@@ -92,12 +92,12 @@ namespace Julien12150.FreeSims.Game
                 {
                     humanList[i].selected = false;
 
-                    if(cursor.posX < humanList[i].posX + ((sprites.humanSprites.mNoColor.Width / 8) / 2) &&
+                    if (cursor.posX < humanList[i].posX + ((sprites.humanSprites.mNoColor.Width / 8) / 2) &&
                         cursor.posX > humanList[i].posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2) &&
                         cursor.posY < humanList[i].posY &&
                         cursor.posY > humanList[i].posY - sprites.humanSprites.mNoColor.Height)
                     {
-                        if(control.isControllerMode && control.B)
+                        if (control.isControllerMode && control.B)
                         {
                             humanList[i].activity = new Talk(humanList[selectedHuman], humanList[i]);
                             humanList[selectedHuman].activity = new Talk(humanList[i], humanList[selectedHuman]);
