@@ -11,6 +11,10 @@
         <Start> </Start>
         <End>~</End>
       </CharacterRegion>
+      <CharacterRegion>
+        <Start>¡</Start>
+        <End>ɏ</End>
+      </CharacterRegion>
     </CharacterRegions>
   </Asset>
 </XnaContent>

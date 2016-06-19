@@ -14,8 +14,8 @@ AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
 DefaultDirName={pf}\Julien12150\{#MyAppName}
+OutputBaseFilename=freesims_setup     
 DisableProgramGroupPage=yes
-OutputBaseFilename=freesims_setup
 Compression=lzma
 SolidCompression=yes
 
@@ -35,7 +35,7 @@ Source: "bin\x86\Release\Content\*"; DestDir: "{app}\Content"; Flags: ignorevers
 [Icons]
 Name: "{commonprograms}\Julien12150\FreeSims\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"   
 Name: "{commonprograms}\Julien12150\FreeSims\{#MyAppName} with Controller"; Filename: "{app}\{#MyAppExeName}"; Parameters: "/c"
-Name: "{commonprograms}\Julien12150\FreeSims\Uninstall"; Filename: "{app}\unins000.exe";
+Name: "{commonprograms}\Julien12150\FreeSims\Uninstall"; Filename: "{app}\unins000.exe"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon     
 Name: "{commondesktop}\{#MyAppName} with Controller"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon\controller; Parameters: "/c"
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\Julien12150\Freesims\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: quicklaunchicon       

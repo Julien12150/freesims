@@ -14,16 +14,18 @@ namespace Julien12150.FreeSims.Game
         Sprite sprites;
         ItemSprite itemSprites;
         Game1 game1;
+        Language language;
         int width, height;
 
         int menuSelection = 0;
         string title = "FreeSims";
-        string[] menu = new string[] { "Play", "Option", "Human Maker", "Quit" };
+        string[] menu;
 
         bool hasPressedButton = false;
 
-        public Menu(int width, int height, SpriteBatch spriteBatch, Control control, Sprite sprites, Game1 game1, Cursor cursor, ItemSprite itemSprites)
+        public Menu(int width, int height, SpriteBatch spriteBatch, Control control, Sprite sprites, Game1 game1, Cursor cursor, ItemSprite itemSprites, Language language)
         {
+            menu = new string[] { language.menu_play, language.menu_option, language.menu_humanmaker, language.menu_quit };
             this.spriteBatch = spriteBatch;
             this.control = control;
             this.cursor = cursor;
@@ -33,6 +35,7 @@ namespace Julien12150.FreeSims.Game
             this.height = height;
             font = sprites.mainFont;
             this.game1 = game1;
+            this.language = language;
         }
 
         public void Draw(GameTime gameTime)
@@ -88,6 +91,11 @@ namespace Julien12150.FreeSims.Game
                     {
                         game1.game = new Game(width, height, control, cursor, spriteBatch, sprites, itemSprites);
                     }
+                }
+                else if(menuSelection == 1)
+                {
+                    game1.ChangeState(GameState.Option);
+                    game1.option = new Option(spriteBatch, game1, language, sprites, control);
                 }
                 else if(menuSelection == 2)
                 {

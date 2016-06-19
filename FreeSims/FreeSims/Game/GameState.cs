@@ -4,6 +4,7 @@
     {
         Menu = 0,
         Game = 1,
-        HumanMaking = 2
+        HumanMaking = 2,
+        Option = 3
     }
 }

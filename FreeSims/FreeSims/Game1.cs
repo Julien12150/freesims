@@ -1,3 +1,5 @@
+using System.IO;
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -14,6 +16,8 @@ namespace Julien12150.FreeSims
     {
         bool isControllerMode;
 
+        string lang;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -22,9 +26,12 @@ namespace Julien12150.FreeSims
         Sprite sprites;
         ItemSprite itemSprites;
 
+        Language language;
+
         Control control;
         Menu menu;
         public Game.Game game;
+        public Option option;
         public HumanMaker humanMaker;
 
         GameState state = GameState.Menu;
@@ -54,9 +61,27 @@ namespace Julien12150.FreeSims
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            if (File.Exists($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Julien12150\\FreeSims\\config.txt"))
+            {
+                StreamReader file = new StreamReader($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Julien12150\\FreeSims\\config.txt");
+                string[] sFile = file.ReadToEnd().Split(Environment.NewLine.ToCharArray());
+                foreach(string s in sFile)
+                {
+                    if(s.Split('=')[0] == "lang")
+                    {
+                        lang = s.Split('=')[1];
+                    }
+                }
+                file.Close();
+            }
+            else
+            {
+                StreamWriter file = new StreamWriter($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Julien12150\\FreeSims\\config.txt");
+                file.WriteLine("lang=en_US");
+                file.Close();
+            }
 
             base.Initialize();
-
         }
 
         /// <summary>
@@ -73,8 +98,9 @@ namespace Julien12150.FreeSims
 
             control = new Control(isControllerMode, Window.ClientBounds.Width, Window.ClientBounds.Height);
             cursor = new Cursor(Window.ClientBounds.Width, Window.ClientBounds.Height, sprites, control);
+            language = new Language(lang);
 
-            menu = new Menu(Window.ClientBounds.Width, Window.ClientBounds.Height, spriteBatch, control, sprites, this, cursor, itemSprites);
+            menu = new Menu(Window.ClientBounds.Width, Window.ClientBounds.Height, spriteBatch, control, sprites, this, cursor, itemSprites, language);
             // TODO: use this.Content to load your game content here
         }
 
@@ -113,6 +139,8 @@ namespace Julien12150.FreeSims
                 menu.Update(gameTime);
             else if (state == GameState.HumanMaking)
                 humanMaker.Update(gameTime);
+            else if (state == GameState.Option)
+                option.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -138,6 +166,8 @@ namespace Julien12150.FreeSims
                 menu.Draw(gameTime);
             else if (state == GameState.HumanMaking)
                 humanMaker.Draw(gameTime);
+            else if (state == GameState.Option)
+                option.Draw(gameTime);
 
             spriteBatch.End();
 
