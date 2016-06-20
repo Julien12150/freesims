@@ -105,6 +105,9 @@
     <Content Include="GameThumbnail.png">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </Content>
+    <None Include="Language\hr_HR.lng">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Language\fr_FR.lng">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
