@@ -37,10 +37,21 @@ namespace Julien12150.FreeSims
             spriteBatch.DrawString(font, language.option_chooselang + "\n" + language.option_restartnote, new Vector2(0, 10), Color.Black);
             for (int i = 0; i < lang.Length; i++)
             {
-                if (i == langSelection)
-                    spriteBatch.DrawString(font, language.GetLang(lang[i]), new Vector2(0, 80 + (i * 20)), Color.Gray);
+                string langEnglish = language.GetEnglishLang(lang[i]);
+                if (langEnglish == null)
+                {
+                    if (i == langSelection)
+                        spriteBatch.DrawString(font, language.GetLang(lang[i]), new Vector2(0, 80 + (i * 20)), Color.Gray);
+                    else
+                        spriteBatch.DrawString(font, language.GetLang(lang[i]), new Vector2(0, 80 + (i * 20)), Color.Black);
+                }
                 else
-                    spriteBatch.DrawString(font, language.GetLang(lang[i]), new Vector2(0, 80 + (i * 20)), Color.Black);
+                {
+                    if (i == langSelection)
+                        spriteBatch.DrawString(font, $"{language.GetLang(lang[i])} ({langEnglish})", new Vector2(0, 80 + (i * 20)), Color.Gray);
+                    else
+                        spriteBatch.DrawString(font, $"{language.GetLang(lang[i])} ({langEnglish})", new Vector2(0, 80 + (i * 20)), Color.Black);
+                }
             }
         }
         public void Update(GameTime gameTime)

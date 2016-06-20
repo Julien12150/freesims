@@ -68,6 +68,20 @@ namespace Julien12150.FreeSims
             file.Close();
             return null;
         }
+        public string GetEnglishLang(string language)
+        {
+            StreamReader file = new StreamReader($"Language\\{language}.lng");
+            foreach (string s in file.ReadToEnd().Split(Environment.NewLine.ToCharArray()))
+            {
+                if (s.Split('=')[0] == "lang_english")
+                {
+                    file.Close();
+                    return s.Split('=')[1];
+                }
+            }
+            file.Close();
+            return null;
+        }
         private void GetStringVar(string[] file)
         {
             foreach (string s in file)
