@@ -18,6 +18,8 @@ namespace Julien12150.FreeSims
         public Texture2D addButton;
         public Texture2D removeButton;
 
+        public Texture2D noSprite;
+        
         public SpriteFont mainFont;
 
         public HumanSprite humanSprites;
@@ -39,6 +41,7 @@ namespace Julien12150.FreeSims
             addButton = Content.Load<Texture2D>("Gui/HumanMaker/AddButton");
             removeButton = Content.Load<Texture2D>("Gui/HumanMaker/RemoveButton");
             resetButton = Content.Load<Texture2D>("Gui/HumanMaker/ResetButton");
+            noSprite = Content.Load<Texture2D>("NoSprite");
 
             mainFont = Content.Load<SpriteFont>("font");
 

@@ -6,3 +6,4 @@ menu_humanmaker=Créateur d'Humain
 menu_quit=Quitter
 option_chooselang=Choisissez une langue
 option_restartnote=NOTE: Vous devrais redémarrer le jeu pour finir les changements
+log_humandied=Oh non, $n est mort...

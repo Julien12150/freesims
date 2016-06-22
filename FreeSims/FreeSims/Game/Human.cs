@@ -24,9 +24,13 @@ namespace Julien12150.FreeSims.Game
 
         public int Social;
         public int Fun;
+        public int Hunger;
+
+        public bool cannotDie;
 
         public Activity.Activity activity = null;
 
+        public string name;
         public bool female;
         public Color pants;
         public Color hair;
@@ -35,12 +39,14 @@ namespace Julien12150.FreeSims.Game
         public Color shoes;
         public Color skin;
 
-        public Human(float posX, float posY, int angle, int Social, int Fun, Control control, Cursor cursor, Sprite sprites, SpriteBatch spriteBatch, bool female, Color pants, Color hair, Color eyes, Color shirt, Color shoes, Color skin)
+        public Human(float posX, float posY, int angle, int Social, int Fun, int Hunger, bool cannotDie, Control control, Cursor cursor, Sprite sprites, SpriteBatch spriteBatch, string name, bool female, Color pants, Color hair, Color eyes, Color shirt, Color shoes, Color skin)
         {
             this.posX = posX;
             this.posY = posY;
             finalPosX = (int)posX;
             finalPosY = (int)posY;
+
+            this.cannotDie = cannotDie;
 
             this.angle = angle;
             this.sprites = sprites;
@@ -51,7 +57,9 @@ namespace Julien12150.FreeSims.Game
 
             this.Social = Social;
             this.Fun = Fun;
+            this.Hunger = Hunger;
 
+            this.name = name;
             this.female = female;
             this.pants = pants;
             this.hair = hair;
@@ -82,8 +90,8 @@ namespace Julien12150.FreeSims.Game
                 {
                     if (timer < 0)
                     {
-                        timer = TIMER;
                         Fun--;
+                        Hunger--;
                     }
                     if (activity.targetH.activity == null)
                     {
@@ -94,19 +102,30 @@ namespace Julien12150.FreeSims.Game
                 {
                     if (timer < 0)
                     {
-                        timer = TIMER;
                         Social--;
+                        Hunger--;
+                    }
+                }
+                else if(activity.type == "Eat")
+                {
+                    if( timer < 0)
+                    {
+                        Social--;
+                        Fun--;
                     }
                 }
                 else
                 {
                     if (timer < 0)
                     {
-                        timer = TIMER;
                         Social--;
                         Fun--;
+                        Hunger--;
                     }
                 }
+
+                if (timer < 0)
+                    timer = TIMER;
             }
             else
             {
@@ -114,6 +133,7 @@ namespace Julien12150.FreeSims.Game
                 {
                     timer = TIMER;
                     Social--;
+                    Hunger--;
                     Fun--;
                 }
             }
@@ -127,6 +147,11 @@ namespace Julien12150.FreeSims.Game
                 Fun = 100;
             else if (Fun < 0)
                 Fun = 0;
+
+            if (Hunger > 100)
+                Hunger = 100;
+            else if (Hunger < 0)
+                Hunger = 0;
 
             if (selected)
             {

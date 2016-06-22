@@ -19,15 +19,18 @@ namespace Julien12150.FreeSims.Game
 
         int height;
 
+        string lastLog = "";
+
         Control control;
         SpriteBatch spriteBatch;
         Sprite sprites;
         ItemSprite itemSprites;
         Cursor cursor;
+        Language language;
 
         bool pressedButton = false;
 
-        public Game(int width, int height, Control control, Cursor cursor, SpriteBatch spriteBatch, Sprite sprites, ItemSprite itemSprites)
+        public Game(int width, int height, Control control, Cursor cursor, SpriteBatch spriteBatch, Sprite sprites, ItemSprite itemSprites, Language language)
         {
             this.control = control;
             this.height = height;
@@ -35,6 +38,7 @@ namespace Julien12150.FreeSims.Game
             this.sprites = sprites;
             this.cursor = cursor;
             this.itemSprites = itemSprites;
+            this.language = language;
 
             string[] names;
             bool[] female;
@@ -48,7 +52,7 @@ namespace Julien12150.FreeSims.Game
             {
                 for(int i = 0; i < names.Length; i++)
                 {
-                    humanList.Add(new Human(width / 2, height / 2, 0, 50, 50, control, cursor, sprites, spriteBatch, female[i], pants[i], hair[i], eyes[i], shirt[i], shoes[i], skin[i]));
+                    humanList.Add(new Human(width / 2, height / 2, 0, 50, 50, 25, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], eyes[i], shirt[i], shoes[i], skin[i]));
                 }
             }
             else
@@ -69,7 +73,7 @@ namespace Julien12150.FreeSims.Game
 
                 for (int i = 0; i < names.Length; i++)
                 {
-                    humanList.Add(new Human(width / 2, height / 2, 0, 50, 50, control, cursor, sprites, spriteBatch, female[i], pants[i], hair[i], eyes[i], shirt[i], shoes[i], skin[i]));
+                    humanList.Add(new Human(width / 2, height / 2, 0, 50, 50, 50, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], eyes[i], shirt[i], shoes[i], skin[i]));
                 }
             }
             itemList.Add(new TV(itemSprites, 60, 80, 1, new List<Human>()));
@@ -109,6 +113,17 @@ namespace Julien12150.FreeSims.Game
                             humanList[selectedHuman].activity = new Talk(humanList[i], humanList[selectedHuman]);
                             humanList[i].activity.Start(gameTime);
                         }
+                    }
+                }
+
+                if(humanList[i].Hunger <= 0)
+                {
+                    if (!humanList[i].cannotDie)
+                    {
+                        humanList.Remove(humanList[i]);
+                        lastLog = Language.GetNewString(language.log_humandied, new Dictionary<char, string>() { { 'n', humanList[i].name } });
+                        if (selectedHuman == i && i == humanList.ToArray().Length - 1)
+                            selectedHuman--;
                     }
                 }
             }
@@ -191,6 +206,9 @@ namespace Julien12150.FreeSims.Game
                     spriteBatch.Draw(sprites.statBar, new Vector2(5, 5 + sprites.statBar.Height / 2), new Rectangle(0, 0, sprites.statBar.Width, sprites.statBar.Height / 2), Color.White); //Fun
                     spriteBatch.Draw(sprites.statBar, new Vector2(5, 5 + sprites.statBar.Height / 2), new Rectangle(0, sprites.statBar.Height / 2, 2 + humanList[i].Fun * 2, sprites.statBar.Height / 2), Color.White);
 
+                    spriteBatch.Draw(sprites.statBar, new Vector2(5, 5 + sprites.statBar.Height), new Rectangle(0, 0, sprites.statBar.Width, sprites.statBar.Height / 2), Color.White); //Hunger
+                    spriteBatch.Draw(sprites.statBar, new Vector2(5, 5 + sprites.statBar.Height), new Rectangle(0, sprites.statBar.Height / 2, 2 + humanList[i].Hunger * 2, sprites.statBar.Height / 2), Color.White);
+
                     tabColor = sprites.humanSprites.tabMNoColor.Height / 2;
                 }
                 else
@@ -214,6 +232,7 @@ namespace Julien12150.FreeSims.Game
                     spriteBatch.Draw(sprites.humanSprites.tabFNoColor, new Vector2((sprites.statBar.Width + 28) + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabMNoColor.Width, sprites.humanSprites.tabMNoColor.Height / 2), Color.White);
                 }
             }
+            spriteBatch.DrawString(sprites.mainFont, lastLog, new Vector2(0, height - 50), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
         }
 
         void ChangeSelect(bool left, bool right)

@@ -5,3 +5,4 @@ menu_humanmaker=Human Maker
 menu_quit=Quit
 option_chooselang=Select a language
 option_restartnote=NOTE: You should restart the game to finish the changes
+log_humandied=Oh no, $n has died...

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace Julien12150.FreeSims
 {
@@ -18,6 +19,7 @@ namespace Julien12150.FreeSims
         public string menu_quit;
         public string option_chooselang;
         public string option_restartnote;
+        public string log_humandied;
 
         public Language(string language)
         {
@@ -82,6 +84,26 @@ namespace Julien12150.FreeSims
             file.Close();
             return null;
         }
+        public static string GetNewString(string s, Dictionary<char, string> replacement)
+        {
+            string ns = "";
+            bool gettingChar = false;
+            foreach(char c in s)
+            {
+                if (c != '$' && !gettingChar)
+                    ns += c;
+                else if (c == '$')
+                    gettingChar = true;
+                else if (gettingChar)
+                {
+                    string ts;
+                    if (replacement.TryGetValue(c, out ts))
+                        ns += ts;
+                    gettingChar = false;
+                }
+            }
+            return ns;
+        }
         private void GetStringVar(string[] file)
         {
             foreach (string s in file)
@@ -93,6 +115,7 @@ namespace Julien12150.FreeSims
                 else if (s.Split('=')[0] == "menu_quit") menu_quit = s.Split('=')[1];
                 else if (s.Split('=')[0] == "option_chooselang") option_chooselang = s.Split('=')[1];
                 else if (s.Split('=')[0] == "option_restartnote") option_restartnote = s.Split('=')[1];
+                else if (s.Split('=')[0] == "log_humandied") log_humandied = s.Split('=')[1];
             }
         }
     }
