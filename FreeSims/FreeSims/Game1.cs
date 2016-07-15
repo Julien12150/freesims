@@ -65,9 +65,9 @@ namespace Julien12150.FreeSims
             {
                 StreamReader file = new StreamReader($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Julien12150\\FreeSims\\config.txt");
                 string[] sFile = file.ReadToEnd().Split(Environment.NewLine.ToCharArray());
-                foreach(string s in sFile)
+                foreach (string s in sFile)
                 {
-                    if(s.Split('=')[0] == "lang")
+                    if (s.Split('=')[0] == "lang")
                     {
                         lang = s.Split('=')[1];
                     }
@@ -76,6 +76,10 @@ namespace Julien12150.FreeSims
             }
             else
             {
+                if (!Directory.Exists($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Julien12150\\FreeSims\\"))
+                {
+                    Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Julien12150\\FreeSims\\");
+                }
                 StreamWriter file = new StreamWriter($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Julien12150\\FreeSims\\config.txt");
                 file.WriteLine("lang=en_US");
                 file.Close();
