@@ -31,7 +31,7 @@ namespace Julien12150.FreeSims.Game.Activity
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, Sprite sprites)
         {
-            spriteBatch.Draw(sprites.talkBuble, new Vector2(human.posX, human.posY - sprites.humanSprites.mNoColor.Height - 5), Color.White);
+            spriteBatch.Draw(sprites.talkBuble, new Vector2(human.posX, human.posY - (sprites.humanSprites.mNoColor.Height / 2) - 5), Color.White);
 
             base.Draw(gameTime, spriteBatch, sprites);
         }

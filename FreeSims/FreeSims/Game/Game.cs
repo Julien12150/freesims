@@ -55,7 +55,7 @@ namespace Julien12150.FreeSims.Game
             {
                 for(int i = 0; i < names.Length; i++)
                 {
-                    humanList.Add(new Human(width / 2, height / 2, 0, 50, 50, 25, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], eyes[i], shirt[i], shoes[i], skin[i]));
+                    humanList.Add(new Human(width / 2, height / 2, 0, 50, 50, 25, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], eyes[i], shirt[i], shoes[i], skin[i], i));
                 }
             }
             else
@@ -76,7 +76,7 @@ namespace Julien12150.FreeSims.Game
 
                 for (int i = 0; i < names.Length; i++)
                 {
-                    humanList.Add(new Human(width / 2, height / 2, 0, 50, 50, 50, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], eyes[i], shirt[i], shoes[i], skin[i]));
+                    humanList.Add(new Human(width / 2, height / 2, 0, 50, 50, 50, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], eyes[i], shirt[i], shoes[i], skin[i], i));
                 }
             }
             itemList.Add(new TV(itemSprites, 100, 150, 1, new List<Human>()));
@@ -117,7 +117,7 @@ namespace Julien12150.FreeSims.Game
                     if (cursor.posX < humanList[i].posX + ((sprites.humanSprites.mNoColor.Width / 8) / 2) &&
                         cursor.posX > humanList[i].posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2) &&
                         cursor.posY < humanList[i].posY &&
-                        cursor.posY > humanList[i].posY - sprites.humanSprites.mNoColor.Height)
+                        cursor.posY > humanList[i].posY - (sprites.humanSprites.mNoColor.Height / 2))
                     {
                         if (control.isControllerMode && control.B)
                         {
@@ -229,7 +229,7 @@ namespace Julien12150.FreeSims.Game
                     spriteBatch.Draw(sprites.tabTop, new Vector2((sprites.statBar.Width + 30) + (sprites.tabTop.Width / 3) * i, 0), new Rectangle(20 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
                 if (selectedHuman == i)
                 {
-                    spriteBatch.Draw(sprites.humanSelectSprite, new Vector2(humanList[i].posX - 9, humanList[i].posY - sprites.humanSprites.mNoColor.Height - 8), Color.White);
+                    spriteBatch.Draw(sprites.humanSelectSprite, new Vector2(humanList[i].posX - 9, humanList[i].posY - (sprites.humanSprites.mNoColor.Height / 2) - 8), Color.White);
                     spriteBatch.Draw(sprites.statBar, new Vector2(5, 5), new Rectangle(0, 0, sprites.statBar.Width, sprites.statBar.Height / 2), Color.White); //Social
                     spriteBatch.Draw(sprites.statBar, new Vector2(5, 5), new Rectangle(0, sprites.statBar.Height / 2, 2 + humanList[i].Social * 2, sprites.statBar.Height / 2), Color.White);
 
