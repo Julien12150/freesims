@@ -30,7 +30,9 @@ namespace Julien12150.FreeSims.Game
 
         bool pressedButton = false;
 
-        public Game(int width, int height, Control control, Cursor cursor, SpriteBatch spriteBatch, Sprite sprites, ItemSprite itemSprites, Language language)
+        Game1 mainClass;
+
+        public Game(int width, int height, Control control, Cursor cursor, SpriteBatch spriteBatch, Sprite sprites, ItemSprite itemSprites, Language language, Game1 mainClass)
         {
             this.control = control;
             this.height = height;
@@ -39,6 +41,7 @@ namespace Julien12150.FreeSims.Game
             this.cursor = cursor;
             this.itemSprites = itemSprites;
             this.language = language;
+            this.mainClass = mainClass;
 
             string[] names;
             bool[] female;
@@ -85,6 +88,20 @@ namespace Julien12150.FreeSims.Game
 
         public void Update(GameTime gameTime)
         {
+            bool isEmpty = true;
+            foreach(Human h in humanList)
+            {
+                isEmpty = false;
+                break;
+            }
+
+            if (isEmpty)
+            {
+                mainClass.state = GameState.Menu;
+                mainClass.game = null;
+                return;
+            }
+
             for (int i = 0; i < humanList.ToArray().Length; i++)
             {
                 humanList[i].Update(gameTime);
@@ -121,8 +138,8 @@ namespace Julien12150.FreeSims.Game
                 {
                     if (!humanList[i].cannotDie)
                     {
-                        humanList.Remove(humanList[i]);
                         lastLog = Language.GetNewString(language.log_humandied, new Dictionary<char, string>() { { 'n', humanList[i].name } });
+                        humanList.Remove(humanList[i]);
                         if (selectedHuman == i && i == humanList.ToArray().Length - 1)
                             selectedHuman--;
                     }

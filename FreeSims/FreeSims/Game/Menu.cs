@@ -89,7 +89,7 @@ namespace Julien12150.FreeSims.Game
                     game1.ChangeState(GameState.Game);
                     if(game1.game == null)
                     {
-                        game1.game = new Game(width, height, control, cursor, spriteBatch, sprites, itemSprites, language);
+                        game1.game = new Game(width, height, control, cursor, spriteBatch, sprites, itemSprites, language, game1);
                     }
                 }
                 else if(menuSelection == 1)

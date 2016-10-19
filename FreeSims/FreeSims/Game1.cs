@@ -34,7 +34,7 @@ namespace Julien12150.FreeSims
         public Option option;
         public HumanMaker humanMaker;
 
-        GameState state = GameState.Menu;
+        public GameState state = GameState.Menu;
 
         public Game1(string[] args)
         {
