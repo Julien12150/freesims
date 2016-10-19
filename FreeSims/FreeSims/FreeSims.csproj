@@ -80,6 +80,7 @@
     <Compile Include="Game\Activity\Activity.cs" />
     <Compile Include="Game\Activity\SitChair.cs" />
     <Compile Include="Game\Activity\Talk.cs" />
+    <Compile Include="Game\Activity\Eat.cs" />
     <Compile Include="Game\Activity\TVWatch.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Game\GameState.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Game\Item\Item.cs" />
     <Compile Include="Game\Item\ItemSprite.cs" />
     <Compile Include="Game\Item\Table.cs" />
+    <Compile Include="Game\Item\Fridge.cs" />
     <Compile Include="Game\Item\TV.cs" />
     <Compile Include="Game\Menu.cs" />
     <Compile Include="HumanSprite.cs" />

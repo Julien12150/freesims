@@ -14,7 +14,7 @@ namespace Julien12150.FreeSims.Game.Activity
 
         public override void Update(GameTime gameTime)
         { 
-            if(human.finalPosX == (int)targetI.posX + (targetI.Sprite.Width / 8 / 2) && human.finalPosY == (int)targetI.posY + 75)
+            if(human.finalPosX == (int)targetI.posX + (targetI.Sprite.Width / 8 / 2) && human.finalPosY == ((int)targetI.posY - targetI.Sprite.Height) + 75)
             {
                 human.angle = targetI.angle;
             }
@@ -24,7 +24,7 @@ namespace Julien12150.FreeSims.Game.Activity
         public override void Start(GameTime gameTime)
         {
             human.finalPosX = (int)targetI.posX + (targetI.Sprite.Width / 8 / 2);
-            human.finalPosY = (int)targetI.posY + 75;
+            human.finalPosY = ((int)targetI.posY - targetI.Sprite.Height) + 75;
             base.Start(gameTime);
         }
     }

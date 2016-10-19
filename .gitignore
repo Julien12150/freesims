@@ -243,3 +243,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/FreeSims/FreeSims/Output/freesims_setup.exe

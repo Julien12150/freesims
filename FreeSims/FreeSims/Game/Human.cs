@@ -110,8 +110,8 @@ namespace Julien12150.FreeSims.Game
                 {
                     if( timer < 0)
                     {
-                        Social--;
-                        Fun--;
+                        Hunger = 100;
+                        activity = null;
                     }
                 }
                 else
@@ -163,7 +163,7 @@ namespace Julien12150.FreeSims.Game
                     {
                         if (activity.type == "Talk")
                             activity.targetH.activity = null;
-                        else if (activity.type == "TVWatch")
+                        else if (activity.type == "TVWatch" || activity.type == "Eat")
                             activity.targetI.humanList.RemoveAll(ph);
                         else if (activity.type == "SitChair")
                             activity.targetI.humanList.Remove(this);
@@ -178,7 +178,7 @@ namespace Julien12150.FreeSims.Game
                     {
                         if (activity.type == "Talk")
                             activity.targetH.activity = null;
-                        else if (activity.type == "TVWatch")
+                        else if (activity.type == "TVWatch" || activity.type == "Eat")
                             activity.targetI.humanList.RemoveAll(ph);
                         else if (activity.type == "SitChair")
                             activity.targetI.humanList.Remove(this);

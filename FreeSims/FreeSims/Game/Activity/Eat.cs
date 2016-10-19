@@ -1,18 +1,19 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Julien12150.FreeSims.Game.Item;
+
 namespace Julien12150.FreeSims.Game.Activity
 {
-    public class TVWatch : Activity
+    public class Eat : Activity
     {
         const float TIMER = 5;
         float timer = TIMER;
 
-        public TVWatch(Human human, TV target)
+        public Eat(Human human, Fridge target)
         {
             this.human = human;
             targetI = target;
-            type = "TVWatch";
+            type = "Eat";
         }
         private bool FindHuman(Human obj)
         {
@@ -27,7 +28,10 @@ namespace Julien12150.FreeSims.Game.Activity
             if (timer < 0)
             {
                 timer = TIMER;
-                human.Fun++;
+                human.Hunger = 100;
+                human.activity = null;
+                targetI.humanList = null;
+                targetI = null;
             }
             
             Predicate<Human> ph = FindHuman;
@@ -56,42 +60,42 @@ namespace Julien12150.FreeSims.Game.Activity
             if (targetI.angle == 0)
             {
                 human.finalPosX = (int)targetI.posX;
-                human.finalPosY = ((int)targetI.posY - (int)targetI.Sprite.Height) + 60;
+                human.finalPosY = (int)targetI.posY + 20;
             }
             if (targetI.angle == 1)
             {
-                human.finalPosX = (int)targetI.posX + 60;
-                human.finalPosY = ((int)targetI.posY - (int)targetI.Sprite.Height) + 60;
+                human.finalPosX = (int)targetI.posX + 20;
+                human.finalPosY = (int)targetI.posY + 20;
             }
             if (targetI.angle == 2)
             {
-                human.finalPosX = (int)targetI.posX + 60;
-                human.finalPosY = ((int)targetI.posY - (int)targetI.Sprite.Height);
+                human.finalPosX = (int)targetI.posX + 20;
+                human.finalPosY = (int)targetI.posY;
             }
             if (targetI.angle == 3)
             {
-                human.finalPosX = (int)targetI.posX + 60;
-                human.finalPosY = ((int)targetI.posY - (int)targetI.Sprite.Height) - 60;
+                human.finalPosX = (int)targetI.posX + 20;
+                human.finalPosY = (int)targetI.posY - 20;
             }
             if (targetI.angle == 4)
             {
                 human.finalPosX = (int)targetI.posX;
-                human.finalPosY = ((int)targetI.posY - (int)targetI.Sprite.Height) - 60;
+                human.finalPosY = (int)targetI.posY - 20;
             }
             if (targetI.angle == 5)
             {
-                human.finalPosX = (int)targetI.posX - 60;
-                human.finalPosY = ((int)targetI.posY - (int)targetI.Sprite.Height) - 60;
+                human.finalPosX = (int)targetI.posX - 20;
+                human.finalPosY = (int)targetI.posY - 20;
             }
             if (targetI.angle == 6)
             {
-                human.finalPosX = (int)targetI.posX - 60;
-                human.finalPosY = ((int)targetI.posY - (int)targetI.Sprite.Height);
+                human.finalPosX = (int)targetI.posX - 20;
+                human.finalPosY = (int)targetI.posY;
             }
             if (targetI.angle == 7)
             {
-                human.finalPosX = (int)targetI.posX - 60;
-                human.finalPosY = ((int)targetI.posY - (int)targetI.Sprite.Height) + 60;
+                human.finalPosX = (int)targetI.posX - 20;
+                human.finalPosY = (int)targetI.posY + 20;
             }
             base.Start(gameTime);
         }

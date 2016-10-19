@@ -76,10 +76,11 @@ namespace Julien12150.FreeSims.Game
                     humanList.Add(new Human(width / 2, height / 2, 0, 50, 50, 50, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], eyes[i], shirt[i], shoes[i], skin[i]));
                 }
             }
-            itemList.Add(new TV(itemSprites, 60, 80, 1, new List<Human>()));
-            itemList.Add(new Chair(itemSprites, 200, 150, 1));
-            itemList.Add(new Chair(itemSprites, 240, 150, 7));
+            itemList.Add(new TV(itemSprites, 100, 150, 1, new List<Human>()));
+            itemList.Add(new Chair(itemSprites, 200, 160, 1));
+            itemList.Add(new Chair(itemSprites, 240, 160, 7));
             itemList.Add(new Table(itemSprites, 200, 180, 1));
+            itemList.Add(new Fridge(itemSprites, 400, 180, 7, new List<Human>()));
         }
 
         public void Update(GameTime gameTime)
@@ -133,8 +134,8 @@ namespace Julien12150.FreeSims.Game
 
                 if (cursor.posX < itemList[i].posX + (itemList[i].Sprite.Width / 8) &&
                         cursor.posX > itemList[i].posX &&
-                        cursor.posY < itemList[i].posY + (itemList[i].Sprite.Height / 2) &&
-                        cursor.posY > itemList[i].posY)
+                        cursor.posY < (itemList[i].posY - itemList[i].Sprite.Height) + (itemList[i].Sprite.Height / 2) &&
+                        cursor.posY > (itemList[i].posY - itemList[i].Sprite.Height))
                 {
                     if (control.isControllerMode && control.B)
                     {
@@ -150,6 +151,12 @@ namespace Julien12150.FreeSims.Game
                             itemList[i].humanList.Add(humanList[selectedHuman]);
                             humanList[selectedHuman].activity.Start(gameTime);
                         }
+                        else if(itemList[i].type == "Fridge")
+                        {
+                            humanList[selectedHuman].activity = new Eat(humanList[selectedHuman], (Fridge)itemList[i]);
+                            itemList[i].humanList.Add(humanList[selectedHuman]);
+                            humanList[selectedHuman].activity.Start(gameTime);
+                        }
                     }
                     else if (!control.isControllerMode && control.RightMouseClick)
                     {
@@ -162,6 +169,12 @@ namespace Julien12150.FreeSims.Game
                         else if (itemList[i].type == "Chair")
                         {
                             humanList[selectedHuman].activity = new SitChair(humanList[selectedHuman], (Chair)itemList[i]);
+                            itemList[i].humanList.Add(humanList[selectedHuman]);
+                            humanList[selectedHuman].activity.Start(gameTime);
+                        }
+                        else if (itemList[i].type == "Fridge")
+                        {
+                            humanList[selectedHuman].activity = new Eat(humanList[selectedHuman], (Fridge)itemList[i]);
                             itemList[i].humanList.Add(humanList[selectedHuman]);
                             humanList[selectedHuman].activity.Start(gameTime);
                         }
