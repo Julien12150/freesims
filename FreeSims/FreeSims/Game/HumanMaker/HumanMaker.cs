@@ -74,7 +74,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
             else
             {
                 names = new string[] { "Julian", "Joe", "Tom", "Christine" };
-                female = new bool[] { false, false, false, true };
+                female = new bool[] { false, false, false, false };
                 pants = new Color[] { new Color(0, 31, 255), new Color(22, 22, 22), new Color(193, 193, 193), new Color(255, 173, 255) };
                 hair = new Color[] { new Color(66, 33, 0), new Color(255, 155, 43), new Color(40, 9, 0), new Color(66, 33, 0) };
                 eyes = new Color[] { new Color(0, 0, 56), new Color(68, 21, 0), new Color(0, 47, 0), new Color(0, 0, 56) };
