@@ -233,17 +233,33 @@ namespace Julien12150.FreeSims.Game
                     spriteBatch.Draw(sprites.statBar, new Vector2(5, 5), new Rectangle(0, 0, sprites.statBar.Width, sprites.statBar.Height / 2), Color.White); //Social
                     spriteBatch.Draw(sprites.statBar, new Vector2(5, 5), new Rectangle(0, sprites.statBar.Height / 2, 2 + humanList[i].Social * 2, sprites.statBar.Height / 2), Color.White);
 
-                    spriteBatch.Draw(sprites.statIcon, new Vector2(212, 5), new Rectangle(0, 0, sprites.statIcon.Width / 3, sprites.statIcon.Height), Color.White);
+                    if (humanList[i].Social > 75)
+                        spriteBatch.Draw(sprites.statIcon, new Vector2(212, 5), new Rectangle(0, 0, sprites.statIcon.Width / 3, sprites.statIcon.Height / 3), Color.White);
+                    else if (humanList[i].Social <= 75 && humanList[i].Social > 25)
+                        spriteBatch.Draw(sprites.statIcon, new Vector2(212, 5), new Rectangle(0, sprites.statIcon.Height / 3, sprites.statIcon.Width / 3, sprites.statIcon.Height / 3), Color.White);
+                    else
+                        spriteBatch.Draw(sprites.statIcon, new Vector2(212, 5), new Rectangle(0, (sprites.statIcon.Height / 3) + (sprites.statIcon.Height / 3), sprites.statIcon.Width / 3, sprites.statIcon.Height / 3), Color.White);
 
                     spriteBatch.Draw(sprites.statBar, new Vector2(5, 5 + sprites.statBar.Height / 2), new Rectangle(0, 0, sprites.statBar.Width, sprites.statBar.Height / 2), Color.White); //Fun
                     spriteBatch.Draw(sprites.statBar, new Vector2(5, 5 + sprites.statBar.Height / 2), new Rectangle(0, sprites.statBar.Height / 2, 2 + humanList[i].Fun * 2, sprites.statBar.Height / 2), Color.White);
 
-                    spriteBatch.Draw(sprites.statIcon, new Vector2(212, 5 + sprites.statBar.Height / 2), new Rectangle(sprites.statIcon.Width / 3, 0, sprites.statIcon.Width / 3, sprites.statIcon.Height), Color.White);
+                    
+                    if (humanList[i].Fun > 75)
+                        spriteBatch.Draw(sprites.statIcon, new Vector2(212, 5 + sprites.statBar.Height / 2), new Rectangle(sprites.statIcon.Width / 3, 0, sprites.statIcon.Width / 3, sprites.statIcon.Height / 3), Color.White);
+                    else if (humanList[i].Fun <= 75 && humanList[i].Fun > 25)
+                        spriteBatch.Draw(sprites.statIcon, new Vector2(212, 5 + sprites.statBar.Height / 2), new Rectangle(sprites.statIcon.Width / 3, sprites.statIcon.Height / 3, sprites.statIcon.Width / 3, sprites.statIcon.Height / 3), Color.White);
+                    else
+                        spriteBatch.Draw(sprites.statIcon, new Vector2(212, 5 + sprites.statBar.Height / 2), new Rectangle(sprites.statIcon.Width / 3, (sprites.statIcon.Height / 3) + (sprites.statIcon.Height / 3), sprites.statIcon.Width / 3, sprites.statIcon.Height / 3), Color.White);
 
                     spriteBatch.Draw(sprites.statBar, new Vector2(5, 5 + sprites.statBar.Height), new Rectangle(0, 0, sprites.statBar.Width, sprites.statBar.Height / 2), Color.White); //Hunger
                     spriteBatch.Draw(sprites.statBar, new Vector2(5, 5 + sprites.statBar.Height), new Rectangle(0, sprites.statBar.Height / 2, 2 + humanList[i].Hunger * 2, sprites.statBar.Height / 2), Color.White);
-
-                    spriteBatch.Draw(sprites.statIcon, new Vector2(212, 5 + sprites.statBar.Height), new Rectangle((sprites.statIcon.Width / 3) + (sprites.statIcon.Width / 3), 0, sprites.statIcon.Width / 3, sprites.statIcon.Height), Color.White);
+                    
+                    if (humanList[i].Hunger > 75)
+                        spriteBatch.Draw(sprites.statIcon, new Vector2(212, 5 + sprites.statBar.Height), new Rectangle((sprites.statIcon.Width / 3) + (sprites.statIcon.Width / 3), 0, sprites.statIcon.Width / 3, sprites.statIcon.Height / 3), Color.White);
+                    else if (humanList[i].Hunger <= 75 && humanList[i].Hunger > 25)
+                        spriteBatch.Draw(sprites.statIcon, new Vector2(212, 5 + sprites.statBar.Height), new Rectangle((sprites.statIcon.Width / 3) + (sprites.statIcon.Width / 3), sprites.statIcon.Height / 3, sprites.statIcon.Width / 3, sprites.statIcon.Height / 3), Color.White);
+                    else
+                        spriteBatch.Draw(sprites.statIcon, new Vector2(212, 5 + sprites.statBar.Height), new Rectangle((sprites.statIcon.Width / 3) + (sprites.statIcon.Width / 3), (sprites.statIcon.Height / 3) + (sprites.statIcon.Height / 3), sprites.statIcon.Width / 3, sprites.statIcon.Height / 3), Color.White);
 
                     tabColor = sprites.humanSprites.tabMNoColor.Height / 2;
                 }
