@@ -29,6 +29,8 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 
 [Files]
 Source: "bin\x86\Release\FreeSims.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "bin\x86\Release\MonoGame.Framework.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "bin\x86\Release\OpenTK.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "bin\x86\Release\Content\*"; DestDir: "{app}\Content"; Flags: ignoreversion recursesubdirs createallsubdirs    
 Source: "bin\x86\Release\Language\*"; DestDir: "{app}\Language"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files

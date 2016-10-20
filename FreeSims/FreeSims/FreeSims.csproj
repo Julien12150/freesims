@@ -1,86 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
   <PropertyGroup>
-    <ProjectGuid>{13686008-E0EA-4AAD-B3F1-18550E595AAD}</ProjectGuid>
-    <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{13686008-E0EA-4AAD-B3F1-18550E595AAD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FreeSims</RootNamespace>
+    <RootNamespace>Julien12150.FreeSims</RootNamespace>
     <AssemblyName>FreeSims</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
-    <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
-    <XnaPlatform>Windows</XnaPlatform>
-    <XnaProfile>Reach</XnaProfile>
-    <XnaCrossPlatformGroupID>0ad89c30-f6b8-4f09-ac4a-e2d76dcbcfa2</XnaCrossPlatformGroupID>
-    <XnaOutputType>Game</XnaOutputType>
-    <ApplicationIcon>Game.ico</ApplicationIcon>
-    <Thumbnail>GameThumbnail.png</Thumbnail>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <FileAlignment>512</FileAlignment>
+    <MonoGamePlatform>DesktopGL</MonoGamePlatform>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\x86\Debug</OutputPath>
-    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoStdLib>true</NoStdLib>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <PlatformTarget>x86</PlatformTarget>
-    <XnaCompressContent>false</XnaCompressContent>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\x86\Release</OutputPath>
+    <OutputPath>bin\x86\Release\</OutputPath>
     <DefineConstants>TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoStdLib>true</NoStdLib>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <PlatformTarget>x86</PlatformTarget>
-    <XnaCompressContent>true</XnaCompressContent>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
-    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
-    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
-    <Reference Include="Microsoft.Xna.Framework.GamerServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
-    <Reference Include="mscorlib" />
-    <Reference Include="System" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Net" />
-  </ItemGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Control.cs" />
     <Compile Include="Cursor.cs" />
     <Compile Include="Extra.cs" />
+    <Compile Include="Game1.cs" />
     <Compile Include="Game\Activity\Activity.cs" />
+    <Compile Include="Game\Activity\Eat.cs" />
     <Compile Include="Game\Activity\SitChair.cs" />
     <Compile Include="Game\Activity\Talk.cs" />
-    <Compile Include="Game\Activity\Eat.cs" />
     <Compile Include="Game\Activity\TVWatch.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Game\GameState.cs" />
@@ -88,70 +55,105 @@
     <Compile Include="Game\HumanMaker\HMNFileManager.cs" />
     <Compile Include="Game\HumanMaker\HumanMaker.cs" />
     <Compile Include="Game\Item\Chair.cs" />
+    <Compile Include="Game\Item\Fridge.cs" />
     <Compile Include="Game\Item\Item.cs" />
     <Compile Include="Game\Item\ItemSprite.cs" />
     <Compile Include="Game\Item\Table.cs" />
-    <Compile Include="Game\Item\Fridge.cs" />
     <Compile Include="Game\Item\TV.cs" />
     <Compile Include="Game\Menu.cs" />
     <Compile Include="HumanSprite.cs" />
     <Compile Include="Language.cs" />
     <Compile Include="Option.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Game1.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprite.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Game.ico" />
-    <Content Include="GameThumbnail.png">
-      <XnaPlatformSpecific>true</XnaPlatformSpecific>
+    <Reference Include="OpenTK">
+      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="NVorbis">
+      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\NVorbis.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Gui\cursor.png" />
+    <Content Include="Content\Gui\HumanMaker\AddButton.png" />
+    <Content Include="Content\Gui\HumanMaker\Arrows.png" />
+    <Content Include="Content\Gui\HumanMaker\ClothButton.png" />
+    <Content Include="Content\Gui\HumanMaker\ColorBar.png" />
+    <Content Include="Content\Gui\HumanMaker\ColorCursor.png" />
+    <Content Include="Content\Gui\HumanMaker\ExitButton.png" />
+    <Content Include="Content\Gui\HumanMaker\GenderButton.png" />
+    <Content Include="Content\Gui\HumanMaker\RandomButton.png" />
+    <Content Include="Content\Gui\HumanMaker\RemoveButton.png" />
+    <Content Include="Content\Gui\HumanMaker\ResetButton.png" />
+    <Content Include="Content\Gui\Human\TabF_Eyes.png" />
+    <Content Include="Content\Gui\Human\TabF_Hair.png" />
+    <Content Include="Content\Gui\Human\TabF_NoColor.png" />
+    <Content Include="Content\Gui\Human\TabF_Shirt.png" />
+    <Content Include="Content\Gui\Human\TabF_Skin.png" />
+    <Content Include="Content\Gui\Human\TabM_Eyes.png" />
+    <Content Include="Content\Gui\Human\TabM_Hair.png" />
+    <Content Include="Content\Gui\Human\TabM_NoColor.png" />
+    <Content Include="Content\Gui\Human\TabM_Shirt.png" />
+    <Content Include="Content\Gui\Human\TabM_Skin.png" />
+    <Content Include="Content\Gui\Human\TabTop.png" />
+    <Content Include="Content\Gui\SelectedHuman.png" />
+    <Content Include="Content\Gui\StatBar.png" />
+    <Content Include="Content\Gui\StatIcon.png" />
+    <Content Include="Content\Gui\TalkBuble.png" />
+    <Content Include="Content\Human\F_Eyes.png" />
+    <Content Include="Content\Human\F_Hair.png" />
+    <Content Include="Content\Human\F_NoColor.png" />
+    <Content Include="Content\Human\F_Pants.png" />
+    <Content Include="Content\Human\F_Shirt.png" />
+    <Content Include="Content\Human\F_Shoes.png" />
+    <Content Include="Content\Human\F_Skin.png" />
+    <Content Include="Content\Human\M_Eyes.png" />
+    <Content Include="Content\Human\M_Hair.png" />
+    <Content Include="Content\Human\M_NoColor.png" />
+    <Content Include="Content\Human\M_Pants.png" />
+    <Content Include="Content\Human\M_Shirt.png" />
+    <Content Include="Content\Human\M_Shoes.png" />
+    <Content Include="Content\Human\M_Skin.png" />
+    <Content Include="Content\Item\Chair.png" />
+    <Content Include="Content\Item\Fridge.png" />
+    <Content Include="Content\Item\NoSprite.png" />
+    <Content Include="Content\Item\OldTV.png" />
+    <Content Include="Content\Item\Table.png" />
+    <Content Include="Content\NoSprite.png" />
+    <Content Include="setup.iss" />
+    <EmbeddedResource Include="Icon.ico" />
+    <Content Include="OpenTK.dll.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Language\hr_HR.lng">
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="Content\font.spritefont" />
+    <None Include="Language\en_US.lng">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Language\fr_FR.lng">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Content Include="setup.iss" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FreeSimsContent\FreeSimsContent.contentproj">
-      <Name>FreeSimsContent</Name>
-      <XnaReferenceType>Content</XnaReferenceType>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
-      <Visible>False</Visible>
-      <ProductName>Windows Installer 4.5</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <None Include="Language\en_US.lng">
+    <None Include="Language\hr_HR.lng">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
-  <!--
-      To modify your build process, add your task inside one of the targets below and uncomment it. 
-      Other similar extension points exist, see Microsoft.Common.targets.
-      <Target Name="BeforeBuild">
-      </Target>
-      <Target Name="AfterBuild">
-      </Target>
-    -->
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>
