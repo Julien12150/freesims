@@ -47,15 +47,16 @@ namespace Julien12150.FreeSims.Game
             bool[] female;
             Color[] eyes;
             Color[] hair;
+            int[] hairStyle;
             Color[] pants;
             Color[] shirt;
             Color[] shoes;
             Color[] skin;
-            if (HMNFileManager.Read(out names, out female, out eyes, out hair, out pants, out shirt, out shoes, out skin))
+            if (HMNFileManager.Read(out names, out female, out eyes, out hair, out hairStyle, out pants, out shirt, out shoes, out skin))
             {
                 for(int i = 0; i < names.Length; i++)
                 {
-                    humanList.Add(new Human(width / 2, height / 2, 0, 50, 50, 25, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], eyes[i], shirt[i], shoes[i], skin[i], i));
+                    humanList.Add(new Human(width / 2, height / 2, 0, 50, 50, 25, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], i));
                 }
             }
             else
@@ -64,6 +65,7 @@ namespace Julien12150.FreeSims.Game
                 female = new bool[] { false, false, false, true };
                 pants = new Color[] { new Color(0, 31, 255), new Color(22, 22, 22), new Color(193, 193, 193), new Color(255, 173, 255)};
                 hair = new Color[] { new Color(66, 33, 0), new Color(255, 155, 43), new Color(40, 9, 0), new Color(66, 33, 0) };
+                hairStyle = new int[] { 1, 1, 1, 2 };
                 eyes = new Color[] { new Color(0, 0, 56), new Color(68, 21, 0), new Color(0, 47, 0), new Color(0, 0, 56) };
                 shirt = new Color[] { new Color(255, 255, 255), new Color(183, 43, 0), new Color(22, 22, 22), new Color(255, 255, 255) };
                 shoes = new Color[] { new Color(96, 96, 96), new Color(150, 150, 150), new Color(56, 20, 0), new Color(200, 0, 0) };
@@ -72,11 +74,11 @@ namespace Julien12150.FreeSims.Game
                 Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/Julien12150/");
                 Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/Julien12150/FreeSims/");
 
-                HMNFileManager.Write(names, female, eyes, hair, pants, shirt, shoes, skin);
+                HMNFileManager.Write(names, female, eyes, hair, hairStyle, pants, shirt, shoes, skin);
 
                 for (int i = 0; i < names.Length; i++)
                 {
-                    humanList.Add(new Human(width / 2, height / 2, 0, 50, 50, 50, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], eyes[i], shirt[i], shoes[i], skin[i], i));
+                    humanList.Add(new Human(width / 2, height / 2, 0, 50, 50, 50, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], i));
                 }
             }
             itemList.Add(new TV(itemSprites, 100, 150, 1, new List<Human>()));

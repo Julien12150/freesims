@@ -32,6 +32,14 @@ namespace Julien12150.FreeSims
         public Texture2D tabFNoColor;
         public Texture2D tabFShirt;
         public Texture2D tabFSkin;
+
+        public Texture2D H1;
+        public Texture2D H1_NoColor;
+        public Texture2D H2;
+        public Texture2D H2_NoColor;
+
+        public int haircutNumber;
+
         public HumanSprite(ContentManager Content)
         {
             mEyes = Content.Load<Texture2D>("Human/M_Eyes");
@@ -61,6 +69,32 @@ namespace Julien12150.FreeSims
             tabFNoColor = Content.Load<Texture2D>("Gui/Human/TabF_NoColor");
             tabFShirt = Content.Load<Texture2D>("Gui/Human/TabF_Shirt");
             tabFSkin = Content.Load<Texture2D>("Gui/Human/TabF_Skin");
+
+            H1 = Content.Load<Texture2D>("Human/Haircut/1");
+            H1_NoColor = Content.Load<Texture2D>("Human/Haircut/1_NoColor");
+            H2 = Content.Load<Texture2D>("Human/Haircut/2");
+            H2_NoColor = Content.Load<Texture2D>("Human/Haircut/2_NoColor");
+
+            haircutNumber = 2;
+        }
+
+        public Texture2D GetHair(int i)
+        {
+            if (i == 1)
+                return H1;
+            else if (i == 2)
+                return H2;
+            else
+                return null;
+        }
+        public Texture2D GetHairNoColor(int i)
+        {
+            if (i == 1)
+                return H1_NoColor;
+            else if (i == 2)
+                return H2_NoColor;
+            else
+                return null;
         }
     }
 }

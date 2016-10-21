@@ -8,14 +8,14 @@ namespace Julien12150.FreeSims.Game.HumanMaker
     public class HMNFileManager
     {
         private static string filePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/Julien12150/FreeSims/humans.hmn";
-        public static bool Read(out string[] names, out bool[] female, out Color[] eyes, out Color[] hair, out Color[] pants, out Color[] shirt, out Color[] shoes, out Color[] skin)
+        public static bool Read(out string[] names, out bool[] female, out Color[] eyes, out Color[] hair, out int[] hairStyle, out Color[] pants, out Color[] shirt, out Color[] shoes, out Color[] skin)
         {
-            if (Read(filePath, out female, out names, out eyes, out hair, out pants, out shirt, out shoes, out skin))
+            if (Read(filePath, out female, out names, out eyes, out hair, out hairStyle, out pants, out shirt, out shoes, out skin))
                 return true;
             else
                 return false;
         }
-        public static bool Read(string path, out bool[] female, out string[] names, out Color[] eyes, out Color[] hair, out Color[] pants, out Color[] shirt, out Color[] shoes, out Color[] skin)
+        public static bool Read(string path, out bool[] female, out string[] names, out Color[] eyes, out Color[] hair, out int[] hairStyle, out Color[] pants, out Color[] shirt, out Color[] shoes, out Color[] skin)
         {
             BinaryReader file = null;
             try
@@ -29,6 +29,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                 List<bool> femaleList = new List<bool>();
                 List<Color> eyesList = new List<Color>();
                 List<Color> hairList = new List<Color>();
+                List<int> hairStyleList = new List<int>();
                 List<Color> pantsList = new List<Color>();
                 List<Color> shirtList = new List<Color>();
                 List<Color> shoesList = new List<Color>();
@@ -41,7 +42,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                         byte b = file.ReadByte();
                         if (isName)
                         {
-                            if (b != 0x01)
+                            if (b != 0x00)
                             {
                                 try
                                 {
@@ -62,6 +63,8 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                                 femaleList.Add(true);
                             else
                                 femaleList.Add(false);
+                            b1 = file.ReadByte();
+                            hairStyleList.Add(b1);
                             b1 = file.ReadByte();
                             byte b2 = file.ReadByte();
                             byte b3 = file.ReadByte();
@@ -101,6 +104,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                 names = namesList.ToArray();
                 eyes = eyesList.ToArray();
                 hair = hairList.ToArray();
+                hairStyle = hairStyleList.ToArray();
                 pants = pantsList.ToArray();
                 shirt = shirtList.ToArray();
                 shoes = shoesList.ToArray();
@@ -129,6 +133,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
             female = null;
             eyes = null;
             hair = null;
+            hairStyle = null;
             pants = null;
             shirt = null;
             shoes = null;
@@ -136,42 +141,74 @@ namespace Julien12150.FreeSims.Game.HumanMaker
 
             return false;
         }
-        public static void Write(string[] names, bool[] female, Color[] eyes, Color[] hair, Color[] pants, Color[] shirt, Color[] shoes, Color[] skin)
+        public static void Write(string[] names, bool[] female, Color[] eyes, Color[] hair, int[] hairStyle, Color[] pants, Color[] shirt, Color[] shoes, Color[] skin)
         {
-            Write(filePath, names, female, eyes, hair, pants, shirt, shoes, skin);
+            Write(filePath, names, female, eyes, hair, hairStyle, pants, shirt, shoes, skin);
         }
-        public static void Write(string path,  string[] names, bool[] female, Color[] eyes, Color[] hair, Color[] pants, Color[] shirt, Color[] shoes, Color[] skin)
+        public static void Write(string path,  string[] names, bool[] female, Color[] eyes, Color[] hair, int[] hairStyle, Color[] pants, Color[] shirt, Color[] shoes, Color[] skin)
         {
-            BinaryWriter file = new BinaryWriter(File.Open(path, FileMode.Create));
-
+            List<byte> bytelist = new List<byte>();
             for(int i = 0; i < names.Length; i++)
             {
                 foreach(byte bc in names[i])
                 {
-                    file.Write(bc);
+                    bytelist.Add(bc);
+                    Console.WriteLine(Convert.ToChar(bc));
                 }
-                file.Write((byte)0x01);
-                if (female[i]) file.Write((byte)0x01);
-                else file.Write((byte)0x00);
-                file.Write(pants[i].R);
-                file.Write(pants[i].G);
-                file.Write(pants[i].B);
-                file.Write(hair[i].R);
-                file.Write(hair[i].G);
-                file.Write(hair[i].B);
-                file.Write(eyes[i].R);
-                file.Write(eyes[i].G);
-                file.Write(eyes[i].B);
-                file.Write(shirt[i].R);
-                file.Write(shirt[i].G);
-                file.Write(shirt[i].B);
-                file.Write(shoes[i].R);
-                file.Write(shoes[i].G);
-                file.Write(shoes[i].B);
-                file.Write(skin[i].R);
-                file.Write(skin[i].G);
-                file.Write(skin[i].B);
+                bytelist.Add((byte)0x00);
+                Console.WriteLine((byte)0x00);
+                if (female[i])
+                {
+                    bytelist.Add((byte)0x01);
+                    Console.WriteLine((byte)0x01);
+                }
+                else
+                {
+                    bytelist.Add((byte)0x00);
+                    Console.WriteLine((byte)0x00);
+                }
+                bytelist.Add((byte)hairStyle[i]);
+                Console.WriteLine((byte)hairStyle[i]);
+                bytelist.Add(pants[i].R);
+                Console.WriteLine(pants[i].R);
+                bytelist.Add(pants[i].G);
+                Console.WriteLine(pants[i].G);
+                bytelist.Add(pants[i].B);
+                Console.WriteLine(pants[i].B);
+                bytelist.Add(hair[i].R);
+                Console.WriteLine(hair[i].R);
+                bytelist.Add(hair[i].G);
+                Console.WriteLine(hair[i].G);
+                bytelist.Add(hair[i].B);
+                Console.WriteLine(hair[i].B);
+                bytelist.Add(eyes[i].R);
+                Console.WriteLine(eyes[i].R);
+                bytelist.Add(eyes[i].G);
+                Console.WriteLine(eyes[i].G);
+                bytelist.Add(eyes[i].B);
+                Console.WriteLine(eyes[i].B);
+                bytelist.Add(shirt[i].R);
+                Console.WriteLine(shirt[i].R);
+                bytelist.Add(shirt[i].G);
+                Console.WriteLine(shirt[i].G);
+                bytelist.Add(shirt[i].B);
+                Console.WriteLine(shirt[i].B);
+                bytelist.Add(shoes[i].R);
+                Console.WriteLine(shoes[i].R);
+                bytelist.Add(shoes[i].G);
+                Console.WriteLine(shoes[i].G);
+                bytelist.Add(shoes[i].B);
+                Console.WriteLine(shoes[i].B);
+                bytelist.Add(skin[i].R);
+                Console.WriteLine(skin[i].R);
+                bytelist.Add(skin[i].G);
+                Console.WriteLine(skin[i].G);
+                bytelist.Add(skin[i].B);
+                Console.WriteLine(skin[i].B);
             }
+            Console.WriteLine("---");
+            BinaryWriter file = new BinaryWriter(File.Open(path, FileMode.Create));
+            file.Write(bytelist.ToArray());
             file.Close();
         }
     }

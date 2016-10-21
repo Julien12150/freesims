@@ -115,6 +115,10 @@
     <Content Include="Content\Human\F_Shirt.png" />
     <Content Include="Content\Human\F_Shoes.png" />
     <Content Include="Content\Human\F_Skin.png" />
+    <Content Include="Content\Human\Haircut\1.png" />
+    <Content Include="Content\Human\Haircut\1_NoColor.png" />
+    <Content Include="Content\Human\Haircut\2.png" />
+    <Content Include="Content\Human\Haircut\2_NoColor.png" />
     <Content Include="Content\Human\M_Eyes.png" />
     <Content Include="Content\Human\M_Hair.png" />
     <Content Include="Content\Human\M_NoColor.png" />
@@ -147,6 +151,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

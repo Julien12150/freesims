@@ -35,6 +35,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
         List<bool> female = new List<bool>();
         List<Color> eyes = new List<Color>();
         List<Color> hair = new List<Color>();
+        List<int> hairStyle = new List<int>();
         List<Color> pants = new List<Color>();
         List<Color> shirt = new List<Color>();
         List<Color> shoes = new List<Color>();
@@ -53,11 +54,12 @@ namespace Julien12150.FreeSims.Game.HumanMaker
             bool[] female;
             Color[] eyes;
             Color[] hair;
+            int[] hairStyle;
             Color[] pants;
             Color[] shirt;
             Color[] shoes;
             Color[] skin;
-            if (HMNFileManager.Read(out names, out female, out eyes, out hair, out pants, out shirt, out shoes, out skin))
+            if (HMNFileManager.Read(out names, out female, out eyes, out hair, out hairStyle, out pants, out shirt, out shoes, out skin))
             {
                 for (int i = 0; i < names.Length; i++)
                 {
@@ -65,6 +67,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                     this.female.Add(female[i]);
                     this.eyes.Add(eyes[i]);
                     this.hair.Add(hair[i]);
+                    this.hairStyle.Add(hairStyle[i]);
                     this.pants.Add(pants[i]);
                     this.shirt.Add(shirt[i]);
                     this.shoes.Add(shoes[i]);
@@ -74,9 +77,10 @@ namespace Julien12150.FreeSims.Game.HumanMaker
             else
             {
                 names = new string[] { "Julian", "Joe", "Tom", "Christine" };
-                female = new bool[] { false, false, false, false };
+                female = new bool[] { false, false, false, true };
                 pants = new Color[] { new Color(0, 31, 255), new Color(22, 22, 22), new Color(193, 193, 193), new Color(255, 173, 255) };
                 hair = new Color[] { new Color(66, 33, 0), new Color(255, 155, 43), new Color(40, 9, 0), new Color(66, 33, 0) };
+                hairStyle = new int[] { 1, 1, 1, 2 };
                 eyes = new Color[] { new Color(0, 0, 56), new Color(68, 21, 0), new Color(0, 47, 0), new Color(0, 0, 56) };
                 shirt = new Color[] { new Color(255, 255, 255), new Color(183, 43, 0), new Color(22, 22, 22), new Color(255, 255, 255) };
                 shoes = new Color[] { new Color(96, 96, 96), new Color(150, 150, 150), new Color(56, 20, 0), new Color(200, 0, 0) };
@@ -97,7 +101,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                 Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/Julien12150/");
                 Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/Julien12150/FreeSims/");
 
-                HMNFileManager.Write(names, female, eyes, hair, pants, shirt, shoes, skin);
+                HMNFileManager.Write(names, female, eyes, hair, hairStyle, pants, shirt, shoes, skin);
             }
             rnd = new Random();
         }
@@ -157,22 +161,32 @@ namespace Julien12150.FreeSims.Game.HumanMaker
             if (!female[humanSelection])
             {
                 spriteBatch.Draw(sprites.humanSprites.mEyes, new Vector2(width / 2, height / 2), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * 7, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height / 2), eyes[humanSelection]);
-                spriteBatch.Draw(sprites.humanSprites.mHair, new Vector2(width / 2, height / 2), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * 7, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height / 2), hair[humanSelection]);
                 spriteBatch.Draw(sprites.humanSprites.mPants, new Vector2(width / 2, height / 2), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * 7, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height / 2), pants[humanSelection]);
                 spriteBatch.Draw(sprites.humanSprites.mShirt, new Vector2(width / 2, height / 2), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * 7, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height / 2), shirt[humanSelection]);
                 spriteBatch.Draw(sprites.humanSprites.mShoes, new Vector2(width / 2, height / 2), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * 7, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height / 2), shoes[humanSelection]);
                 spriteBatch.Draw(sprites.humanSprites.mSkin, new Vector2(width / 2, height / 2), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * 7, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height / 2), skin[humanSelection]);
                 spriteBatch.Draw(sprites.humanSprites.mNoColor, new Vector2(width / 2, height / 2), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * 7, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height / 2), Color.White);
+
+                if (hairStyle[humanSelection] != 0)
+                {
+                    spriteBatch.Draw(sprites.humanSprites.GetHair(hairStyle[humanSelection]), new Vector2(width / 2, height / 2), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * 7, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height / 2), hair[humanSelection]);
+                    spriteBatch.Draw(sprites.humanSprites.GetHairNoColor(hairStyle[humanSelection]), new Vector2(width / 2, height / 2), new Rectangle((sprites.humanSprites.mNoColor.Width / 8) * 7, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height / 2), Color.White);
+                }
             }
             else
             {
                 spriteBatch.Draw(sprites.humanSprites.fEyes, new Vector2(width / 2, height / 2), new Rectangle((sprites.humanSprites.fNoColor.Width / 8) * 7, 0, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height / 2), eyes[humanSelection]);
-                spriteBatch.Draw(sprites.humanSprites.fHair, new Vector2(width / 2, height / 2), new Rectangle((sprites.humanSprites.fNoColor.Width / 8) * 7, 0, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height / 2), hair[humanSelection]);
                 spriteBatch.Draw(sprites.humanSprites.fPants, new Vector2(width / 2, height / 2), new Rectangle((sprites.humanSprites.fNoColor.Width / 8) * 7, 0, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height / 2), pants[humanSelection]);
                 spriteBatch.Draw(sprites.humanSprites.fShirt, new Vector2(width / 2, height / 2), new Rectangle((sprites.humanSprites.fNoColor.Width / 8) * 7, 0, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height / 2), shirt[humanSelection]);
                 spriteBatch.Draw(sprites.humanSprites.fShoes, new Vector2(width / 2, height / 2), new Rectangle((sprites.humanSprites.fNoColor.Width / 8) * 7, 0, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height / 2), shoes[humanSelection]);
                 spriteBatch.Draw(sprites.humanSprites.fSkin, new Vector2(width / 2, height / 2), new Rectangle((sprites.humanSprites.fNoColor.Width / 8) * 7, 0, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height / 2), skin[humanSelection]);
                 spriteBatch.Draw(sprites.humanSprites.fNoColor, new Vector2(width / 2, height / 2), new Rectangle((sprites.humanSprites.fNoColor.Width / 8) * 7, 0, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height / 2), Color.White);
+
+                if (hairStyle[humanSelection] != 0)
+                {
+                    spriteBatch.Draw(sprites.humanSprites.GetHair(hairStyle[humanSelection]), new Vector2(width / 2, height / 2), new Rectangle((sprites.humanSprites.fNoColor.Width / 8) * 7, 0, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height / 2), hair[humanSelection]);
+                    spriteBatch.Draw(sprites.humanSprites.GetHairNoColor(hairStyle[humanSelection]), new Vector2(width / 2, height / 2), new Rectangle((sprites.humanSprites.fNoColor.Width / 8) * 7, 0, sprites.humanSprites.fNoColor.Width / 8, sprites.humanSprites.fNoColor.Height / 2), Color.White);
+                }
             }
 
             spriteBatch.Draw(sprites.colorBar, new Vector2(20, 150), new Rectangle(0, 0, sprites.colorBar.Width, sprites.colorBar.Height / 2), new Color(0xFF, color.G, color.B));
@@ -386,7 +400,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
 
             if (control.GoBack)
             {
-                HMNFileManager.Write(names.ToArray(), female.ToArray(), eyes.ToArray(), hair.ToArray(), pants.ToArray(), shirt.ToArray(), shoes.ToArray(), skin.ToArray());
+                HMNFileManager.Write(names.ToArray(), female.ToArray(), eyes.ToArray(), hair.ToArray(), hairStyle.ToArray(), pants.ToArray(), shirt.ToArray(), shoes.ToArray(), skin.ToArray());
 
                 game1.ChangeState(GameState.Menu);
                 game1.humanMaker = null;
@@ -628,6 +642,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                 if (control.Enter && !buttonPressed)
                 {
                     female[humanSelection] = false;
+                    hairStyle[humanSelection] = 1;
                     buttonPressed = true;
                 }
                 else if (!control.Enter)
@@ -638,6 +653,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                 if (control.Enter && !buttonPressed)
                 {
                     female[humanSelection] = true;
+                    hairStyle[humanSelection] = 2;
                     buttonPressed = true;
                 }
                 else if (!control.Enter)
@@ -735,6 +751,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
 
                     Color pants = new Color(rnd.Next(0, 256), rnd.Next(0, 256), rnd.Next(0, 256));
                     Color hair = new Color(rnd.Next(0, 256), rnd.Next(0, 256), rnd.Next(0, 256));
+                    int hairStyle = rnd.Next(0, sprites.humanSprites.haircutNumber + 1);
                     Color eyes = new Color(rnd.Next(0, 256), rnd.Next(0, 256), rnd.Next(0, 256));
                     Color shirt = new Color(rnd.Next(0, 256), rnd.Next(0, 256), rnd.Next(0, 256));
                     Color shoes = new Color(rnd.Next(0, 256), rnd.Next(0, 256), rnd.Next(0, 256));
@@ -743,6 +760,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                     this.female[humanSelection] = female;
                     this.pants[humanSelection] = pants;
                     this.hair[humanSelection] = hair;
+                    this.hairStyle[humanSelection] = hairStyle;
                     this.eyes[humanSelection] = eyes;
                     this.shirt[humanSelection] = shirt;
                     this.shoes[humanSelection] = shoes;
