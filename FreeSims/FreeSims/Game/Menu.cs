@@ -50,19 +50,19 @@ namespace Julien12150.FreeSims.Game
             }
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, GraphicsDevice gd)
         {
             if (control.isControllerMode)
             {
-                ChangeMenu(control.DPadUp, control.DPadDown, control.A);
+                ChangeMenu(control.DPadUp, control.DPadDown, control.A, gd);
             }
             else
             {
-                ChangeMenu(Keyboard.GetState().IsKeyDown(Keys.Up), Keyboard.GetState().IsKeyDown(Keys.Down), Keyboard.GetState().IsKeyDown(Keys.Space) || Keyboard.GetState().IsKeyDown(Keys.Enter));
+                ChangeMenu(Keyboard.GetState().IsKeyDown(Keys.Up), Keyboard.GetState().IsKeyDown(Keys.Down), Keyboard.GetState().IsKeyDown(Keys.Space) || Keyboard.GetState().IsKeyDown(Keys.Enter), gd);
             }
         }
 
-        void ChangeMenu(bool up, bool down, bool select)
+        void ChangeMenu(bool up, bool down, bool select, GraphicsDevice gd)
         {
             if (down && !hasPressedButton)
             {
@@ -89,7 +89,7 @@ namespace Julien12150.FreeSims.Game
                     game1.ChangeState(GameState.Game);
                     if(game1.game == null)
                     {
-                        game1.game = new Game(width, height, control, cursor, spriteBatch, sprites, itemSprites, language, game1);
+                        game1.game = new Game(width, height, control, cursor, spriteBatch, sprites, itemSprites, language, game1, gd);
                     }
                 }
                 else if(menuSelection == 1)

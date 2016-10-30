@@ -47,6 +47,8 @@ namespace Julien12150.FreeSims.Game
         public Color shoes;
         public Color skin;
 
+        public Texture2D shadow;
+
         public Human(float posX, float posY, float posZ, int angle, int Social, int Fun, int Hunger, bool cannotDie, Control control, Cursor cursor, Sprite sprites, SpriteBatch spriteBatch, string name, bool female, Color pants, Color hair, int hairStyle, Color eyes, Color shirt, Color shoes, Color skin, int num)
         {
             this.posX = posX;
@@ -274,9 +276,12 @@ namespace Julien12150.FreeSims.Game
             }
         }
 
-        public void Draw(GameTime gameTime, float height)
+        public void Draw(GameTime gameTime, float height, GraphicsDevice gd)
         {
+            if(shadow == null)
+                shadow = Shadow.GenerateShadow((int)(((double)sprites.humanSprites.mNoColor.Width / 8) / 1.5), (sprites.humanSprites.mNoColor.Width / 8), gd);
             //spriteBatch.Draw(sprites.humanSprite, new Rectangle((int)posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.mNoColor.Height + 16, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), new Rectangle((sprites.humanSprites.mNoColor.Width / 8 ) * angle, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), Color.White, 0, Vector2.Zero, SpriteEffects.None, posY / height);
+            spriteBatch.Draw(shadow, new Vector2((int)posX - ((sprites.humanSprites.mNoColor.Width / 8) / 3), (int)posY - ((sprites.humanSprites.mNoColor.Width / 8) / 4)), Color.White * 0.5f);
             if (!female)
             {
                 if (!blinking)

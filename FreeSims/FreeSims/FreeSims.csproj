@@ -61,6 +61,7 @@
     <Compile Include="Game\Item\Table.cs" />
     <Compile Include="Game\Item\TV.cs" />
     <Compile Include="Game\Menu.cs" />
+    <Compile Include="Game\Shadow.cs" />
     <Compile Include="HumanSprite.cs" />
     <Compile Include="Language.cs" />
     <Compile Include="Option.cs" />
@@ -79,6 +80,7 @@
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>

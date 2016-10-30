@@ -8,19 +8,25 @@ namespace Julien12150.FreeSims.Game.Item
     {
         public bool on = false;
 
-        public Fridge(ItemSprite itemSprite, float posX, float posY, int angle, List<Human> humanList)
+        Texture2D shadow;
+
+        public Fridge(ItemSprite itemSprite, float posX, float posY, float posZ, int angle, List<Human> humanList, GraphicsDevice gd)
         {
             Sprite = itemSprite.fridge;
             this.posX = posX;
             this.posY = posY;
+            this.posZ = posZ;
             this.angle = angle;
 
             this.humanList = humanList;
+
+            shadow = Shadow.GenerateShadow(Sprite, 7, 2, gd);
 
             type = "Fridge";
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            spriteBatch.Draw(shadow, new Vector2(posX - 6, posY - (Sprite.Height / 4) + 1), Color.White * 0.5f);
             spriteBatch.Draw(Sprite, new Vector2(posX, (posY - posZ) - Sprite.Height), new Rectangle(Sprite.Width * angle / 8, 0, Sprite.Width / 8, Sprite.Height), Color.White);
             base.Draw(gameTime, spriteBatch);
         }

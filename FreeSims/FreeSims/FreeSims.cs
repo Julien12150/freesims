@@ -140,7 +140,7 @@ namespace Julien12150.FreeSims
                     ChangeState(GameState.Menu);
             }
             else if (state == GameState.Menu)
-                menu.Update(gameTime);
+                menu.Update(gameTime, graphics.GraphicsDevice);
             else if (state == GameState.HumanMaking)
                 humanMaker.Update(gameTime);
             else if (state == GameState.Option)
@@ -161,7 +161,7 @@ namespace Julien12150.FreeSims
 
             if(state == GameState.Game)
             {
-                game.Draw(gameTime);
+                game.Draw(gameTime, graphics.GraphicsDevice);
             }
 
             if (state == GameState.Game && !IsMouseVisible)

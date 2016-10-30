@@ -8,16 +8,21 @@ namespace Julien12150.FreeSims.Game.Item
     {
         public bool on = false;
 
-        public TV(ItemSprite itemSprite, float posX, float posY, int angle, List<Human> humanList)
+        Texture2D shadow;
+
+        public TV(ItemSprite itemSprite, float posX, float posY, float posZ, int angle, List<Human> humanList, GraphicsDevice gd)
         {
             Sprite = itemSprite.oldTv;
             this.posX = posX;
             this.posY = posY;
+            this.posZ = posZ;
             this.angle = angle;
 
             this.humanList = humanList;
 
             type = "TV";
+
+            shadow = Shadow.GenerateShadow(Sprite, 7, 1, gd);
         }
         public override void Update(GameTime gameTime)
         {
@@ -48,10 +53,11 @@ namespace Julien12150.FreeSims.Game.Item
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if(on)
-                spriteBatch.Draw(Sprite, new Vector2(posX, (posY - posZ) - Sprite.Height), new Rectangle(Sprite.Width * angle / 8, Sprite.Height / 2, Sprite.Width / 8, Sprite.Height / 2), Color.White);
+            spriteBatch.Draw(shadow, new Vector2(posX - 3, posY - (Sprite.Height / 4) + 1), Color.White * 0.5f);
+            if (on)
+                spriteBatch.Draw(Sprite, new Vector2(posX, (posY - posZ) - (Sprite.Height / 2)), new Rectangle(Sprite.Width * angle / 8, Sprite.Height / 2, Sprite.Width / 8, Sprite.Height / 2), Color.White);
             else
-                spriteBatch.Draw(Sprite, new Vector2(posX, (posY - posZ) - Sprite.Height), new Rectangle(Sprite.Width * angle / 8, 0, Sprite.Width / 8, Sprite.Height / 2), Color.White);
+                spriteBatch.Draw(Sprite, new Vector2(posX, (posY - posZ) - (Sprite.Height / 2)), new Rectangle(Sprite.Width * angle / 8, 0, Sprite.Width / 8, Sprite.Height / 2), Color.White);
             base.Draw(gameTime, spriteBatch);
         }
         public void Remove(Human h)

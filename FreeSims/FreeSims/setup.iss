@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "FreeSims"
-#define MyAppVersion "0.0.3.52"
+#define MyAppVersion "0.0.1.53"
 #define MyAppExeName "FreeSims.exe"
 
 [Setup]

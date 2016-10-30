@@ -32,7 +32,7 @@ namespace Julien12150.FreeSims.Game
 
         FreeSims mainClass;
 
-        public Game(int width, int height, Control control, Cursor cursor, SpriteBatch spriteBatch, Sprite sprites, ItemSprite itemSprites, Language language, FreeSims mainClass)
+        public Game(int width, int height, Control control, Cursor cursor, SpriteBatch spriteBatch, Sprite sprites, ItemSprite itemSprites, Language language, FreeSims mainClass, GraphicsDevice gd)
         {
             this.control = control;
             this.height = height;
@@ -81,11 +81,11 @@ namespace Julien12150.FreeSims.Game
                     humanList.Add(new Human(width / 2, height / 2, 0, 0, 50, 50, 50, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], i));
                 }
             }
-            itemList.Add(new TV(itemSprites, 100, 150, 1, new List<Human>()));
-            itemList.Add(new Chair(itemSprites, 200, 160, 1));
-            itemList.Add(new Chair(itemSprites, 240, 160, 7));
-            itemList.Add(new Table(itemSprites, 200, 180, 1));
-            itemList.Add(new Fridge(itemSprites, 400, 180, 7, new List<Human>()));
+            itemList.Add(new TV(itemSprites, 100, 150, 0, 1, new List<Human>(), gd));
+            itemList.Add(new Chair(itemSprites, 200, 160, 0, 1, gd));
+            itemList.Add(new Chair(itemSprites, 240, 160, 0, 7, gd));
+            itemList.Add(new Table(itemSprites, 200, 180, 0, 1, gd));
+            itemList.Add(new Fridge(itemSprites, 400, 180, 0, 7, new List<Human>(), gd));
         }
 
         public void Update(GameTime gameTime)
@@ -211,7 +211,7 @@ namespace Julien12150.FreeSims.Game
             }
         }
 
-        public void Draw(GameTime gameTime)
+        public void Draw(GameTime gameTime, GraphicsDevice gd)
         {
             for (int i = 0; i < itemList.ToArray().Length; i++)
             {
@@ -221,7 +221,7 @@ namespace Julien12150.FreeSims.Game
             {
                 int tabColor;
 
-                humanList[i].Draw(gameTime, height);
+                humanList[i].Draw(gameTime, height, gd);
 
                 if (i == 0)
                     spriteBatch.Draw(sprites.tabTop, new Vector2((sprites.statBar.Width + 30) + (sprites.tabTop.Width / 3) * i, 0), new Rectangle(1 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
