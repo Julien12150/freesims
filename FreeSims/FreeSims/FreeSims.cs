@@ -12,7 +12,7 @@ namespace Julien12150.FreeSims
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Microsoft.Xna.Framework.Game
+    public class FreeSims : Microsoft.Xna.Framework.Game
     {
         bool isControllerMode;
 
@@ -36,7 +36,7 @@ namespace Julien12150.FreeSims
 
         public GameState state = GameState.Menu;
 
-        public Game1(string[] args)
+        public FreeSims(string[] args)
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";

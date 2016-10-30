@@ -13,7 +13,7 @@ namespace Julien12150.FreeSims.Game
         Cursor cursor;
         Sprite sprites;
         ItemSprite itemSprites;
-        Game1 game1;
+        FreeSims game1;
         Language language;
         int width, height;
 
@@ -23,7 +23,7 @@ namespace Julien12150.FreeSims.Game
 
         bool hasPressedButton = false;
 
-        public Menu(int width, int height, SpriteBatch spriteBatch, Control control, Sprite sprites, Game1 game1, Cursor cursor, ItemSprite itemSprites, Language language)
+        public Menu(int width, int height, SpriteBatch spriteBatch, Control control, Sprite sprites, FreeSims game1, Cursor cursor, ItemSprite itemSprites, Language language)
         {
             menu = new string[] { language.menu_play, language.menu_option, language.menu_humanmaker, language.menu_quit };
             this.spriteBatch = spriteBatch;

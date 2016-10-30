@@ -30,9 +30,9 @@ namespace Julien12150.FreeSims.Game
 
         bool pressedButton = false;
 
-        Game1 mainClass;
+        FreeSims mainClass;
 
-        public Game(int width, int height, Control control, Cursor cursor, SpriteBatch spriteBatch, Sprite sprites, ItemSprite itemSprites, Language language, Game1 mainClass)
+        public Game(int width, int height, Control control, Cursor cursor, SpriteBatch spriteBatch, Sprite sprites, ItemSprite itemSprites, Language language, FreeSims mainClass)
         {
             this.control = control;
             this.height = height;
@@ -56,7 +56,7 @@ namespace Julien12150.FreeSims.Game
             {
                 for(int i = 0; i < names.Length; i++)
                 {
-                    humanList.Add(new Human(width / 2, height / 2, 0, 50, 50, 25, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], i));
+                    humanList.Add(new Human(width / 2, height / 2, 0, 0, 50, 50, 25, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], i));
                 }
             }
             else
@@ -78,7 +78,7 @@ namespace Julien12150.FreeSims.Game
 
                 for (int i = 0; i < names.Length; i++)
                 {
-                    humanList.Add(new Human(width / 2, height / 2, 0, 50, 50, 50, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], i));
+                    humanList.Add(new Human(width / 2, height / 2, 0, 0, 50, 50, 50, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], i));
                 }
             }
             itemList.Add(new TV(itemSprites, 100, 150, 1, new List<Human>()));

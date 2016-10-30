@@ -49,9 +49,9 @@ namespace Julien12150.FreeSims.Game.Item
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if(on)
-                spriteBatch.Draw(Sprite, new Vector2(posX, posY - Sprite.Height), new Rectangle(Sprite.Width * angle / 8, Sprite.Height / 2, Sprite.Width / 8, Sprite.Height / 2), Color.White);
+                spriteBatch.Draw(Sprite, new Vector2(posX, (posY - posZ) - Sprite.Height), new Rectangle(Sprite.Width * angle / 8, Sprite.Height / 2, Sprite.Width / 8, Sprite.Height / 2), Color.White);
             else
-                spriteBatch.Draw(Sprite, new Vector2(posX, posY - Sprite.Height), new Rectangle(Sprite.Width * angle / 8, 0, Sprite.Width / 8, Sprite.Height / 2), Color.White);
+                spriteBatch.Draw(Sprite, new Vector2(posX, (posY - posZ) - Sprite.Height), new Rectangle(Sprite.Width * angle / 8, 0, Sprite.Width / 8, Sprite.Height / 2), Color.White);
             base.Draw(gameTime, spriteBatch);
         }
         public void Remove(Human h)

@@ -43,7 +43,7 @@
     <Compile Include="Control.cs" />
     <Compile Include="Cursor.cs" />
     <Compile Include="Extra.cs" />
-    <Compile Include="Game1.cs" />
+    <Compile Include="FreeSims.cs" />
     <Compile Include="Game\Activity\Activity.cs" />
     <Compile Include="Game\Activity\Eat.cs" />
     <Compile Include="Game\Activity\SitChair.cs" />

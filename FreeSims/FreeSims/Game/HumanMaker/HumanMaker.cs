@@ -12,7 +12,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
         SpriteBatch spriteBatch;
         Sprite sprites;
         Control control;
-        Game1 game1;
+        FreeSims game1;
 
         Random rnd;
 
@@ -40,7 +40,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
         List<Color> shirt = new List<Color>();
         List<Color> shoes = new List<Color>();
         List<Color> skin = new List<Color>();
-        public HumanMaker(SpriteBatch spriteBatch, Sprite sprites, Control control, Game1 game1, int width, int height)
+        public HumanMaker(SpriteBatch spriteBatch, Sprite sprites, Control control, FreeSims game1, int width, int height)
         {
             this.spriteBatch = spriteBatch;
             this.sprites = sprites;

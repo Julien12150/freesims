@@ -9,7 +9,7 @@ namespace Julien12150.FreeSims
     public class Option
     {
         SpriteBatch spriteBatch;
-        Game1 game1;
+        FreeSims game1;
         Language language;
         SpriteFont font;
         Control control;
@@ -17,7 +17,7 @@ namespace Julien12150.FreeSims
         int langSelected;
         bool hasPressedButton;
         string[] lang;
-        public Option(SpriteBatch spriteBatch, Game1 game1, Language language, Sprite sprites, Control control)
+        public Option(SpriteBatch spriteBatch, FreeSims game1, Language language, Sprite sprites, Control control)
         {
             this.spriteBatch = spriteBatch;
             this.game1 = game1;

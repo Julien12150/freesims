@@ -8,6 +8,7 @@ namespace Julien12150.FreeSims.Game.Item
     {
         public float posX;
         public float posY;
+        public float posZ;
         public int angle;
 
         public Texture2D Sprite;
