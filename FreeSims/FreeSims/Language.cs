@@ -23,13 +23,13 @@ namespace Julien12150.FreeSims
 
         public Language(string language)
         {
-            if (File.Exists($"Language\\{language}.lng"))
+            if (File.Exists($"Language{Path.DirectorySeparatorChar + language}.lng"))
                 this.language = language;
             else
                 this.language = defaultLanguage;
 
-            file = new StreamReader($"Language\\{this.language}.lng");
-            defaultFile = new StreamReader($"Language\\{defaultLanguage}.lng");
+            file = new StreamReader($"Language{Path.DirectorySeparatorChar + this.language}.lng");
+            defaultFile = new StreamReader($"Language{Path.DirectorySeparatorChar + defaultLanguage}.lng");
 
             string[] sFile = file.ReadToEnd().Split(Environment.NewLine.ToCharArray());
             if (language != "en_US")
@@ -41,11 +41,11 @@ namespace Julien12150.FreeSims
         }
         public void ChangeLanguage(string language)
         {
-            if (File.Exists($"Language\\{language}.lng"))
+            if (File.Exists($"Language{Path.DirectorySeparatorChar + language}.lng"))
             {
                 file.Close();
                 this.language = language;
-                file = new StreamReader($"Language\\{this.language}.lng");
+                file = new StreamReader($"Language{Path.DirectorySeparatorChar + this.language}.lng");
 
                 string[] sFile = file.ReadToEnd().Split(Environment.NewLine.ToCharArray());
                 if (language != "en_US")
@@ -58,7 +58,7 @@ namespace Julien12150.FreeSims
         }
         public string GetLang(string language)
         {
-            StreamReader file = new StreamReader($"Language\\{language}.lng");
+            StreamReader file = new StreamReader($"Language{Path.DirectorySeparatorChar + language}.lng");
             foreach (string s in file.ReadToEnd().Split(Environment.NewLine.ToCharArray()))
             {
                 if (s.Split('=')[0] == "lang")
@@ -72,7 +72,7 @@ namespace Julien12150.FreeSims
         }
         public string GetEnglishLang(string language)
         {
-            StreamReader file = new StreamReader($"Language\\{language}.lng");
+            StreamReader file = new StreamReader($"Language{Path.DirectorySeparatorChar + language}.lng");
             foreach (string s in file.ReadToEnd().Split(Environment.NewLine.ToCharArray()))
             {
                 if (s.Split('=')[0] == "lang_english")

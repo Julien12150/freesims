@@ -60,7 +60,6 @@ namespace Julien12150.FreeSims
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             if (File.Exists($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Julien12150\\FreeSims\\config.txt"))
             {
                 StreamReader file = new StreamReader($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Julien12150\\FreeSims\\config.txt");
@@ -105,7 +104,6 @@ namespace Julien12150.FreeSims
             language = new Language(lang);
 
             menu = new Menu(Window.ClientBounds.Width, Window.ClientBounds.Height, spriteBatch, control, sprites, this, cursor, itemSprites, language);
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -114,7 +112,6 @@ namespace Julien12150.FreeSims
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
         }
 
         /// <summary>

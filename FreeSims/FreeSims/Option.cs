@@ -27,7 +27,7 @@ namespace Julien12150.FreeSims
             lang = Directory.GetFiles("Language");
             for (int i = 0; i < lang.Length; i++)
             {
-                lang[i] = lang[i].Split('.')[0].Split('\\')[1];
+                lang[i] = lang[i].Split('.')[0].Split(Path.DirectorySeparatorChar)[1];
                 if (language.language == lang[i])
                     langSelected = i;
             }
@@ -87,7 +87,7 @@ namespace Julien12150.FreeSims
 
             if (select)
             {
-                string[] file = File.ReadAllLines($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Julien12150\\FreeSims\\config.txt");
+                string[] file = File.ReadAllLines($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}config.txt");
                 for (int i = 0; i < file.Length; i++)
                 {
                     if (file[i].Split('=')[0] == "lang")
@@ -96,7 +96,7 @@ namespace Julien12150.FreeSims
                         break;
                     }
                 }
-                StreamWriter fw = new StreamWriter($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Julien12150\\FreeSims\\config.txt");
+                StreamWriter fw = new StreamWriter($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData + Path.DirectorySeparatorChar)}Julien12150{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}config.txt");
                 foreach (string s in file)
                     fw.WriteLine(s);
                 fw.Close();

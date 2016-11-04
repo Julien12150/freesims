@@ -5,7 +5,7 @@ using System.Drawing.Imaging;
 
 namespace Julien12150.FreeSims
 {
-    public class Extra
+    public static class Extra
     {
         public static char? GetChar(Keys key)
         {

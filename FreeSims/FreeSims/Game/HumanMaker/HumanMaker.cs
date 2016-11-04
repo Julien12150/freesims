@@ -98,8 +98,8 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                     this.skin.Add(skin[i]);
                 }
 
-                Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/Julien12150/");
-                Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/Julien12150/FreeSims/");
+                Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{Path.DirectorySeparatorChar}");
+                Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}");
 
                 HMNFileManager.Write(names, female, eyes, hair, hairStyle, pants, shirt, shoes, skin);
             }

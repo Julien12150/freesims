@@ -7,7 +7,7 @@ namespace Julien12150.FreeSims.Game.HumanMaker
 {
     public class HMNFileManager
     {
-        private static string filePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/Julien12150/FreeSims/humans.hmn";
+        private static string filePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}humans.hmn";
         public static bool Read(out string[] names, out bool[] female, out Color[] eyes, out Color[] hair, out int[] hairStyle, out Color[] pants, out Color[] shirt, out Color[] shoes, out Color[] skin)
         {
             if (Read(filePath, out female, out names, out eyes, out hair, out hairStyle, out pants, out shirt, out shoes, out skin))
@@ -204,7 +204,6 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                 bytelist.Add(skin[i].G);
                 Console.WriteLine(skin[i].G);
                 bytelist.Add(skin[i].B);
-                Console.WriteLine(skin[i].B);
             }
             Console.WriteLine("---");
             BinaryWriter file = new BinaryWriter(File.Open(path, FileMode.Create));
