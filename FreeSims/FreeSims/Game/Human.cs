@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Julien12150.FreeSims.Game.Activity;
+using Julien12150.FreeSims.Game.Item;
 
 namespace Julien12150.FreeSims.Game
 {
@@ -35,7 +37,7 @@ namespace Julien12150.FreeSims.Game
 
         public Activity.Activity activity = null;
 
-        Random blinkNum;
+        Random rnd;
 
         public string name;
         public bool female;
@@ -49,7 +51,9 @@ namespace Julien12150.FreeSims.Game
 
         public Texture2D shadow;
 
-        public Human(float posX, float posY, float posZ, int angle, int Social, int Fun, int Hunger, bool cannotDie, Control control, Cursor cursor, Sprite sprites, SpriteBatch spriteBatch, string name, bool female, Color pants, Color hair, int hairStyle, Color eyes, Color shirt, Color shoes, Color skin, int num)
+		public Item.Item[] itemList;
+
+		public Human(float posX, float posY, float posZ, int angle, int Social, int Fun, int Hunger, bool cannotDie, Control control, Cursor cursor, Sprite sprites, SpriteBatch spriteBatch, string name, bool female, Color pants, Color hair, int hairStyle, Color eyes, Color shirt, Color shoes, Color skin, int num, Item.Item[] itemList)
         {
             this.posX = posX;
             this.posY = posY;
@@ -80,7 +84,9 @@ namespace Julien12150.FreeSims.Game
             this.shoes = shoes;
             this.skin = skin;
 
-            blinkNum = new Random(((int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds - int.MaxValue) + num);
+			this.itemList = itemList;
+
+            rnd = new Random(((int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds - int.MaxValue) + num);
         }
 
         private bool FindHuman(Human obj)
@@ -93,7 +99,7 @@ namespace Julien12150.FreeSims.Game
         public void Update(GameTime gameTime)
         {
 
-            int bn = blinkNum.Next(int.MinValue, int.MaxValue);
+            int bn = rnd.Next(int.MinValue, int.MaxValue);
             if (!blinking)
             {
                 if (bn < (int.MinValue + 50000000))
@@ -110,6 +116,24 @@ namespace Julien12150.FreeSims.Game
                 }
                 blinktimer -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             }
+
+			if (Hunger < 50)
+			{
+				if (rnd.Next() < int.MaxValue / 1000)
+				{
+					Item.Item f = null;
+					foreach (Item.Item i in itemList)
+					{
+						if (i.type == "Fridge")
+						{
+							f = i;
+							break;
+						}
+					}
+					activity = new Eat(this, (Fridge)f);
+					activity.Start(gameTime);
+				}
+			}
 
             Predicate<Human> ph = FindHuman;
 
@@ -281,7 +305,8 @@ namespace Julien12150.FreeSims.Game
             if(shadow == null)
                 shadow = Shadow.GenerateShadow((int)(((double)sprites.humanSprites.mNoColor.Width / 8) / 1.5), (sprites.humanSprites.mNoColor.Width / 8), gd);
             //spriteBatch.Draw(sprites.humanSprite, new Rectangle((int)posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2), (int)posY - sprites.humanSprites.mNoColor.Height + 16, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), new Rectangle((sprites.humanSprites.mNoColor.Width / 8 ) * angle, 0, sprites.humanSprites.mNoColor.Width / 8, sprites.humanSprites.mNoColor.Height), Color.White, 0, Vector2.Zero, SpriteEffects.None, posY / height);
-            spriteBatch.Draw(shadow, new Vector2((int)posX - ((sprites.humanSprites.mNoColor.Width / 8) / 3), (int)posY - ((sprites.humanSprites.mNoColor.Width / 8) / 4)), Color.White * 0.5f);
+			if(shadow != null)
+            	spriteBatch.Draw(shadow, new Vector2((int)posX - ((sprites.humanSprites.mNoColor.Width / 8) / 3), (int)posY - ((sprites.humanSprites.mNoColor.Width / 8) / 4)), Color.White * 0.5f);
             if (!female)
             {
                 if (!blinking)

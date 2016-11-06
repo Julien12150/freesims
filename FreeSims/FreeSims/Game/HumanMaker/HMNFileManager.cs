@@ -117,15 +117,15 @@ namespace Julien12150.FreeSims.Game.HumanMaker
             }
             catch (DirectoryNotFoundException)
             {
-                Console.WriteLine("reading the file failed or something");
+                //Console.WriteLine("reading the file failed or something");
             }
             catch (FileNotFoundException)
             {
-                Console.WriteLine("reading the file failed or something");
+                //Console.WriteLine("reading the file failed or something");
             }
             catch
             {
-                Console.WriteLine("reading the file failed or something");
+                //Console.WriteLine("reading the file failed or something");
                 file.Close();
             }
 
@@ -153,59 +153,59 @@ namespace Julien12150.FreeSims.Game.HumanMaker
                 foreach(byte bc in names[i])
                 {
                     bytelist.Add(bc);
-                    Console.WriteLine(Convert.ToChar(bc));
+                    //Console.WriteLine(Convert.ToChar(bc));
                 }
                 bytelist.Add((byte)0x00);
-                Console.WriteLine((byte)0x00);
+                //Console.WriteLine((byte)0x00);
                 if (female[i])
                 {
                     bytelist.Add((byte)0x01);
-                    Console.WriteLine((byte)0x01);
+                    //Console.WriteLine((byte)0x01);
                 }
                 else
                 {
                     bytelist.Add((byte)0x00);
-                    Console.WriteLine((byte)0x00);
+                    //Console.WriteLine((byte)0x00);
                 }
                 bytelist.Add((byte)hairStyle[i]);
-                Console.WriteLine((byte)hairStyle[i]);
+                //Console.WriteLine((byte)hairStyle[i]);
                 bytelist.Add(pants[i].R);
-                Console.WriteLine(pants[i].R);
+                //Console.WriteLine(pants[i].R);
                 bytelist.Add(pants[i].G);
-                Console.WriteLine(pants[i].G);
+                //Console.WriteLine(pants[i].G);
                 bytelist.Add(pants[i].B);
-                Console.WriteLine(pants[i].B);
+                //Console.WriteLine(pants[i].B);
                 bytelist.Add(hair[i].R);
-                Console.WriteLine(hair[i].R);
+                //Console.WriteLine(hair[i].R);
                 bytelist.Add(hair[i].G);
-                Console.WriteLine(hair[i].G);
+                //Console.WriteLine(hair[i].G);
                 bytelist.Add(hair[i].B);
-                Console.WriteLine(hair[i].B);
+                //Console.WriteLine(hair[i].B);
                 bytelist.Add(eyes[i].R);
-                Console.WriteLine(eyes[i].R);
+                //Console.WriteLine(eyes[i].R);
                 bytelist.Add(eyes[i].G);
-                Console.WriteLine(eyes[i].G);
+                //Console.WriteLine(eyes[i].G);
                 bytelist.Add(eyes[i].B);
-                Console.WriteLine(eyes[i].B);
+                //Console.WriteLine(eyes[i].B);
                 bytelist.Add(shirt[i].R);
-                Console.WriteLine(shirt[i].R);
+                //Console.WriteLine(shirt[i].R);
                 bytelist.Add(shirt[i].G);
-                Console.WriteLine(shirt[i].G);
+                //Console.WriteLine(shirt[i].G);
                 bytelist.Add(shirt[i].B);
-                Console.WriteLine(shirt[i].B);
+                //Console.WriteLine(shirt[i].B);
                 bytelist.Add(shoes[i].R);
-                Console.WriteLine(shoes[i].R);
+                //Console.WriteLine(shoes[i].R);
                 bytelist.Add(shoes[i].G);
-                Console.WriteLine(shoes[i].G);
+                //Console.WriteLine(shoes[i].G);
                 bytelist.Add(shoes[i].B);
-                Console.WriteLine(shoes[i].B);
+                //Console.WriteLine(shoes[i].B);
                 bytelist.Add(skin[i].R);
-                Console.WriteLine(skin[i].R);
+                //Console.WriteLine(skin[i].R);
                 bytelist.Add(skin[i].G);
-                Console.WriteLine(skin[i].G);
+                //Console.WriteLine(skin[i].G);
                 bytelist.Add(skin[i].B);
             }
-            Console.WriteLine("---");
+            //Console.WriteLine("---");
             BinaryWriter file = new BinaryWriter(File.Open(path, FileMode.Create));
             file.Write(bytelist.ToArray());
             file.Close();

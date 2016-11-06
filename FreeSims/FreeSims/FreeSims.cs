@@ -60,9 +60,10 @@ namespace Julien12150.FreeSims
         /// </summary>
         protected override void Initialize()
         {
-            if (File.Exists($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Julien12150\\FreeSims\\config.txt"))
+			Console.WriteLine($"Running on {Environment.OSVersion.VersionString}");
+			if (File.Exists($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}config.txt"))
             {
-                StreamReader file = new StreamReader($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Julien12150\\FreeSims\\config.txt");
+                StreamReader file = new StreamReader($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}config.txt");
                 string[] sFile = file.ReadToEnd().Split(Environment.NewLine.ToCharArray());
                 foreach (string s in sFile)
                 {
@@ -75,11 +76,11 @@ namespace Julien12150.FreeSims
             }
             else
             {
-                if (!Directory.Exists($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Julien12150\\FreeSims\\"))
+                if (!Directory.Exists($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}"))
                 {
-                    Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Julien12150\\FreeSims\\");
+                    Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}");
                 }
-                StreamWriter file = new StreamWriter($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Julien12150\\FreeSims\\config.txt");
+                StreamWriter file = new StreamWriter($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}config.txt");
                 file.WriteLine("lang=en_US");
                 file.Close();
             }

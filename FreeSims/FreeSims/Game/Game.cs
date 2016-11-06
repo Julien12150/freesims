@@ -52,12 +52,19 @@ namespace Julien12150.FreeSims.Game
             Color[] pants;
             Color[] shirt;
             Color[] shoes;
-            Color[] skin;
+			Color[] skin;
+
+			itemList.Add(new TV(itemSprites, 100, 150, 0, 1, new List<Human>(), gd));
+			itemList.Add(new Chair(itemSprites, 200, 160, 0, 1, gd));
+			itemList.Add(new Chair(itemSprites, 240, 160, 0, 7, gd));
+			itemList.Add(new Table(itemSprites, 200, 180, 0, 1, gd));
+			itemList.Add(new Fridge(itemSprites, 400, 180, 0, 7, new List<Human>(), gd));
+
             if (HMNFileManager.Read(out names, out female, out eyes, out hair, out hairStyle, out pants, out shirt, out shoes, out skin))
             {
                 for(int i = 0; i < names.Length; i++)
                 {
-                    humanList.Add(new Human(width / 2, height / 2, 0, 0, 50, 50, 25, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], i));
+					humanList.Add(new Human(width / 2, height / 2, 0, 0, 50, 50, 25, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], i, itemList.ToArray()));
                 }
             }
             else
@@ -79,14 +86,9 @@ namespace Julien12150.FreeSims.Game
 
                 for (int i = 0; i < names.Length; i++)
                 {
-                    humanList.Add(new Human(width / 2, height / 2, 0, 0, 50, 50, 50, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], i));
+                    humanList.Add(new Human(width / 2, height / 2, 0, 0, 50, 50, 50, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], i, itemList.ToArray()));
                 }
             }
-            itemList.Add(new TV(itemSprites, 100, 150, 0, 1, new List<Human>(), gd));
-            itemList.Add(new Chair(itemSprites, 200, 160, 0, 1, gd));
-            itemList.Add(new Chair(itemSprites, 240, 160, 0, 7, gd));
-            itemList.Add(new Table(itemSprites, 200, 180, 0, 1, gd));
-            itemList.Add(new Fridge(itemSprites, 400, 180, 0, 7, new List<Human>(), gd));
         }
 
         public void Update(GameTime gameTime)
@@ -108,6 +110,11 @@ namespace Julien12150.FreeSims.Game
             for (int i = 0; i < humanList.ToArray().Length; i++)
             {
                 humanList[i].Update(gameTime);
+
+				if (humanList[i].Hunger < 75)
+				{
+					
+				}
 
                 if (selectedHuman == i)
                 {

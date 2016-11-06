@@ -53,7 +53,8 @@ namespace Julien12150.FreeSims.Game.Item
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(shadow, new Vector2(posX - 3, posY - (Sprite.Height / 4) + 1), Color.White * 0.5f);
+			if (shadow != null)
+            	spriteBatch.Draw(shadow, new Vector2(posX - 3, posY - (Sprite.Height / 4) + 1), Color.White * 0.5f);
             if (on)
                 spriteBatch.Draw(Sprite, new Vector2(posX, (posY - posZ) - (Sprite.Height / 2)), new Rectangle(Sprite.Width * angle / 8, Sprite.Height / 2, Sprite.Width / 8, Sprite.Height / 2), Color.White);
             else

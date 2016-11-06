@@ -96,7 +96,7 @@ namespace Julien12150.FreeSims
                         break;
                     }
                 }
-                StreamWriter fw = new StreamWriter($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData + Path.DirectorySeparatorChar)}Julien12150{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}config.txt");
+                StreamWriter fw = new StreamWriter($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}config.txt");
                 foreach (string s in file)
                     fw.WriteLine(s);
                 fw.Close();
