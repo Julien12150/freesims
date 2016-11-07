@@ -13,8 +13,17 @@ namespace Julien12150.FreeSims
         [STAThread]
         static void Main(string[] args)
         {
-            using (var game = new FreeSims(args))
-                game.Run();
+			using (var game = new FreeSims(args))
+			{
+				try
+				{
+					game.Run();
+				}
+				catch (Exception e)
+				{
+					CrashWindow.Run(e);
+				}
+			}
         }
     }
 }

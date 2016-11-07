@@ -64,6 +64,11 @@ namespace Julien12150.FreeSims
             {
                 ChangeMenu(Keyboard.GetState().IsKeyDown(Keys.Up), Keyboard.GetState().IsKeyDown(Keys.Down), Keyboard.GetState().IsKeyDown(Keys.Escape));
             }
+
+			if (Keyboard.GetState().IsKeyDown(Keys.RightShift) && Keyboard.GetState().IsKeyDown(Keys.Tab))
+			{
+				throw new Exception("Auto-Crash mode activated, too powerful to handle, threw exception.");
+			}
         }
         void ChangeMenu(bool up, bool down, bool select)
         {
