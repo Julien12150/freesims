@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Julien12150.FreeSims.Game.Item
+namespace Julien12150.FreeSims.Game.Entity.Item
 {
     public class Table : Item
     {
         Texture2D shadow;
-        public Table(ItemSprite itemSprite, float posX, float posY, float posZ, int angle, GraphicsDevice gd)
+		Shadow shadowClass;
+		public Table(ItemSprite itemSprite, float posX, float posY, float posZ, int angle, GraphicsDevice gd)
         {
             Sprite = itemSprite.table;
             this.posX = posX;
@@ -14,7 +15,9 @@ namespace Julien12150.FreeSims.Game.Item
             this.posZ = posZ;
             this.angle = angle;
 
-            shadow = Shadow.GenerateShadow(Sprite, 7, 1, gd);
+			this.shadowClass = new Shadow(gd);
+
+			shadow = shadowClass.GenerateShadow(Sprite, 7, 1);
 
             type = "Table";
         }

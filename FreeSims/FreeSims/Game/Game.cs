@@ -4,7 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using Julien12150.FreeSims.Game.Activity;
-using Julien12150.FreeSims.Game.Item;
+using Julien12150.FreeSims.Game.Entity;
+using Julien12150.FreeSims.Game.Entity.Item;
 using Julien12150.FreeSims.Game.HumanMaker;
 using System;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Julien12150.FreeSims.Game
     public class Game
     {
         List<Human> humanList = new List<Human>();
-        List<Item.Item> itemList = new List<Item.Item>();
+        List<Item> itemList = new List<Item>();
 
         int selectedHuman = 0;
 
@@ -33,7 +34,7 @@ namespace Julien12150.FreeSims.Game
 
         FreeSims mainClass;
 
-        public Game(int width, int height, Control control, Cursor cursor, SpriteBatch spriteBatch, Sprite sprites, ItemSprite itemSprites, Language language, FreeSims mainClass, GraphicsDevice gd)
+        public Game(int width, int height, Control control, Cursor cursor, SpriteBatch spriteBatch, Sprite sprites, ItemSprite itemSprites, Language language, FreeSims mainClass)
         {
             this.control = control;
             this.height = height;
@@ -54,17 +55,17 @@ namespace Julien12150.FreeSims.Game
             Color[] shoes;
 			Color[] skin;
 
-			itemList.Add(new TV(itemSprites, 100, 150, 0, 1, new List<Human>(), gd));
-			itemList.Add(new Chair(itemSprites, 200, 160, 0, 1, gd));
-			itemList.Add(new Chair(itemSprites, 240, 160, 0, 7, gd));
-			itemList.Add(new Table(itemSprites, 200, 180, 0, 1, gd));
-			itemList.Add(new Fridge(itemSprites, 400, 180, 0, 7, new List<Human>(), gd));
+			itemList.Add(new TV(itemSprites, 100, 150, 0, 1, new List<Human>(), mainClass.GraphicsDevice));
+			itemList.Add(new Chair(itemSprites, 200, 160, 0, 1, mainClass.GraphicsDevice));
+			itemList.Add(new Chair(itemSprites, 240, 160, 0, 7, mainClass.GraphicsDevice));
+			itemList.Add(new Table(itemSprites, 200, 180, 0, 1, mainClass.GraphicsDevice));
+			itemList.Add(new Fridge(itemSprites, 400, 180, 0, 7, new List<Human>(), mainClass.GraphicsDevice));
 
             if (HMNFileManager.Read(out names, out female, out eyes, out hair, out hairStyle, out pants, out shirt, out shoes, out skin))
             {
                 for(int i = 0; i < names.Length; i++)
                 {
-					humanList.Add(new Human(width / 2, height / 2, 0, 0, 50, 50, 25, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], i, itemList.ToArray()));
+					humanList.Add(new Human(width / 2, height / 2, 0, 0, 50, 50, 25, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], i, itemList.ToArray(), mainClass.GraphicsDevice));
                 }
             }
             else
@@ -86,7 +87,7 @@ namespace Julien12150.FreeSims.Game
 
                 for (int i = 0; i < names.Length; i++)
                 {
-                    humanList.Add(new Human(width / 2, height / 2, 0, 0, 50, 50, 50, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], i, itemList.ToArray()));
+                    humanList.Add(new Human(width / 2, height / 2, 0, 0, 50, 50, 50, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], i, itemList.ToArray(), mainClass.GraphicsDevice));
                 }
             }
         }
@@ -225,17 +226,19 @@ namespace Julien12150.FreeSims.Game
             {
                 itemList[i].Draw(gameTime, spriteBatch);
             }*/
-			var sortedItemList = itemList.OrderBy(item => item.posY);
-			var sortedHumanList = humanList.OrderBy(human => human.posY);
 
-			foreach (Item.Item i in sortedItemList)
+			List<Entity.Entity> e = new List<Entity.Entity>();
+
+			e.AddRange(humanList);
+			e.AddRange(itemList);
+
+			var es = e.OrderBy(human => human.posY);
+
+			foreach (Entity.Entity ee in es)
 			{
-				i.Draw(gameTime, spriteBatch);
+				ee.Draw(gameTime, spriteBatch);
 			}
-			foreach (Human h in sortedHumanList)
-			{
-				h.Draw(gameTime, height, gd);
-			}
+
             for (int i = 0; i < humanList.ToArray().Length; i++)
             {
                 int tabColor;

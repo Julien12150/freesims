@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -24,8 +23,14 @@
     <DefineConstants>TRACE;DEBUG;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile></DocumentationFile>
+    <CustomCommands>
+      <CustomCommands>
+        <Command>
+          <type>Custom</type>
+        </Command>
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -51,26 +56,27 @@
     <Compile Include="Game\Activity\TVWatch.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Game\GameState.cs" />
-    <Compile Include="Game\Human.cs" />
     <Compile Include="Game\HumanMaker\HMNFileManager.cs" />
     <Compile Include="Game\HumanMaker\HumanMaker.cs" />
-    <Compile Include="Game\Item\Chair.cs" />
-    <Compile Include="Game\Item\Fridge.cs" />
-    <Compile Include="Game\Item\Item.cs" />
-    <Compile Include="Game\Item\ItemSprite.cs" />
-    <Compile Include="Game\Item\Table.cs" />
-    <Compile Include="Game\Item\TV.cs" />
     <Compile Include="Game\Menu.cs" />
     <Compile Include="Game\Shadow.cs" />
     <Compile Include="HumanSprite.cs" />
     <Compile Include="Language.cs" />
     <Compile Include="Option.cs" />
+    <Compile Include="Sprite.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sprite.cs" />
     <Compile Include="CrashWindow.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Game\Entity\Item\Chair.cs" />
+    <Compile Include="Game\Entity\Item\Fridge.cs" />
+    <Compile Include="Game\Entity\Item\Item.cs" />
+    <Compile Include="Game\Entity\Item\ItemSprite.cs" />
+    <Compile Include="Game\Entity\Item\Table.cs" />
+    <Compile Include="Game\Entity\Item\TV.cs" />
+    <Compile Include="Game\Entity\Human.cs" />
+    <Compile Include="Game\Entity\Entity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
@@ -112,7 +118,6 @@
     <Content Include="Content\Gui\StatIcon.png" />
     <Content Include="Content\Gui\TalkBuble.png" />
     <Content Include="Content\Human\F_Eyes.png" />
-    <Content Include="Content\Human\F_Hair.png" />
     <Content Include="Content\Human\F_NoColor.png" />
     <Content Include="Content\Human\F_Pants.png" />
     <Content Include="Content\Human\F_Shirt.png" />
@@ -123,7 +128,6 @@
     <Content Include="Content\Human\Haircut\2.png" />
     <Content Include="Content\Human\Haircut\2_NoColor.png" />
     <Content Include="Content\Human\M_Eyes.png" />
-    <Content Include="Content\Human\M_Hair.png" />
     <Content Include="Content\Human\M_NoColor.png" />
     <Content Include="Content\Human\M_Pants.png" />
     <Content Include="Content\Human\M_Shirt.png" />
@@ -155,6 +159,10 @@
     </None>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Game\Entity\" />
+    <Folder Include="Game\Entity\Item\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

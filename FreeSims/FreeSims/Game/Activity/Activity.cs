@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Julien12150.FreeSims.Game.Entity;
+using Julien12150.FreeSims.Game.Entity.Item;
 
 namespace Julien12150.FreeSims.Game.Activity
 {
@@ -8,7 +10,7 @@ namespace Julien12150.FreeSims.Game.Activity
         public string type;
         public Human human;
         public Human targetH;
-        public Item.Item targetI;
+        public Item targetI;
 
         public virtual void Update(GameTime gameTime)
         {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 
-namespace Julien12150.FreeSims.Game.Item
+namespace Julien12150.FreeSims.Game.Entity.Item
 {
     public class ItemSprite
     {

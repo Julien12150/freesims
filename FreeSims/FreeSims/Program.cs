@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Julien12150.FreeSims
 {
@@ -15,13 +16,18 @@ namespace Julien12150.FreeSims
         {
 			using (var game = new FreeSims(args))
 			{
-				try
-				{
+				if (args.Contains("/d"))
 					game.Run();
-				}
-				catch (Exception e)
+				else
 				{
-					CrashWindow.Run(e);
+					try
+					{
+						game.Run();
+					}
+					catch (Exception e)
+					{
+						CrashWindow.Run(e);
+					}
 				}
 			}
         }

@@ -7,11 +7,16 @@ namespace Julien12150.FreeSims.Game
 {
     public class Shadow
     {
-        public static Texture2D GenerateShadow(Texture2D sprite, int row, int column, GraphicsDevice gd)
+		GraphicsDevice gd;
+		public Shadow(GraphicsDevice gd)
+		{
+			this.gd = gd;
+		}
+        public Texture2D GenerateShadow(Texture2D sprite, int row, int column)
         {
-            return GenerateShadow(sprite.Width / row, (int)(((double)(sprite.Height * ((sprite.Width / row) / 40)) / column) / 1.5), gd);
+            return GenerateShadow(sprite.Width / row, (int)(((double)(sprite.Height * ((sprite.Width / row) / 40)) / column) / 1.5));
         }
-        public static Texture2D GenerateShadow(int width, int height, GraphicsDevice gd)
+        public Texture2D GenerateShadow(int width, int height)
         {
 			if (!Environment.OSVersion.VersionString.StartsWith("Unix"))
 			{

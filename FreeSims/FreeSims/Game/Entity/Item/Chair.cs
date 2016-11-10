@@ -2,13 +2,14 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Julien12150.FreeSims.Game.Item
+namespace Julien12150.FreeSims.Game.Entity.Item
 {
     public class Chair : Item
     {
         Texture2D shadow;
+		Shadow shadowClass;
 
-        public Chair(ItemSprite itemSprite, float posX, float posY, float posZ, int angle, GraphicsDevice gd)
+		public Chair(ItemSprite itemSprite, float posX, float posY, float posZ, int angle, GraphicsDevice gd)
         {
             Sprite = itemSprite.chair;
             this.posX = posX;
@@ -18,7 +19,9 @@ namespace Julien12150.FreeSims.Game.Item
 
             humanList = new List<Human>();
 
-            shadow = Shadow.GenerateShadow(Sprite, 7, 1, gd);
+			this.shadowClass = new Shadow(gd);
+
+			shadow = shadowClass.GenerateShadow(Sprite, 7, 1);
 
             type = "Chair";
         }

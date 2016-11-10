@@ -1,10 +1,12 @@
 using System.IO;
+using System.Linq;
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Julien12150.FreeSims.Game;
-using Julien12150.FreeSims.Game.Item;
+using Julien12150.FreeSims.Game.Entity;
+using Julien12150.FreeSims.Game.Entity.Item;
 using Julien12150.FreeSims.Game.HumanMaker;
 
 namespace Julien12150.FreeSims
@@ -13,7 +15,7 @@ namespace Julien12150.FreeSims
     /// This is the main type for your game
     /// </summary>
     public class FreeSims : Microsoft.Xna.Framework.Game
-    {
+	{
         bool isControllerMode;
 
         string lang;
@@ -43,7 +45,7 @@ namespace Julien12150.FreeSims
 
             if (args.Length >= 1)
             {
-                if (args[0] == "/c")
+				if (args.Contains("/c"))
                     isControllerMode = true;
                 else
                     isControllerMode = false;
@@ -138,7 +140,7 @@ namespace Julien12150.FreeSims
                     ChangeState(GameState.Menu);
             }
             else if (state == GameState.Menu)
-                menu.Update(gameTime, graphics.GraphicsDevice);
+                menu.Update(gameTime);
             else if (state == GameState.HumanMaking)
                 humanMaker.Update(gameTime);
             else if (state == GameState.Option)

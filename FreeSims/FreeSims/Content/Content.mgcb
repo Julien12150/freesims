@@ -43,18 +43,6 @@
 /processorParam:TextureFormat=Color
 /build:Human/F_Eyes.png
 
-#begin Human/F_Hair.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Human/F_Hair.png
-
 #begin Human/F_NoColor.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -126,18 +114,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Human/M_Eyes.png
-
-#begin Human/M_Hair.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Human/M_Hair.png
 
 #begin Human/M_NoColor.png
 /importer:TextureImporter

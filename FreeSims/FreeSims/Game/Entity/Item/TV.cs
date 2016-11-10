@@ -2,15 +2,16 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Julien12150.FreeSims.Game.Item
+namespace Julien12150.FreeSims.Game.Entity.Item
 {
     public class TV : Item
     {
         public bool on = false;
 
         Texture2D shadow;
+		Shadow shadowClass;
 
-        public TV(ItemSprite itemSprite, float posX, float posY, float posZ, int angle, List<Human> humanList, GraphicsDevice gd)
+		public TV(ItemSprite itemSprite, float posX, float posY, float posZ, int angle, List<Human> humanList, GraphicsDevice gd)
         {
             Sprite = itemSprite.oldTv;
             this.posX = posX;
@@ -22,7 +23,9 @@ namespace Julien12150.FreeSims.Game.Item
 
             type = "TV";
 
-            shadow = Shadow.GenerateShadow(Sprite, 7, 1, gd);
+			this.shadowClass = new Shadow(gd);
+
+			shadow = shadowClass.GenerateShadow(Sprite, 7, 1);
         }
         public override void Update(GameTime gameTime)
         {

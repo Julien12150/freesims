@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Julien12150.FreeSims.Game.Item
+namespace Julien12150.FreeSims.Game.Entity.Item
 {
     public class Fridge : Item
     {
@@ -10,7 +10,9 @@ namespace Julien12150.FreeSims.Game.Item
 
         Texture2D shadow;
 
-        public Fridge(ItemSprite itemSprite, float posX, float posY, float posZ, int angle, List<Human> humanList, GraphicsDevice gd)
+		Shadow shadowClass;
+
+		public Fridge(ItemSprite itemSprite, float posX, float posY, float posZ, int angle, List<Human> humanList, GraphicsDevice gd)
         {
             Sprite = itemSprite.fridge;
             this.posX = posX;
@@ -20,7 +22,9 @@ namespace Julien12150.FreeSims.Game.Item
 
             this.humanList = humanList;
 
-            shadow = Shadow.GenerateShadow(Sprite, 7, 2, gd);
+			this.shadowClass = new Shadow(gd);
+
+			shadow = shadowClass.GenerateShadow(Sprite, 7, 2);
 
             type = "Fridge";
         }
