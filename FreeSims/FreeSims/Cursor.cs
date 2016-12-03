@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Julien12150.FreeSims
 {
-    public class Cursor
+	public class Cursor //fun fact: this is the very first thing i have put in the game, even before the menus 
     {
         int width, height;
         public float posX, posY;
@@ -27,7 +27,7 @@ namespace Julien12150.FreeSims
             posY = height / 2;
         }
 
-        public void Update(GameTime gameTime)
+		public void Update(GameTime gameTime, Vector2 camera)
         {
             MouseState mouseState = Mouse.GetState();
 
@@ -35,7 +35,7 @@ namespace Julien12150.FreeSims
             mY = mouseState.Y;
 
             if(!control.isControllerMode)
-                GoTo(mX, mY);
+				GoTo(mX + (int)camera.X,mY + (int)camera.Y);
             else
             {
                 /*if (control.DPadLeft)
@@ -48,20 +48,20 @@ namespace Julien12150.FreeSims
                     posY++;*/
                 Move(control.LeftStickX, control.LeftStickY * -1);
 
-                if (posX > width)
-                    posX = width;
-                else if (posX < 0)
-                    posX = 0;
-                if (posY > height)
-                    posY = height;
-                else if (posY < 0)
-                    posY = 0;
+				if (posX > width + camera.X)
+                    posX = width + camera.X;
+				else if (posX < camera.X)
+                    posX = camera.X;
+				if (posY > height + camera.Y)
+                    posY = height + camera.Y;
+				else if (posY < camera.Y)
+                    posY = camera.Y;
             }
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+		public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Vector2 camera)
         {
-            spriteBatch.Draw(sprite, new Vector2(posX - (sprite.Width / 2), posY - (sprite.Height / 2)), Color.White);
+			spriteBatch.Draw(sprite, new Vector2((posX - (sprite.Width / 2)) - camera.X, (posY - (sprite.Height / 2)) - camera.Y), Color.White);
         }
 
         public void GoTo(int x, int y)

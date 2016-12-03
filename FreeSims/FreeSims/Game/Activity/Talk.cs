@@ -11,7 +11,7 @@ namespace Julien12150.FreeSims.Game.Activity
         const float TIMER = 5;
         float timer = TIMER;
 
-        public Talk(Human human, Human targetH)
+		public Talk(Human human, Human targetH)
         {
             this.targetH = targetH;
             this.human = human;
@@ -31,11 +31,11 @@ namespace Julien12150.FreeSims.Game.Activity
             base.Update(gameTime);
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, Sprite sprites)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, Sprite sprites, Vector2 camera)
         {
-            spriteBatch.Draw(sprites.talkBuble, new Vector2(human.posX, human.posY - (sprites.humanSprites.mNoColor.Height / 2) - 5), Color.White);
+			spriteBatch.Draw(sprites.talkBuble, new Vector2(human.posX - camera.X, (human.posY - (sprites.humanSprites.mNoColor.Height / 2) - 5) - camera.Y), Color.White);
 
-            base.Draw(gameTime, spriteBatch, sprites);
+			base.Draw(gameTime, spriteBatch, sprites, camera);
         }
 
         public override void Start(GameTime gameTime)

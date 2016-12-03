@@ -16,7 +16,7 @@ namespace Julien12150.FreeSims.Game.Activity
         {
 
         }
-        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch, Sprite sprites)
+		public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch, Sprite sprites, Vector2 camera)
         {
 
         }

@@ -17,6 +17,8 @@ namespace Julien12150.FreeSims.Game
         List<Human> humanList = new List<Human>();
         List<Item> itemList = new List<Item>();
 
+		Vector2 size;
+
         int selectedHuman = 0;
 
         int height;
@@ -34,6 +36,8 @@ namespace Julien12150.FreeSims.Game
 
         FreeSims mainClass;
 
+		Vector2 camera = Vector2.Zero;
+
         public Game(int width, int height, Control control, Cursor cursor, SpriteBatch spriteBatch, Sprite sprites, ItemSprite itemSprites, Language language, FreeSims mainClass)
         {
             this.control = control;
@@ -44,6 +48,8 @@ namespace Julien12150.FreeSims.Game
             this.itemSprites = itemSprites;
             this.language = language;
             this.mainClass = mainClass;
+
+			size = new Vector2(width, height);
 
             string[] names;
             bool[] female;
@@ -94,6 +100,8 @@ namespace Julien12150.FreeSims.Game
 
         public void Update(GameTime gameTime)
         {
+			cursor.Update(gameTime, camera);
+
             bool isEmpty = true;
             foreach(Human h in humanList)
             {
@@ -110,7 +118,7 @@ namespace Julien12150.FreeSims.Game
 
             for (int i = 0; i < humanList.ToArray().Length; i++)
             {
-                humanList[i].Update(gameTime);
+				humanList[i].Update(gameTime, camera);
 
 				if (humanList[i].Hunger < 75)
 				{
@@ -125,10 +133,10 @@ namespace Julien12150.FreeSims.Game
                 {
                     humanList[i].selected = false;
 
-                    if (cursor.posX < humanList[i].posX + ((sprites.humanSprites.mNoColor.Width / 8) / 2) &&
-                        cursor.posX > humanList[i].posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2) &&
-                        cursor.posY < humanList[i].posY &&
-                        cursor.posY > humanList[i].posY - (sprites.humanSprites.mNoColor.Height / 2))
+					if (cursor.posX < humanList[i].posX + ((sprites.humanSprites.mNoColor.Width / 8) / 2) &&
+					     cursor.posX > humanList[i].posX - ((sprites.humanSprites.mNoColor.Width / 8) / 2) &&
+					     cursor.posY < humanList[i].posY &&
+					     cursor.posY > humanList[i].posY - (sprites.humanSprites.mNoColor.Height / 2))
                     {
                         if (control.isControllerMode && control.B)
                         {
@@ -138,7 +146,7 @@ namespace Julien12150.FreeSims.Game
                         }
                         else if (!control.isControllerMode && control.RightMouseClick)
                         {
-                            humanList[i].activity = new Talk(humanList[selectedHuman], humanList[i]);
+							humanList[i].activity = new Talk(humanList[selectedHuman], humanList[i]);
                             humanList[selectedHuman].activity = new Talk(humanList[i], humanList[selectedHuman]);
                             humanList[i].activity.Start(gameTime);
                         }
@@ -158,12 +166,12 @@ namespace Julien12150.FreeSims.Game
             }
             for(int i = 0; i < itemList.ToArray().Length; i++)
             {
-                itemList[i].Update(gameTime);
+				itemList[i].Update(gameTime, camera);
 
-                if (cursor.posX < itemList[i].posX + (itemList[i].Sprite.Width / 8) &&
-                        cursor.posX > itemList[i].posX &&
-                        cursor.posY < (itemList[i].posY - itemList[i].Sprite.Height) + (itemList[i].Sprite.Height / 2) &&
-                        cursor.posY > (itemList[i].posY - itemList[i].Sprite.Height))
+				if (cursor.posX < itemList[i].posX + (itemList[i].Sprite.Width / 8) &&
+					cursor.posX > itemList[i].posX &&
+				    cursor.posY < (itemList[i].posY - itemList[i].Sprite.Height) + (itemList[i].Sprite.Height / 2) &&
+				    cursor.posY > (itemList[i].posY - itemList[i].Sprite.Height))
                 {
                     if (control.isControllerMode && control.B)
                     {
@@ -210,6 +218,23 @@ namespace Julien12150.FreeSims.Game
                 }
             }
 
+			if (control.isControllerMode)
+			{
+				camera.X += control.RightStickX * 4;
+				camera.Y -= control.RightStickY * 4;
+			}
+			else
+			{
+				if (Keyboard.GetState().IsKeyDown(Keys.D))
+					camera.X += 4;
+				if (Keyboard.GetState().IsKeyDown(Keys.S))
+					camera.Y += 4;
+				if (Keyboard.GetState().IsKeyDown(Keys.A))
+					camera.X -= 4;
+				if (Keyboard.GetState().IsKeyDown(Keys.W))
+					camera.Y -= 4;
+			}
+
             if(control.isControllerMode)
             {
                 ChangeSelect(control.LB, control.RB);
@@ -236,7 +261,7 @@ namespace Julien12150.FreeSims.Game
 
 			foreach (Entity.Entity ee in es)
 			{
-				ee.Draw(gameTime, spriteBatch);
+				ee.Draw(gameTime, spriteBatch, camera);
 			}
 
             for (int i = 0; i < humanList.ToArray().Length; i++)
@@ -251,7 +276,7 @@ namespace Julien12150.FreeSims.Game
                     spriteBatch.Draw(sprites.tabTop, new Vector2((sprites.statBar.Width + 30) + (sprites.tabTop.Width / 3) * i, 0), new Rectangle(20 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
                 if (selectedHuman == i)
                 {
-                    spriteBatch.Draw(sprites.humanSelectSprite, new Vector2(humanList[i].posX - 9, humanList[i].posY - (sprites.humanSprites.mNoColor.Height / 2) - 8), Color.White);
+					spriteBatch.Draw(sprites.humanSelectSprite, new Vector2((humanList[i].posX - 9) - camera.X, humanList[i].posY - ((sprites.humanSprites.mNoColor.Height / 2) - 8) - camera.Y), Color.White);
                     spriteBatch.Draw(sprites.statBar, new Vector2(5, 5), new Rectangle(0, 0, sprites.statBar.Width, sprites.statBar.Height / 2), Color.White); //Social
                     spriteBatch.Draw(sprites.statBar, new Vector2(5, 5), new Rectangle(0, sprites.statBar.Height / 2, 2 + humanList[i].Social * 2, sprites.statBar.Height / 2), Color.White);
 
@@ -302,6 +327,8 @@ namespace Julien12150.FreeSims.Game
             }
 
             spriteBatch.DrawString(sprites.mainFont, lastLog, new Vector2(0, height - 50), Color.Black, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+			if (control.isControllerMode)
+				cursor.Draw(gameTime, spriteBatch, camera);
         }
 
         void ChangeSelect(bool left, bool right)

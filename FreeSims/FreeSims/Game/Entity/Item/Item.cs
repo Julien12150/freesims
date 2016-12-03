@@ -13,13 +13,13 @@ namespace Julien12150.FreeSims.Game.Entity.Item
 
         public string type;
 
-		public override void Update(GameTime gameTime)
+		public override void Update(GameTime gameTime, Vector2 camera)
 		{
-			base.Update(gameTime);
+			base.Update(gameTime, camera);
 		}
-		public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+		public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, Vector2 camera)
 		{
-			base.Draw(gameTime, spriteBatch);
+			base.Draw(gameTime, spriteBatch, camera);
 		}
     }
 }

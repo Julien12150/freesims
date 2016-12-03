@@ -14,11 +14,11 @@ namespace Julien12150.FreeSims.Game.Entity
 		{
 			
 		}
-		public virtual void Update(GameTime gameTime)
+		public virtual void Update(GameTime gameTime, Vector2 camera)
 		{
 
 		}
-		public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+		public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch, Vector2 camera)
 		{
 
 		}

@@ -102,11 +102,11 @@ namespace Julien12150.FreeSims
             sprites = new Sprite(Content);
             itemSprites = new ItemSprite(Content);
 
-            control = new Control(isControllerMode, Window.ClientBounds.Width, Window.ClientBounds.Height);
-            cursor = new Cursor(Window.ClientBounds.Width, Window.ClientBounds.Height, sprites, control);
+            control = new Control(isControllerMode, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+            cursor = new Cursor(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, sprites, control);
             language = new Language(lang);
 
-            menu = new Menu(Window.ClientBounds.Width, Window.ClientBounds.Height, spriteBatch, control, sprites, this, cursor, itemSprites, language);
+            menu = new Menu(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, spriteBatch, control, sprites, this, cursor, itemSprites, language);
         }
 
         /// <summary>
@@ -131,7 +131,6 @@ namespace Julien12150.FreeSims
 
             if (state == GameState.Game)
             {
-                cursor.Update(gameTime);
                 game.Update(gameTime);
 
                 if (control.isControllerMode && control.Start)
@@ -164,9 +163,7 @@ namespace Julien12150.FreeSims
                 game.Draw(gameTime, graphics.GraphicsDevice);
             }
 
-            if (state == GameState.Game && !IsMouseVisible)
-                cursor.Draw(gameTime, spriteBatch);
-            else if (state == GameState.Menu)
+            if (state == GameState.Menu)
                 menu.Draw(gameTime);
             else if (state == GameState.HumanMaking)
                 humanMaker.Draw(gameTime);
