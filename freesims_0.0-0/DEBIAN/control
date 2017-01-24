@@ -1,0 +1,7 @@
+Package: freesims
+Version: 0.0-0
+Section: base
+Priority: optional
+Architecture: amd64
+Maintainer: Technochips
+Description: A free Sims clone.

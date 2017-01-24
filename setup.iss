@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "FreeSims"
-#define MyAppVersion "0.0.1.59"
+#define MyAppVersion "0.0.1.60"
 #define MyAppExeName "FreeSims.exe"
 
 [Setup]
@@ -13,7 +13,7 @@ AppId={{71D35E33-8E98-4976-A014-7B3C6486A648}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
-DefaultDirName={pf}\Julien12150\{#MyAppName}
+DefaultDirName={pf}\Technochips\{#MyAppName}
 OutputBaseFilename=freesims_setup     
 DisableProgramGroupPage=yes
 Compression=lzma
@@ -28,11 +28,12 @@ Name: "desktopicon\controller"; Description: "Create a desktop shortcut to open 
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked  
 
 [Files]
-Source: "bin\x86\Release\FreeSims.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "bin\x86\Release\MonoGame.Framework.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "bin\x86\Release\OpenTK.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "bin\x86\Release\Content\*"; DestDir: "{app}\Content"; Flags: ignoreversion recursesubdirs createallsubdirs    
-Source: "bin\x86\Release\Language\*"; DestDir: "{app}\Language"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "FreeSims\FreeSims\bin\x86\Release\FreeSims.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "FreeSims\FreeSims\bin\x86\Release\MonoGame.Framework.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "FreeSims\FreeSims\bin\x86\Release\OpenTK.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "FreeSims\FreeSims\bin\x86\Release\NVorbis.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "FreeSims\FreeSims\bin\x86\Release\Content\*"; DestDir: "{app}\Content"; Flags: ignoreversion recursesubdirs createallsubdirs    
+Source: "FreeSims\FreeSims\bin\x86\Release\Language\*"; DestDir: "{app}\Language"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
