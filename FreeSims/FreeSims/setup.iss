@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "FreeSims"
-#define MyAppVersion "0.0.1.57"
+#define MyAppVersion "0.0.1.59"
 #define MyAppExeName "FreeSims.exe"
 
 [Setup]
@@ -36,12 +36,12 @@ Source: "bin\x86\Release\Language\*"; DestDir: "{app}\Language"; Flags: ignoreve
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{commonprograms}\Julien12150\FreeSims\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"   
-Name: "{commonprograms}\Julien12150\FreeSims\{#MyAppName} with Controller"; Filename: "{app}\{#MyAppExeName}"; Parameters: "/c"
-Name: "{commonprograms}\Julien12150\FreeSims\Uninstall"; Filename: "{app}\unins000.exe"
+Name: "{commonprograms}\Technochips\FreeSims\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"   
+Name: "{commonprograms}\Technochips\FreeSims\{#MyAppName} with Controller"; Filename: "{app}\{#MyAppExeName}"; Parameters: "/c"
+Name: "{commonprograms}\Technochips\FreeSims\Uninstall"; Filename: "{app}\unins000.exe"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon     
 Name: "{commondesktop}\{#MyAppName} with Controller"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon\controller; Parameters: "/c"
-Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\Julien12150\Freesims\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: quicklaunchicon       
+Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\Technochips\Freesims\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: quicklaunchicon       
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent

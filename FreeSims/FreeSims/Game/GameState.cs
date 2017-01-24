@@ -1,4 +1,4 @@
-﻿namespace Julien12150.FreeSims.Game
+﻿namespace Technochips.FreeSims.Game
 {
     public enum GameState
     {

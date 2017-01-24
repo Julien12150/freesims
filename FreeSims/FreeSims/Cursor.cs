@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace Julien12150.FreeSims
+namespace Technochips.FreeSims
 {
 	public class Cursor //fun fact: this is the very first thing i have put in the game, even before the menus 
     {

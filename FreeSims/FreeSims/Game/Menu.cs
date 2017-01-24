@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Julien12150.FreeSims.Game.Entity;
-using Julien12150.FreeSims.Game.Entity.Item;
+using Technochips.FreeSims.Game.Entity;
+using Technochips.FreeSims.Game.Entity.Item;
 using Microsoft.Xna.Framework;
 
-namespace Julien12150.FreeSims.Game
+namespace Technochips.FreeSims.Game
 {
     public class Menu
     {

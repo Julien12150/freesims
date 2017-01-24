@@ -2,7 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 
-namespace Julien12150.FreeSims
+namespace Technochips.FreeSims
 {
     public class Language
     {

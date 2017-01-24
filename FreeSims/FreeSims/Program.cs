@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Julien12150.FreeSims
+namespace Technochips.FreeSims
 {
     /// <summary>
     /// The main class.

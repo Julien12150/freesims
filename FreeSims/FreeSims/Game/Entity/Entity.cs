@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Julien12150.FreeSims.Game.Entity
+namespace Technochips.FreeSims.Game.Entity
 {
 	public class Entity
 	{

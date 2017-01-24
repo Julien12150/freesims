@@ -4,12 +4,12 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Julien12150.FreeSims.Game;
-using Julien12150.FreeSims.Game.Entity;
-using Julien12150.FreeSims.Game.Entity.Item;
-using Julien12150.FreeSims.Game.HumanMaker;
+using Technochips.FreeSims.Game;
+using Technochips.FreeSims.Game.Entity;
+using Technochips.FreeSims.Game.Entity.Item;
+using Technochips.FreeSims.Game.HumanMaker;
 
-namespace Julien12150.FreeSims
+namespace Technochips.FreeSims
 {
     /// <summary>
     /// This is the main type for your game
@@ -63,9 +63,15 @@ namespace Julien12150.FreeSims
         protected override void Initialize()
         {
 			Console.WriteLine($"Running on {Environment.OSVersion.VersionString}");
-			if (File.Exists($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}config.txt"))
+			if (Directory.Exists($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{ Path.DirectorySeparatorChar}FreeSims{ Path.DirectorySeparatorChar}"))
+			{
+				Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Technochips{ Path.DirectorySeparatorChar}");
+				Directory.Move($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{ Path.DirectorySeparatorChar}FreeSims{ Path.DirectorySeparatorChar}",
+				               $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Technochips{ Path.DirectorySeparatorChar}FreeSims{ Path.DirectorySeparatorChar}");
+			}
+			if (File.Exists($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Technochips{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}config.txt"))
             {
-                StreamReader file = new StreamReader($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}config.txt");
+                StreamReader file = new StreamReader($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Technochips{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}config.txt");
                 string[] sFile = file.ReadToEnd().Split(Environment.NewLine.ToCharArray());
                 foreach (string s in sFile)
                 {
@@ -78,11 +84,11 @@ namespace Julien12150.FreeSims
             }
             else
             {
-                if (!Directory.Exists($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}"))
+                if (!Directory.Exists($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Technochips{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}"))
                 {
-                    Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}");
+                    Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Technochips{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}");
                 }
-                StreamWriter file = new StreamWriter($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}config.txt");
+                StreamWriter file = new StreamWriter($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Technochips{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}config.txt");
                 file.WriteLine("lang=en_US");
                 file.Close();
             }

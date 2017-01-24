@@ -8,7 +8,7 @@
     <ProjectGuid>{13686008-E0EA-4AAD-B3F1-18550E595AAD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Julien12150.FreeSims</RootNamespace>
+    <RootNamespace>Technochips.FreeSims</RootNamespace>
     <AssemblyName>FreeSims</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>

@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 
-namespace Julien12150.FreeSims
+namespace Technochips.FreeSims
 {
     public static class Extra
     {

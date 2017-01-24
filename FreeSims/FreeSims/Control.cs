@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace Julien12150.FreeSims
+namespace Technochips.FreeSims
 {
     public class Control
     {

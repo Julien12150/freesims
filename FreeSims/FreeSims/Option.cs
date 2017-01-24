@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Julien12150.FreeSims
+namespace Technochips.FreeSims
 {
     public class Option
     {
@@ -92,7 +92,7 @@ namespace Julien12150.FreeSims
 
             if (select)
             {
-                string[] file = File.ReadAllLines($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}config.txt");
+                string[] file = File.ReadAllLines($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Technochips{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}config.txt");
                 for (int i = 0; i < file.Length; i++)
                 {
                     if (file[i].Split('=')[0] == "lang")
@@ -101,7 +101,7 @@ namespace Julien12150.FreeSims
                         break;
                     }
                 }
-                StreamWriter fw = new StreamWriter($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}config.txt");
+                StreamWriter fw = new StreamWriter($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Technochips{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}config.txt");
                 foreach (string s in file)
                     fw.WriteLine(s);
                 fw.Close();

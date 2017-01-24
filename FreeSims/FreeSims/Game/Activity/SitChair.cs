@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using Julien12150.FreeSims.Game.Entity.Item;
-using Julien12150.FreeSims.Game.Entity;
+using Technochips.FreeSims.Game.Entity.Item;
+using Technochips.FreeSims.Game.Entity;
 
-namespace Julien12150.FreeSims.Game.Activity
+namespace Technochips.FreeSims.Game.Activity
 {
     public class SitChair : Activity
     {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Julien12150.FreeSims.Game.Entity;
-using Julien12150.FreeSims.Game.Entity.Item;
+using Technochips.FreeSims.Game.Entity;
+using Technochips.FreeSims.Game.Entity.Item;
 
-namespace Julien12150.FreeSims.Game.Activity
+namespace Technochips.FreeSims.Game.Activity
 {
     public class Activity
     {

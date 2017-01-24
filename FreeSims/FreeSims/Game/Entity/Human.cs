@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Julien12150.FreeSims.Game.Activity;
-using Julien12150.FreeSims.Game.Entity.Item;
+using Technochips.FreeSims.Game.Activity;
+using Technochips.FreeSims.Game.Entity.Item;
 
-namespace Julien12150.FreeSims.Game.Entity
+namespace Technochips.FreeSims.Game.Entity
 {
 	public class Human : Entity
     {
@@ -139,60 +139,66 @@ namespace Julien12150.FreeSims.Game.Entity
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
             timer -= elapsed;
 
-            if (activity != null)
-            {
-                activity.Update(gameTime);
-                if (activity.type == "Talk")
-                {
-                    if (timer < 0)
-                    {
-                        Fun--;
-                        Hunger--;
-                    }
-                    if (activity.targetH.activity == null)
-                    {
-                        activity = null;
-                    }
-                }
-                else if(activity.type == "TVWatch")
-                {
-                    if (timer < 0)
-                    {
-                        Social--;
-                        Hunger--;
-                    }
-                }
-                else if(activity.type == "Eat")
-                {
-                    if( timer < 0)
-                    {
-                        Hunger = 100;
-                        activity = null;
-                    }
-                }
-                else
-                {
-                    if (timer < 0)
-                    {
-                        Social--;
-                        Fun--;
-                        Hunger--;
-                    }
-                }
+			if (activity != null)
+			{
+				activity.Update(gameTime);
+				if (activity != null)
+				{
+					if (activity.type == "Talk")
+					{
+						if (timer < 0)
+						{
+							Fun--;
+							Hunger--;
+						}
+						if (activity.targetH.activity == null)
+						{
+							activity = null;
+						}
+					}
+					else if (activity.type == "TVWatch")
+					{
+						if (timer < 0)
+						{
+							Social--;
+							Hunger--;
+						}
+					}
+					else if (activity.type == "Eat")
+					{
+						if (timer < 0)
+						{
+							if (posX == finalPosX && posY == finalPosY)
+							{
+								Hunger = 100;
+								activity = null;
+							}
+						}
+					}
+					else
+					{
+						if (timer < 0)
+						{
+							Social--;
+							Fun--;
+							Hunger--;
+						}
+					}
 
-                if (timer < 0)
-                    timer = TIMER;
-            }
-            else
-            {
-                if (timer < 0)
-                {
-                    timer = TIMER;
-                    Social--;
-                    Hunger--;
-                    Fun--;
-                }
-            }
+					if (timer < 0)
+						timer = TIMER;
+				}
+			}
+			else
+			{
+				if (timer < 0)
+				{
+					timer = TIMER;
+					Social--;
+					Hunger--;
+					Fun--;
+				}
+			}
 
             if (Social > 100)
                 Social = 100;
@@ -244,6 +250,41 @@ namespace Julien12150.FreeSims.Game.Entity
                 }
             }
 
+			var distance = Math.Pow(posX - finalPosX, 2) + Math.Pow(posY - finalPosY, 2);
+			if (distance < 1)
+			{
+				posX = finalPosX;
+				posY = finalPosY;
+			}
+			else
+			{
+				var deltaX = finalPosX - posX;
+				var deltaY = finalPosY - posY;
+				var angleT = Math.Atan2(deltaX, deltaY);
+				var angleD = angleT * (180 / Math.PI);
+				if (angleD < 0)
+					angleD += 360;
+				//Console.WriteLine(angleD);
+				posX += (float)Math.Sin(angleT);
+				posY += (float)Math.Cos(angleT);
+				if (angleD < 22.5 || angleD > 337.5)
+					angle = 0;
+				else if (angleD > 22.5 && angleD < 67.5)
+					angle = 1;
+				else if (angleD > 67.5 && angleD < 112.5)
+					angle = 2;
+				else if (angleD > 112.5 && angleD < 157.5)
+					angle = 3;
+				else if (angleD > 157.5 && angleD < 202.5)
+					angle = 4;
+				else if (angleD > 202.5 && angleD < 247.5)
+					angle = 5;
+				else if (angleD > 247.5 && angleD < 292.5)
+					angle = 6;
+				else if (angleD > 292.5 && angleD < 337.5)
+					angle = 7;
+			}
+			/*
             if(posX > finalPosX)
             {
                 if(posY > finalPosY)
@@ -296,7 +337,7 @@ namespace Julien12150.FreeSims.Game.Entity
                     posY++;
                     angle = 0;
                 }
-            }
+            }*/
         }
 
 		public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, Vector2 camera)

@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using Julien12150.FreeSims.Game.Entity.Item;
-using Julien12150.FreeSims.Game.Entity;
+using Technochips.FreeSims.Game.Entity.Item;
+using Technochips.FreeSims.Game.Entity;
 
-namespace Julien12150.FreeSims.Game.Activity
+namespace Technochips.FreeSims.Game.Activity
 {
     public class Eat : Activity
     {
@@ -41,7 +41,7 @@ namespace Julien12150.FreeSims.Game.Activity
             {
                 if (targetI.humanList == null)
                 {
-                    human.activity.targetI.humanList.RemoveAll(ph);
+                    //human.activity.targetI.humanList.RemoveAll(ph);
                     human.activity = null;
                     human = null;
                     targetI = null;
@@ -49,7 +49,7 @@ namespace Julien12150.FreeSims.Game.Activity
             }
             else
             {
-                human.activity.targetI.humanList.RemoveAll(ph);
+               // human.activity.targetI.humanList.RemoveAll(ph);
                 human.activity = null;
                 human = null;
                 targetI = null;

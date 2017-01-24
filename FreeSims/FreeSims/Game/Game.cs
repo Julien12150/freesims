@@ -3,14 +3,14 @@ using System.IO;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
-using Julien12150.FreeSims.Game.Activity;
-using Julien12150.FreeSims.Game.Entity;
-using Julien12150.FreeSims.Game.Entity.Item;
-using Julien12150.FreeSims.Game.HumanMaker;
+using Technochips.FreeSims.Game.Activity;
+using Technochips.FreeSims.Game.Entity;
+using Technochips.FreeSims.Game.Entity.Item;
+using Technochips.FreeSims.Game.HumanMaker;
 using System;
 using System.Linq;
 
-namespace Julien12150.FreeSims.Game
+namespace Technochips.FreeSims.Game
 {
     public class Game
     {
@@ -86,8 +86,8 @@ namespace Julien12150.FreeSims.Game
                 shoes = new Color[] { new Color(96, 96, 96), new Color(150, 150, 150), new Color(56, 20, 0), new Color(200, 0, 0) };
                 skin = new Color[] { new Color(255, 179, 160), new Color(183, 124, 95), new Color(255, 202, 191), new Color(255, 179, 160) };
 
-				Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{Path.DirectorySeparatorChar}");
-				Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Julien12150{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}");
+				Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Technochips{Path.DirectorySeparatorChar}");
+				Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Technochips{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}");
 
                 HMNFileManager.Write(names, female, eyes, hair, hairStyle, pants, shirt, shoes, skin);
 
@@ -211,6 +211,8 @@ namespace Julien12150.FreeSims.Game
                         else if (itemList[i].type == "Fridge")
                         {
                             humanList[selectedHuman].activity = new Eat(humanList[selectedHuman], (Fridge)itemList[i]);
+							if (itemList[i].humanList == null)
+								itemList[i].humanList = new List<Human>();
                             itemList[i].humanList.Add(humanList[selectedHuman]);
                             humanList[selectedHuman].activity.Start(gameTime);
                         }

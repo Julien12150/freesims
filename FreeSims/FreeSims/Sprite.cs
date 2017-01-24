@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Julien12150.FreeSims
+namespace Technochips.FreeSims
 {
     public class Sprite
     {

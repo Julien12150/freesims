@@ -5,7 +5,7 @@ using System.Windows.Forms.VisualStyles;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace Julien12150.FreeSims
+namespace Technochips.FreeSims
 {
 	public class CrashWindow : Form
     {
@@ -19,7 +19,7 @@ namespace Julien12150.FreeSims
 
 		private void lnk_click(object sender, EventArgs ea)
 		{
-			Process.Start("https://github.com/Julien12150/freesims/issues/new");
+			Process.Start("https://github.com/Technochips/freesims/issues/new");
 		}
 		private void exit_click(object sender, EventArgs ea)
 		{

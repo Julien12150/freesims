@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using Microsoft.Xna.Framework.Graphics;
-using Julien12150.FreeSims;
+using Technochips.FreeSims;
 
-namespace Julien12150.FreeSims.Game
+namespace Technochips.FreeSims.Game
 {
     public class Shadow
     {

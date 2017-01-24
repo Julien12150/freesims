@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Julien12150.FreeSims.Game.Entity.Item
+namespace Technochips.FreeSims.Game.Entity.Item
 {
     public class Table : Item
     {
