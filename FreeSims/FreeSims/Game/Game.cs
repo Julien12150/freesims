@@ -60,6 +60,7 @@ namespace Technochips.FreeSims.Game
             Color[] shirt;
             Color[] shoes;
 			Color[] skin;
+			float[] walkSpeed;
 
 			itemList.Add(new TV(itemSprites, 100, 150, 0, 1, new List<Human>(), mainClass.GraphicsDevice));
 			itemList.Add(new Chair(itemSprites, 200, 160, 0, 1, mainClass.GraphicsDevice));
@@ -67,11 +68,11 @@ namespace Technochips.FreeSims.Game
 			itemList.Add(new Table(itemSprites, 200, 180, 0, 1, mainClass.GraphicsDevice));
 			itemList.Add(new Fridge(itemSprites, 400, 180, 0, 7, new List<Human>(), mainClass.GraphicsDevice));
 
-            if (HMNFileManager.Read(out names, out female, out eyes, out hair, out hairStyle, out pants, out shirt, out shoes, out skin))
+			if (HMNFileManager.Read(out names, out female, out eyes, out hair, out hairStyle, out pants, out shirt, out shoes, out skin, out walkSpeed))
             {
                 for(int i = 0; i < names.Length; i++)
                 {
-					humanList.Add(new Human(width / 2, height / 2, 0, 0, 50, 50, 25, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], i, itemList.ToArray(), mainClass.GraphicsDevice));
+					humanList.Add(new Human(width / 2, height / 2, 0, 0, 50, 50, 25, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], walkSpeed[i], i, itemList.ToArray(), mainClass.GraphicsDevice));
                 }
             }
             else
@@ -85,15 +86,16 @@ namespace Technochips.FreeSims.Game
                 shirt = new Color[] { new Color(255, 255, 255), new Color(183, 43, 0), new Color(22, 22, 22), new Color(255, 255, 255) };
                 shoes = new Color[] { new Color(96, 96, 96), new Color(150, 150, 150), new Color(56, 20, 0), new Color(200, 0, 0) };
                 skin = new Color[] { new Color(255, 179, 160), new Color(183, 124, 95), new Color(255, 202, 191), new Color(255, 179, 160) };
+				walkSpeed = new float[] { 2f, 1.5f, 2.5f, 2f };
 
 				Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Technochips{Path.DirectorySeparatorChar}");
 				Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Technochips{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}");
 
-                HMNFileManager.Write(names, female, eyes, hair, hairStyle, pants, shirt, shoes, skin);
+				HMNFileManager.Write(names, female, eyes, hair, hairStyle, pants, shirt, shoes, skin, walkSpeed);
 
                 for (int i = 0; i < names.Length; i++)
                 {
-                    humanList.Add(new Human(width / 2, height / 2, 0, 0, 50, 50, 50, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], i, itemList.ToArray(), mainClass.GraphicsDevice));
+					humanList.Add(new Human(width / 2, height / 2, 0, 0, 50, 50, 50, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], walkSpeed[i], i, itemList.ToArray(), mainClass.GraphicsDevice));
                 }
             }
         }

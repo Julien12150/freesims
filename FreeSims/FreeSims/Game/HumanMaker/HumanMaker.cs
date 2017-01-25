@@ -40,6 +40,7 @@ namespace Technochips.FreeSims.Game.HumanMaker
         List<Color> shirt = new List<Color>();
         List<Color> shoes = new List<Color>();
         List<Color> skin = new List<Color>();
+		List<float> walkSpeed = new List<float>();
         public HumanMaker(SpriteBatch spriteBatch, Sprite sprites, Control control, FreeSims game1, int width, int height)
         {
             this.spriteBatch = spriteBatch;
@@ -59,7 +60,8 @@ namespace Technochips.FreeSims.Game.HumanMaker
             Color[] shirt;
             Color[] shoes;
             Color[] skin;
-            if (HMNFileManager.Read(out names, out female, out eyes, out hair, out hairStyle, out pants, out shirt, out shoes, out skin))
+			float[] walkSpeed;
+			if (HMNFileManager.Read(out names, out female, out eyes, out hair, out hairStyle, out pants, out shirt, out shoes, out skin, out walkSpeed))
             {
                 for (int i = 0; i < names.Length; i++)
                 {
@@ -72,6 +74,7 @@ namespace Technochips.FreeSims.Game.HumanMaker
                     this.shirt.Add(shirt[i]);
                     this.shoes.Add(shoes[i]);
                     this.skin.Add(skin[i]);
+					this.walkSpeed.Add(walkSpeed[i]);
                 }
             }
             else
@@ -85,6 +88,7 @@ namespace Technochips.FreeSims.Game.HumanMaker
                 shirt = new Color[] { new Color(255, 255, 255), new Color(183, 43, 0), new Color(22, 22, 22), new Color(255, 255, 255) };
                 shoes = new Color[] { new Color(96, 96, 96), new Color(150, 150, 150), new Color(56, 20, 0), new Color(200, 0, 0) };
                 skin = new Color[] { new Color(255, 179, 160), new Color(183, 124, 95), new Color(255, 202, 191), new Color(255, 179, 160) };
+				walkSpeed = new float[] { 2, 1.5f, 2.5f, 2 };
 
                 for (int i = 0; i < names.Length; i++)
                 {
@@ -96,12 +100,13 @@ namespace Technochips.FreeSims.Game.HumanMaker
                     this.shirt.Add(shirt[i]);
                     this.shoes.Add(shoes[i]);
                     this.skin.Add(skin[i]);
+					this.walkSpeed.Add(walkSpeed[i]);
                 }
 
                 Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Technochips{Path.DirectorySeparatorChar}");
                 Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Technochips{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}");
 
-                HMNFileManager.Write(names, female, eyes, hair, hairStyle, pants, shirt, shoes, skin);
+				HMNFileManager.Write(names, female, eyes, hair, hairStyle, pants, shirt, shoes, skin, walkSpeed);
             }
             rnd = new Random();
         }
@@ -394,7 +399,7 @@ namespace Technochips.FreeSims.Game.HumanMaker
 
             if (control.GoBack)
             {
-                HMNFileManager.Write(names.ToArray(), female.ToArray(), eyes.ToArray(), hair.ToArray(), hairStyle.ToArray(), pants.ToArray(), shirt.ToArray(), shoes.ToArray(), skin.ToArray());
+				HMNFileManager.Write(names.ToArray(), female.ToArray(), eyes.ToArray(), hair.ToArray(), hairStyle.ToArray(), pants.ToArray(), shirt.ToArray(), shoes.ToArray(), skin.ToArray(), walkSpeed.ToArray());
 
                 game1.ChangeState(GameState.Menu);
                 game1.humanMaker = null;
@@ -668,6 +673,7 @@ namespace Technochips.FreeSims.Game.HumanMaker
                     shirt.Add(Color.White);
                     shoes.Add(new Color(96, 96, 96));
                     skin.Add(new Color(255, 179, 160));
+					walkSpeed.Add(2);
                     humanSelection = names.ToArray().Length - 1;
                     buttonPressed = true;
                 }
@@ -689,6 +695,7 @@ namespace Technochips.FreeSims.Game.HumanMaker
                         shirt.RemoveAt(humanSelection);
                         shoes.RemoveAt(humanSelection);
                         skin.RemoveAt(humanSelection);
+						walkSpeed.RemoveAt(humanSelection);
                         humanSelection--;
                     }
                     buttonPressed = true;
@@ -709,6 +716,7 @@ namespace Technochips.FreeSims.Game.HumanMaker
                     Color[] shirt = new Color[] { new Color(255, 255, 255), new Color(183, 43, 0), new Color(22, 22, 22), new Color(255, 255, 255) };
                     Color[] shoes = new Color[] { new Color(96, 96, 96), new Color(150, 150, 150), new Color(56, 20, 0), new Color(200, 0, 0) };
                     Color[] skin = new Color[] { new Color(255, 179, 160), new Color(183, 124, 95), new Color(255, 202, 191), new Color(255, 179, 160) };
+					float[] walkSpeed = new float[] { 2, 1.5f, 2.5f, 2 };
 
                     this.names = new List<string>();
                     this.female = new List<bool>();
@@ -755,6 +763,7 @@ namespace Technochips.FreeSims.Game.HumanMaker
                     Color shirt = new Color(rnd.Next(0, 256), rnd.Next(0, 256), rnd.Next(0, 256));
                     Color shoes = new Color(rnd.Next(0, 256), rnd.Next(0, 256), rnd.Next(0, 256));
                     Color skin = new Color(rnd.Next(0, 256), rnd.Next(0, 256), rnd.Next(0, 256));
+					float walkSpeed = Convert.ToSingle(rnd.NextDouble()) + 1.5f;
 
                     this.female[humanSelection] = female;
                     this.pants[humanSelection] = pants;
@@ -764,6 +773,7 @@ namespace Technochips.FreeSims.Game.HumanMaker
                     this.shirt[humanSelection] = shirt;
                     this.shoes[humanSelection] = shoes;
                     this.skin[humanSelection] = skin;
+					this.walkSpeed[humanSelection] = walkSpeed;
                     buttonPressed = true;
                 }
                 else if (!control.Enter)

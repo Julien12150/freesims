@@ -51,7 +51,7 @@ namespace Technochips.FreeSims.Game.Entity
 
 		public Item.Item[] itemList;
 
-		public Human(float posX, float posY, float posZ, int angle, int Social, int Fun, int Hunger, bool cannotDie, Control control, Cursor cursor, Sprite sprites, SpriteBatch spriteBatch, string name, bool female, Color pants, Color hair, int hairStyle, Color eyes, Color shirt, Color shoes, Color skin, int num, Item.Item[] itemList, GraphicsDevice gd)
+		public Human(float posX, float posY, float posZ, int angle, int Social, int Fun, int Hunger, bool cannotDie, Control control, Cursor cursor, Sprite sprites, SpriteBatch spriteBatch, string name, bool female, Color pants, Color hair, int hairStyle, Color eyes, Color shirt, Color shoes, Color skin, float walkSpeed, int num, Item.Item[] itemList, GraphicsDevice gd)
         {
             this.posX = posX;
             this.posY = posY;
@@ -81,6 +81,7 @@ namespace Technochips.FreeSims.Game.Entity
             this.shirt = shirt;
             this.shoes = shoes;
             this.skin = skin;
+			this.walkSpeed = walkSpeed;
 
 			this.itemList = itemList;
 			this.shadowClass = new Shadow(gd);
