@@ -139,7 +139,6 @@
     <Content Include="Content\Item\OldTV.png" />
     <Content Include="Content\Item\Table.png" />
     <Content Include="Content\NoSprite.png" />
-    <Content Include="setup.iss" />
     <EmbeddedResource Include="Icon.ico" />
     <Content Include="OpenTK.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

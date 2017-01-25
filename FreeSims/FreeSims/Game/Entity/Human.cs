@@ -44,6 +44,7 @@ namespace Technochips.FreeSims.Game.Entity
         public Color shirt;
         public Color shoes;
         public Color skin;
+		public float walkSpeed = 2;
 
         public Texture2D shadow;
 		public Shadow shadowClass;
@@ -251,7 +252,7 @@ namespace Technochips.FreeSims.Game.Entity
             }
 
 			var distance = Math.Pow(posX - finalPosX, 2) + Math.Pow(posY - finalPosY, 2);
-			if (distance < 1)
+			if (distance < walkSpeed)
 			{
 				posX = finalPosX;
 				posY = finalPosY;
@@ -265,8 +266,8 @@ namespace Technochips.FreeSims.Game.Entity
 				if (angleD < 0)
 					angleD += 360;
 				//Console.WriteLine(angleD);
-				posX += (float)Math.Sin(angleT);
-				posY += (float)Math.Cos(angleT);
+				posX += (float)Math.Sin(angleT) * walkSpeed;
+				posY += (float)Math.Cos(angleT) * walkSpeed;
 				if (angleD < 22.5 || angleD > 337.5)
 					angle = 0;
 				else if (angleD > 22.5 && angleD < 67.5)
