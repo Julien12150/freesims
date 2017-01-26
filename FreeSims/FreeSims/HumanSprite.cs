@@ -38,7 +38,7 @@ namespace Technochips.FreeSims
         public HumanSprite(ContentManager Content)
         {
             mEyes = Content.Load<Texture2D>("Human/M_Eyes");
-            mHair = Content.Load<Texture2D>("Human/M_Hair");
+			mHair = Content.Load<Texture2D>("Human/Haircut/1");
             mNoColor = Content.Load<Texture2D>("Human/M_NoColor");
             mPants = Content.Load<Texture2D>("Human/M_Pants");
             mShirt = Content.Load<Texture2D>("Human/M_Shirt");
@@ -46,7 +46,7 @@ namespace Technochips.FreeSims
             mSkin = Content.Load<Texture2D>("Human/M_Skin");
 
             fEyes = Content.Load<Texture2D>("Human/F_Eyes");
-            fHair = Content.Load<Texture2D>("Human/F_Hair");
+            fHair = Content.Load<Texture2D>("Human/Haircut/2");
             fNoColor = Content.Load<Texture2D>("Human/F_NoColor");
             fPants = Content.Load<Texture2D>("Human/F_Pants");
             fShirt = Content.Load<Texture2D>("Human/F_Shirt");
