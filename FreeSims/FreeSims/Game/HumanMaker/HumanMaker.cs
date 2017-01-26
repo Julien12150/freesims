@@ -112,21 +112,21 @@ namespace Technochips.FreeSims.Game.HumanMaker
         }
         public void Draw(GameTime gameTime)
         {
-            Color color;
-            if (colorSelected == 0)
-                color = eyes[humanSelection];
-            else if (colorSelected == 1)
-                color = hair[humanSelection];
-            else if (colorSelected == 2)
-                color = pants[humanSelection];
-            else if (colorSelected == 3)
-                color = shirt[humanSelection];
-            else if (colorSelected == 4)
-                color = shoes[humanSelection];
-            else if (colorSelected == 5)
-                color = skin[humanSelection];
-            else
-                color = shirt[humanSelection];
+			Color color = Color.White;
+			if (colorSelected == 0)
+				color = eyes[humanSelection];
+			else if (colorSelected == 1)
+				color = hair[humanSelection];
+			else if (colorSelected == 2)
+				color = pants[humanSelection];
+			else if (colorSelected == 3)
+				color = shirt[humanSelection];
+			else if (colorSelected == 4)
+				color = shoes[humanSelection];
+			else if (colorSelected == 5)
+				color = skin[humanSelection];
+			else
+				color = shirt[humanSelection];
 
             spriteBatch.DrawString(sprites.mainFont, names[humanSelection], new Vector2(50, 50), Color.Black);
 
@@ -684,20 +684,21 @@ namespace Technochips.FreeSims.Game.HumanMaker
             {
                 if (control.Enter && !buttonPressed)
                 {
-                    if (names.ToArray().Length > 0)
-                    {
-                        names.RemoveAt(humanSelection);
-                        female.RemoveAt(humanSelection);
-                        eyes.RemoveAt(humanSelection);
-                        hair.RemoveAt(humanSelection);
-                        hairStyle.RemoveAt(humanSelection);
-                        pants.RemoveAt(humanSelection);
-                        shirt.RemoveAt(humanSelection);
-                        shoes.RemoveAt(humanSelection);
-                        skin.RemoveAt(humanSelection);
-						walkSpeed.RemoveAt(humanSelection);
-                        humanSelection--;
-                    }
+					if (humanSelection > 0)
+					    if (names.ToArray().Length > 0)
+					    {
+						    names.RemoveAt(humanSelection);
+						    female.RemoveAt(humanSelection);
+						    eyes.RemoveAt(humanSelection);
+					    	hair.RemoveAt(humanSelection);
+		    				hairStyle.RemoveAt(humanSelection);
+			    			pants.RemoveAt(humanSelection);
+			    			shirt.RemoveAt(humanSelection);
+				    		shoes.RemoveAt(humanSelection);
+				    		skin.RemoveAt(humanSelection);
+				    		walkSpeed.RemoveAt(humanSelection);
+				    		humanSelection--;
+					    }
                     buttonPressed = true;
                 }
                 else if (!control.Enter)
