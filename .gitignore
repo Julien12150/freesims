@@ -244,4 +244,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /Output/*
-/freesims_0.0-0/usr/bin/*
+/freesims_0.0-0/usr/share/freesims/*

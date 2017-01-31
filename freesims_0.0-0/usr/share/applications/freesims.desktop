@@ -3,9 +3,8 @@
 Version=1.0
 Type=Application
 Terminal=false
-Exec=mono /usr/bin/FreeSims/FreeSims.exe
-Path=/usr/bin/FreeSims/
+Exec=freesims
 Name=FreeSims
 Comment=A free Sims clone.
-Icon=/usr/bin/FreeSims/Icon.ico
+Icon=/usr/share/freesims/Icon.ico
 Categories=Game;
