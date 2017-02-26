@@ -100,6 +100,7 @@ namespace Technochips.FreeSims.Game
                 }
                 else if(menuSelection == 2)
                 {
+					game1.game = null;
                     game1.ChangeState(GameState.HumanMaking);
                     game1.humanMaker = new HumanMaker.HumanMaker(spriteBatch, sprites, control, game1, width, height);
                 }
