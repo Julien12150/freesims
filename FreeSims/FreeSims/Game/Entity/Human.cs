@@ -131,8 +131,11 @@ namespace Technochips.FreeSims.Game.Entity
 							break;
 						}
 					}
-					activity = new Eat(this, (Fridge)f);
-					activity.Start(gameTime);
+					if (f != null)
+					{
+						activity = new Eat(this, (Fridge)f);
+						activity.Start(gameTime);
+					}
 				}
 			}
 
