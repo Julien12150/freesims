@@ -1,0 +1,2 @@
+mcs -r:FreeSims/FreeSims/bin/x86/Release/MonoGame.Framework.dll,FreeSims/FreeSims/bin/x86/Release/OpenTK.dll,/home/julien12150/Desktop/freesims/packages/Mono.Posix-4.5.4.5.0/lib/net45/Mono.Posix.dll,FreeSims/FreeSims/bin/x86/Release/NVorbis.dll,/usr/lib/mono/4.5/System.dll,/usr/lib/mono/4.5/System.Drawing.dll,/usr/lib/mono/4.5/System.Windows.Forms.dll -recurse:'FreeSims/FreeSims/*.cs' -out:FreeSims/FreeSims/bin/x86/Release/FreeSims.exe -win32icon:FreeSims/FreeSims/Icon.ico -pkg:gtk-sharp-2.0
+
