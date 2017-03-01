@@ -3,5 +3,6 @@ Version: 0.0-0
 Section: base
 Priority: optional
 Architecture: amd64
+Depends: libgtk2.0-0 (>= 2.0.0), gtk-sharp2 (>= 2.0.0), libmono-2.0-1 (>= 0.0.0)
 Maintainer: Technochips
 Description: A free Sims clone.
