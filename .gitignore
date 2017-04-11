@@ -243,5 +243,9 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+#other things
 /Output/*
 /freesims_0.0-0/usr/share/freesims/*
+/NVorbis.0.8.5.0/*
+/OpenTK.2.0.0/*
