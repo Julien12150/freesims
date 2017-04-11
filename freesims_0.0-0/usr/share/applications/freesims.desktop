@@ -6,5 +6,5 @@ Terminal=false
 Exec=freesims
 Name=FreeSims
 Comment=A free Sims clone.
-Icon=/usr/share/freesims/Icon.ico
+Icon=/usr/share/pixmaps/freesims.svg
 Categories=Game;
