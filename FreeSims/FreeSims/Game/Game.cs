@@ -50,52 +50,38 @@ namespace Technochips.FreeSims.Game
             this.mainClass = mainClass;
 
 			size = new Vector2(width, height);
-
-            string[] names;
-            bool[] female;
-            Color[] eyes;
-            Color[] hair;
-            int[] hairStyle;
-            Color[] pants;
-            Color[] shirt;
-            Color[] shoes;
-			Color[] skin;
-			float[] walkSpeed;
+			
+			HumanStyle[] style;
 
 			itemList.Add(new TV(itemSprites, 100, 150, 0, 1, new List<Human>(), mainClass.GraphicsDevice));
 			itemList.Add(new Chair(itemSprites, 200, 160, 0, 1, mainClass.GraphicsDevice));
 			itemList.Add(new Chair(itemSprites, 240, 160, 0, 7, mainClass.GraphicsDevice));
 			itemList.Add(new Table(itemSprites, 200, 180, 0, 1, mainClass.GraphicsDevice));
 			itemList.Add(new Fridge(itemSprites, 400, 180, 0, 7, new List<Human>(), mainClass.GraphicsDevice));
-
-			if (HMNFileManager.Read(out names, out female, out eyes, out hair, out hairStyle, out pants, out shirt, out shoes, out skin, out walkSpeed))
+			
+			if (HMNFileManager.Read(out HumanStyle.GetName(style), out HumanStyle.GetFemale(style), out HumanStyle.GetEyes(style), out HumanStyle.GetHair(style), out HumanStyle.GetHairStyle(style), out HumanStyle.GetPants(style), out HumanStyle.GetShirt(style), out HumanStyle.GetShoes(style), out HumanStyle.GetSkin(style), out HumanStyle.GetWalkSpeed(style)))
             {
-                for(int i = 0; i < names.Length; i++)
+                for(int i = 0; i < style.Length; i++)
                 {
-					humanList.Add(new Human(width / 2, height / 2, 0, 0, 50, 50, 25, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], walkSpeed[i], i, itemList.ToArray(), mainClass.GraphicsDevice));
+					humanList.Add(new Human(width / 2, height / 2, 0, 0, 50, 50, 25, false, control, cursor, sprites, spriteBatch, style[i], i, itemList.ToArray(), mainClass.GraphicsDevice));
                 }
             }
             else
             {
-                names = new string[] { "Julian", "Joe", "Tom", "Christine" };
-                female = new bool[] { false, false, false, true };
-                pants = new Color[] { new Color(0, 31, 255), new Color(22, 22, 22), new Color(193, 193, 193), new Color(255, 173, 255)};
-                hair = new Color[] { new Color(66, 33, 0), new Color(255, 155, 43), new Color(40, 9, 0), new Color(66, 33, 0) };
-                hairStyle = new int[] { 1, 1, 1, 2 };
-                eyes = new Color[] { new Color(0, 0, 56), new Color(68, 21, 0), new Color(0, 47, 0), new Color(0, 0, 56) };
-                shirt = new Color[] { new Color(255, 255, 255), new Color(183, 43, 0), new Color(22, 22, 22), new Color(255, 255, 255) };
-                shoes = new Color[] { new Color(96, 96, 96), new Color(150, 150, 150), new Color(56, 20, 0), new Color(200, 0, 0) };
-                skin = new Color[] { new Color(255, 179, 160), new Color(183, 124, 95), new Color(255, 202, 191), new Color(255, 179, 160) };
-				walkSpeed = new float[] { 2f, 1.5f, 2.5f, 2f };
+            	style = new HumanStyle[]{
+            		new HumanStyle("Julian", false, new Color(0,31,255), new Color(66,33,0),1,new Color(0, 0, 56), new Color(255, 255, 255), new Color(96,96,96), new Color(255, 179, 160),2f),
+            		new HumanStyle("Joe", false, new Color(22,22,22), new Color(255,155,43),1,new Color(68, 21, 0), new Color(183, 43, 0), new Color(150,150,150), new Color(183, 154, 95),1.5f),
+            		new HumanStyle("Tom", false, new Color(193,193,193), new Color(40,9,0),1,new Color(0, 47, 0), new Color(22, 22, 22), new Color(56,20,0), new Color(255, 202, 191),2.5f),
+            		new HumanStyle("Christine", true, new Color(255,173,255), new Color(66,33,0),1,new Color(0, 0, 56), new Color(255, 255, 255), new Color(200,0,0), new Color(255, 179, 160),2f),};
 
 				Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Technochips{Path.DirectorySeparatorChar}");
 				Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Technochips{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}");
 
-				HMNFileManager.Write(names, female, eyes, hair, hairStyle, pants, shirt, shoes, skin, walkSpeed);
+				HMNFileManager.Write(HumanStyle.GetName(style), HumanStyle.GetFemale(style), HumanStyle.GetEyes(style), HumanStyle.GetHair(style), HumanStyle.GetHairStyle(style), HumanStyle.GetPants(style), HumanStyle.GetShirt(style), HumanStyle.GetShoes(style), HumanStyle.GetSkin(style), HumanStyle.GetWalkSpeed(style));
 
-                for (int i = 0; i < names.Length; i++)
+                for (int i = 0; i < style.Length; i++)
                 {
-					humanList.Add(new Human(width / 2, height / 2, 0, 0, 50, 50, 50, false, control, cursor, sprites, spriteBatch, names[i], female[i], pants[i], hair[i], hairStyle[i], eyes[i], shirt[i], shoes[i], skin[i], walkSpeed[i], i, itemList.ToArray(), mainClass.GraphicsDevice));
+					humanList.Add(new Human(width / 2, height / 2, 0, 0, 50, 50, 50, false, control, cursor, sprites, spriteBatch, style[i], i, itemList.ToArray(), mainClass.GraphicsDevice));
                 }
             }
         }
@@ -159,7 +145,7 @@ namespace Technochips.FreeSims.Game
                 {
                     if (!humanList[i].cannotDie)
                     {
-                        lastLog = Language.GetNewString(language.log_humandied, new Dictionary<char, string>() { { 'n', humanList[i].name } });
+                        lastLog = Language.GetNewString(language.log_humandied, new Dictionary<char, string>() { { 'n', humanList[i].style.name } });
                         humanList.Remove(humanList[i]);
                         if (selectedHuman == i && i == humanList.ToArray().Length - 1)
                             selectedHuman--;
@@ -318,15 +304,15 @@ namespace Technochips.FreeSims.Game
                 {
                     tabColor = 0;
                 }
-				spriteBatch.Draw(sprites.humanSprites.tabEyes, new Vector2((sprites.statBar.Width + 28) + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), humanList[i].eyes);
-				spriteBatch.Draw(sprites.humanSprites.tabShirt, new Vector2((sprites.statBar.Width + 28) + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), humanList[i].shirt);
-				spriteBatch.Draw(sprites.humanSprites.tabSkin, new Vector2((sprites.statBar.Width + 28) + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), humanList[i].skin);
+				spriteBatch.Draw(sprites.humanSprites.tabEyes, new Vector2((sprites.statBar.Width + 28) + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), humanList[i].style.eyes);
+				spriteBatch.Draw(sprites.humanSprites.tabShirt, new Vector2((sprites.statBar.Width + 28) + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), humanList[i].style.shirt);
+				spriteBatch.Draw(sprites.humanSprites.tabSkin, new Vector2((sprites.statBar.Width + 28) + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), humanList[i].style.skin);
 				spriteBatch.Draw(sprites.humanSprites.tabNoColor, new Vector2((sprites.statBar.Width + 28) + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), Color.White);
 
-				if (humanList[i].hairStyle != 0)
+				if (humanList[i].style.hairStyle != 0)
 				{
-					spriteBatch.Draw(sprites.humanSprites.tabHair, new Vector2((sprites.statBar.Width + 28) + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle((sprites.humanSprites.tabHair.Width / 2) * humanList[i].hairStyle - (sprites.humanSprites.tabHair.Width / 2), tabColor, sprites.humanSprites.tabHair.Width / 2, sprites.humanSprites.tabNoColor.Height / 2), humanList[i].hair);
-					spriteBatch.Draw(sprites.humanSprites.tabHairNoColor, new Vector2((sprites.statBar.Width + 28) + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle((sprites.humanSprites.tabHairNoColor.Width / 2) * humanList[i].hairStyle - (sprites.humanSprites.tabHairNoColor.Width / 2), tabColor, sprites.humanSprites.tabHairNoColor.Width / 2, sprites.humanSprites.tabNoColor.Height / 2), Color.White);
+					spriteBatch.Draw(sprites.humanSprites.tabHair, new Vector2((sprites.statBar.Width + 28) + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle((sprites.humanSprites.tabHair.Width / 2) * humanList[i].style.hairStyle - (sprites.humanSprites.tabHair.Width / 2), tabColor, sprites.humanSprites.tabHair.Width / 2, sprites.humanSprites.tabNoColor.Height / 2), humanList[i].style.hair);
+					spriteBatch.Draw(sprites.humanSprites.tabHairNoColor, new Vector2((sprites.statBar.Width + 28) + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle((sprites.humanSprites.tabHairNoColor.Width / 2) * humanList[i].style.hairStyle - (sprites.humanSprites.tabHairNoColor.Width / 2), tabColor, sprites.humanSprites.tabHairNoColor.Width / 2, sprites.humanSprites.tabNoColor.Height / 2), Color.White);
 				}
             }
 

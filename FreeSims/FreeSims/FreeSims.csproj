@@ -80,6 +80,7 @@
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="gtk-gui\Technochips.FreeSims.CrashWindow.cs" />
     <Compile Include="gtk-gui\Technochips.FreeSims.Window.cs" />
+    <Compile Include="Game\HumanStyle.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
