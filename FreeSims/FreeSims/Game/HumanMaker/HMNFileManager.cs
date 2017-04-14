@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.Xna.Framework;
+using Technochips.FreeSims.Game;
 
 namespace Technochips.FreeSims.Game.HumanMaker
 {
     public class HMNFileManager
     {
         private static string filePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Technochips{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}humans.hmn";
-        public static bool Read(out string[] names, out bool[] female, out Color[] eyes, out Color[] hair, out int[] hairStyle, out Color[] pants, out Color[] shirt, out Color[] shoes, out Color[] skin, out float[] walkSpeed)
+        public static bool Read(out HumanStyle[] style)
         {
-			if (Read(filePath, out female, out names, out eyes, out hair, out hairStyle, out pants, out shirt, out shoes, out skin, out walkSpeed))
+			if (Read(filePath, out style))
                 return true;
             else
                 return false;
         }
-        public static bool Read(string path, out bool[] female, out string[] names, out Color[] eyes, out Color[] hair, out int[] hairStyle, out Color[] pants, out Color[] shirt, out Color[] shoes, out Color[] skin, out float[] walkSpeed)
+        public static bool Read(string path, out HumanStyle[] style)
         {
             BinaryReader file = null;
             try
@@ -35,6 +36,7 @@ namespace Technochips.FreeSims.Game.HumanMaker
                 List<Color> shoesList = new List<Color>();
                 List<Color> skinList = new List<Color>();
 				List<float> walkSpeedList = new List<float>();
+				List<HumanStyle> styleList = new List<HumanStyle>();
 
                 while (true)
                 {
@@ -103,16 +105,11 @@ namespace Technochips.FreeSims.Game.HumanMaker
                     catch (EndOfStreamException)
                     { break; }
                 }
-                names = namesList.ToArray();
-                eyes = eyesList.ToArray();
-                hair = hairList.ToArray();
-                hairStyle = hairStyleList.ToArray();
-                pants = pantsList.ToArray();
-                shirt = shirtList.ToArray();
-                shoes = shoesList.ToArray();
-                skin = skinList.ToArray();
-                female = femaleList.ToArray();
-				walkSpeed = walkSpeedList.ToArray();
+                for(int i = 0; i < namesList.Count; i++)
+                {
+                	styleList.Add(new HumanStyle(namesList[i], femaleList[i], pantsList[i], hairList[i], hairStyleList[i], eyesList[i], shirtList[i], shoesList[i], skinList[i], walkSpeedList[i]));
+                }
+                style = styleList.ToArray();
 
                 file.Close();
 
@@ -132,37 +129,28 @@ namespace Technochips.FreeSims.Game.HumanMaker
                 file.Close();
             }
 
-            names = null;
-            female = null;
-            eyes = null;
-            hair = null;
-            hairStyle = null;
-            pants = null;
-            shirt = null;
-            shoes = null;
-            skin = null;
-			walkSpeed = null;
+            style = null;
 
             return false;
         }
-        public static void Write(string[] names, bool[] female, Color[] eyes, Color[] hair, int[] hairStyle, Color[] pants, Color[] shirt, Color[] shoes, Color[] skin, float[] walkSpeed)
+        public static void Write(HumanStyle[] style)
         {
-			Write(filePath, names, female, eyes, hair, hairStyle, pants, shirt, shoes, skin, walkSpeed);
+			Write(filePath, style);
         }
-        public static void Write(string path,  string[] names, bool[] female, Color[] eyes, Color[] hair, int[] hairStyle, Color[] pants, Color[] shirt, Color[] shoes, Color[] skin, float[] walkSpeed)
+        public static void Write(string path, HumanStyle[] style)
         {
             //List<byte> bytelist = new List<byte>();
 			BinaryWriter file = new BinaryWriter(File.Open(path, FileMode.Create));
-            for(int i = 0; i < names.Length; i++)
+            for(int i = 0; i < style.Length; i++)
             {
-                foreach(byte bc in names[i])
+                foreach(byte bc in style[i].name)
                 {
                     file.Write(bc);
                     //Console.WriteLine(Convert.ToChar(bc));
                 }
                 file.Write((byte)0x00);
 				//Console.WriteLine((byte)0x00);
-				file.Write(female[i]);
+				file.Write(style[i].female);
                 /*if (female[i])
                 {
                     file.Write((byte)0x01);
@@ -173,44 +161,44 @@ namespace Technochips.FreeSims.Game.HumanMaker
                     file.Write((byte)0x00);
                     //Console.WriteLine((byte)0x00);
                 }*/
-                file.Write(hairStyle[i]);
+                file.Write(style[i].hairStyle);
                 //Console.WriteLine((byte)hairStyle[i]);
-                file.Write(pants[i].R);
+                file.Write(style[i].pants.R);
                 //Console.WriteLine(pants[i].R);
-                file.Write(pants[i].G);
+                file.Write(style[i].pants.G);
                 //Console.WriteLine(pants[i].G);
-                file.Write(pants[i].B);
+                file.Write(style[i].pants.B);
                 //Console.WriteLine(pants[i].B);
-                file.Write(hair[i].R);
+                file.Write(style[i].hair.R);
                 //Console.WriteLine(hair[i].R);
-                file.Write(hair[i].G);
+                file.Write(style[i].hair.G);
                 //Console.WriteLine(hair[i].G);
-                file.Write(hair[i].B);
+                file.Write(style[i].hair.B);
                 //Console.WriteLine(hair[i].B);
-                file.Write(eyes[i].R);
+                file.Write(style[i].eyes.R);
                 //Console.WriteLine(eyes[i].R);
-                file.Write(eyes[i].G);
+                file.Write(style[i].eyes.G);
                 //Console.WriteLine(eyes[i].G);
-                file.Write(eyes[i].B);
+                file.Write(style[i].eyes.B);
                 //Console.WriteLine(eyes[i].B);
-                file.Write(shirt[i].R);
+                file.Write(style[i].shirt.R);
                 //Console.WriteLine(shirt[i].R);
-                file.Write(shirt[i].G);
+                file.Write(style[i].shirt.G);
                 //Console.WriteLine(shirt[i].G);
-                file.Write(shirt[i].B);
+                file.Write(style[i].shirt.B);
                 //Console.WriteLine(shirt[i].B);
-                file.Write(shoes[i].R);
+                file.Write(style[i].shoes.R);
                 //Console.WriteLine(shoes[i].R);
-                file.Write(shoes[i].G);
+                file.Write(style[i].shoes.G);
                 //Console.WriteLine(shoes[i].G);
-                file.Write(shoes[i].B);
+                file.Write(style[i].shoes.B);
                 //Console.WriteLine(shoes[i].B);
-                file.Write(skin[i].R);
+                file.Write(style[i].skin.R);
                 //Console.WriteLine(skin[i].R);
-                file.Write(skin[i].G);
+                file.Write(style[i].skin.G);
                 //Console.WriteLine(skin[i].G);
-                file.Write(skin[i].B);
-				file.Write(walkSpeed[i]);
+                file.Write(style[i].skin.B);
+				file.Write(style[i].walkSpeed);
             }
             //Console.WriteLine("---");
             //file.Write(bytelist.ToArray());

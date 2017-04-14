@@ -59,7 +59,7 @@ namespace Technochips.FreeSims.Game
 			itemList.Add(new Table(itemSprites, 200, 180, 0, 1, mainClass.GraphicsDevice));
 			itemList.Add(new Fridge(itemSprites, 400, 180, 0, 7, new List<Human>(), mainClass.GraphicsDevice));
 			
-			if (HMNFileManager.Read(out HumanStyle.GetName(style), out HumanStyle.GetFemale(style), out HumanStyle.GetEyes(style), out HumanStyle.GetHair(style), out HumanStyle.GetHairStyle(style), out HumanStyle.GetPants(style), out HumanStyle.GetShirt(style), out HumanStyle.GetShoes(style), out HumanStyle.GetSkin(style), out HumanStyle.GetWalkSpeed(style)))
+			if (HMNFileManager.Read(out style))
             {
                 for(int i = 0; i < style.Length; i++)
                 {
@@ -77,7 +77,7 @@ namespace Technochips.FreeSims.Game
 				Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Technochips{Path.DirectorySeparatorChar}");
 				Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar}Technochips{Path.DirectorySeparatorChar}FreeSims{Path.DirectorySeparatorChar}");
 
-				HMNFileManager.Write(HumanStyle.GetName(style), HumanStyle.GetFemale(style), HumanStyle.GetEyes(style), HumanStyle.GetHair(style), HumanStyle.GetHairStyle(style), HumanStyle.GetPants(style), HumanStyle.GetShirt(style), HumanStyle.GetShoes(style), HumanStyle.GetSkin(style), HumanStyle.GetWalkSpeed(style));
+				HMNFileManager.Write(style);
 
                 for (int i = 0; i < style.Length; i++)
                 {
