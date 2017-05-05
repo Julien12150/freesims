@@ -27,9 +27,9 @@ namespace Technochips.FreeSims
 		public SpriteFont mainFont;
 
 		public HumanSprite humanSprites;
-		Dictionary<string, Texture2D> sprites = new Dictionary<string, Texture2D>();
-		Dictionary<string, SpriteFont> fonts = new Dictionary<string, SpriteFont>();
-		ContentManager Content;
+		static Dictionary<string, Texture2D> sprites = new Dictionary<string, Texture2D>();
+		static Dictionary<string, SpriteFont> fonts = new Dictionary<string, SpriteFont>();
+		static ContentManager Content;
 
 		public Sprite(ContentManager Content)
 		{
@@ -53,9 +53,12 @@ namespace Technochips.FreeSims
 			mainFont = Content.Load<SpriteFont>("font");
 
 			humanSprites = new HumanSprite(Content);
-			this.Content = Content;
 		}
-		public Texture2D GetSprite(string path)
+		public static void SetUpContent(ContentManager NewContent)
+		{
+			Content = NewContent;
+		}
+		public static Texture2D GetSprite(string path)
 		{
 			Texture2D r;
 			//Dictionary<string, T> ndict = dict;
@@ -66,7 +69,7 @@ namespace Technochips.FreeSims
 			}
 			return r;
 		}
-		public SpriteFont GetFont(string path)
+		public static SpriteFont GetFont(string path)
 		{
 			SpriteFont r;
 			//Dictionary<string, T> ndict = dict;
