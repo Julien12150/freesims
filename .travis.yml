@@ -5,7 +5,7 @@ before_install:
     - wget http://www.monogame.net/releases/v3.6/monogame-sdk.run
     - sudo chmod +x monogame-sdk.run
 install:
-    - sudo apt -y install libopenal-dev referenceassemblies-pcl ttf-mscorefonts-installer mono-runtime libgtk2.0-0 gtk-sharp2 libmono-2.0-1
+    - sudo apt -y install libopenal-dev referenceassemblies-pcl ttf-mscorefonts-installer mono-runtime libgtk2.0-0 gtk-sharp2 libmono-2.0-1 gtk-sharp2-examples libglade2.0-cil-dev libgtk2.0-cil-dev
     - yes | sudo ./monogame-sdk.run
     - nuget restore FreeSims.sln
 
@@ -13,6 +13,8 @@ matrix:
     include:
       - dotnet: 1.0.1
         mono: none
-        dist: xenial
+        dist: trusty
       - mono: latest
+        dist: xenial
       - mono: 4.4.2
+        dist: xenial
