@@ -11,8 +11,8 @@ install:
 
 matrix:
     include:
-      - dotnet: 1.0.4
+      - dotnet: 1.0.1
         mono: none
         dist: xenial
       - mono: latest
-        dist: xenial
+      - mono: 4.4.2
