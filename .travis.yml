@@ -5,7 +5,7 @@ before_install:
     - wget --content-disposition http://teamcity.monogame.net/repository/download/MonoGame_PackageMacAndLinux/latest.lastSuccessful/Linux/monogame-sdk.run?guest=1
     - sudo chmod +x monogame-sdk.run
 install:
-    - sudo apt -y install libopenal-dev ttf-mscorefonts-installer libgtk2.0-0 gtk-sharp2 gtk-sharp2-examples libglade2.0-cil-dev libgtk2.0-cil-dev libglade2.0-cil libgtk2.0-cil nuget libcairo2=1.14.8-1 gtk-sharp2 libfreeimage-dev
+    - sudo apt -y install libopenal-dev ttf-mscorefonts-installer libgtk2.0-0 gtk-sharp2 gtk-sharp2-examples libglade2.0-cil-dev libgtk2.0-cil-dev libglade2.0-cil libgtk2.0-cil nuget libcairo2 gtk-sharp2 libfreeimage-dev
     - yes | sudo ./monogame-sdk.run
     - nuget restore FreeSims.sln
 
