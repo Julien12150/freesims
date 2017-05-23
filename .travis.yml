@@ -2,10 +2,10 @@ language: csharp
 solution: FreeSims.sln
 
 before_install:
-    - wget http://www.monogame.net/releases/v3.6/monogame-sdk.run
+    - wget http://teamcity.monogame.net/repository/download/MonoGame_PackageMacAndLinux/latest.lastSuccessful/Linux/monogame-sdk.run?guest=1http://teamcity.monogame.net/repository/download/MonoGame_PackageMacAndLinux/latest.lastSuccessful/Linux/monogame-sdk.run?guest=1
     - sudo chmod +x monogame-sdk.run
 install:
-    - sudo apt -y install libopenal-dev referenceassemblies-pcl ttf-mscorefonts-installer mono-runtime libgtk2.0-0 gtk-sharp2 libmono-2.0-1 gtk-sharp2-examples libglade2.0-cil-dev libgtk2.0-cil-dev
+    - sudo apt -y install libopenal-dev ttf-mscorefonts-installer libgtk2.0-0 gtk-sharp2 gtk-sharp2-examples libglade2.0-cil-dev libgtk2.0-cil-dev libglade2.0-cil libgtk2.0-cil
     - yes | sudo ./monogame-sdk.run
     - nuget restore FreeSims.sln
 
