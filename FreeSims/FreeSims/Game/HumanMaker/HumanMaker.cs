@@ -95,23 +95,26 @@ namespace Technochips.FreeSims.Game.HumanMaker
                     tabColor = sprites.humanSprites.tabNoColor.Height / 2;
                 else
                     tabColor = 0;
-
-                if (i == 0)
-                    spriteBatch.Draw(sprites.tabTop, new Vector2(52 + (sprites.tabTop.Width / 3) * i, 0), new Rectangle(1 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
-                else if (i == style.Count - 1)
-                    spriteBatch.Draw(sprites.tabTop, new Vector2(52 + (sprites.tabTop.Width / 3) * i, 0), new Rectangle(39 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
-                else
-                    spriteBatch.Draw(sprites.tabTop, new Vector2(52 + (sprites.tabTop.Width / 3) * i, 0), new Rectangle(20 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
-
-                spriteBatch.Draw(sprites.humanSprites.tabEyes, new Vector2(50 + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), style[i].eyes);
-                spriteBatch.Draw(sprites.humanSprites.tabShirt, new Vector2(50 + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), style[i].shirt);
-                spriteBatch.Draw(sprites.humanSprites.tabSkin, new Vector2(50 + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), style[i].skin);
-                spriteBatch.Draw(sprites.humanSprites.tabNoColor, new Vector2(50 + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), Color.White);
+				if (style.Count == 1)
+					spriteBatch.Draw(sprites.tabTop, new Vector2(52 + ((sprites.tabTop.Width / 4) -1) * i, 0), new Rectangle(59 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
+				else
+				{
+                	if (i == 0)
+                	    spriteBatch.Draw(sprites.tabTop, new Vector2(52 + ((sprites.tabTop.Width / 4) -1) * i, 0), new Rectangle(1 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
+                	else if (i == style.Count - 1)
+                	    spriteBatch.Draw(sprites.tabTop, new Vector2(52 + ((sprites.tabTop.Width / 4) -1) * i, 0), new Rectangle(39 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
+                	else
+                	    spriteBatch.Draw(sprites.tabTop, new Vector2(52 + ((sprites.tabTop.Width / 4) -1) * i, 0), new Rectangle(20 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
+				}
+                spriteBatch.Draw(sprites.humanSprites.tabEyes, new Vector2(50 + ((sprites.tabTop.Width / 4) -1) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), style[i].eyes);
+                spriteBatch.Draw(sprites.humanSprites.tabShirt, new Vector2(50 + ((sprites.tabTop.Width / 4) -1) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), style[i].shirt);
+                spriteBatch.Draw(sprites.humanSprites.tabSkin, new Vector2(50 + ((sprites.tabTop.Width / 4) -1) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), style[i].skin);
+                spriteBatch.Draw(sprites.humanSprites.tabNoColor, new Vector2(50 + ((sprites.tabTop.Width / 4) -1) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), Color.White);
 
                 if (style[i].hairStyle != 0)
                 {
-                    spriteBatch.Draw(sprites.humanSprites.tabHair, new Vector2(50 + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle((sprites.humanSprites.tabHair.Width / 2) * style[i].hairStyle - (sprites.humanSprites.tabHair.Width / 2), tabColor, sprites.humanSprites.tabHair.Width / 2, sprites.humanSprites.tabNoColor.Height / 2), style[i].hair);
-                    spriteBatch.Draw(sprites.humanSprites.tabHairNoColor, new Vector2(50 + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle((sprites.humanSprites.tabHair.Width / 2) * style[i].hairStyle - (sprites.humanSprites.tabHair.Width / 2), tabColor, sprites.humanSprites.tabHair.Width / 2, sprites.humanSprites.tabNoColor.Height / 2), Color.White);
+                    spriteBatch.Draw(sprites.humanSprites.tabHair, new Vector2(50 + ((sprites.tabTop.Width / 4) -1) * i, sprites.tabTop.Height), new Rectangle((sprites.humanSprites.tabHair.Width / 2) * style[i].hairStyle - (sprites.humanSprites.tabHair.Width / 2), tabColor, sprites.humanSprites.tabHair.Width / 2, sprites.humanSprites.tabNoColor.Height / 2), style[i].hair);
+                    spriteBatch.Draw(sprites.humanSprites.tabHairNoColor, new Vector2(50 + ((sprites.tabTop.Width / 4) -1) * i, sprites.tabTop.Height), new Rectangle((sprites.humanSprites.tabHair.Width / 2) * style[i].hairStyle - (sprites.humanSprites.tabHair.Width / 2), tabColor, sprites.humanSprites.tabHair.Width / 2, sprites.humanSprites.tabNoColor.Height / 2), Color.White);
                 }
             }
 

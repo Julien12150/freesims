@@ -257,13 +257,17 @@ namespace Technochips.FreeSims.Game
             for (int i = 0; i < humanList.ToArray().Length; i++)
             {
                 int tabColor;
-
-                if (i == 0)
-                    spriteBatch.Draw(sprites.tabTop, new Vector2((sprites.statBar.Width + 30) + (sprites.tabTop.Width / 3) * i, 0), new Rectangle(1 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
-                else if (i == humanList.ToArray().Length - 1)
-                    spriteBatch.Draw(sprites.tabTop, new Vector2((sprites.statBar.Width + 30) + (sprites.tabTop.Width / 3) * i, 0), new Rectangle(39 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
-                else
-                    spriteBatch.Draw(sprites.tabTop, new Vector2((sprites.statBar.Width + 30) + (sprites.tabTop.Width / 3) * i, 0), new Rectangle(20 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
+				if(humanList.Count == 1)
+					spriteBatch.Draw(sprites.tabTop, new Vector2((sprites.statBar.Width + 30) + ((sprites.tabTop.Width / 4) -1) * i, 0), new Rectangle(59 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
+				else
+				{
+                	if (i == 0)
+                	    spriteBatch.Draw(sprites.tabTop, new Vector2((sprites.statBar.Width + 30) + ((sprites.tabTop.Width / 4) -1) * i, 0), new Rectangle(1 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
+                	else if (i == humanList.ToArray().Length - 1)
+                	    spriteBatch.Draw(sprites.tabTop, new Vector2((sprites.statBar.Width + 30) + ((sprites.tabTop.Width / 4) -1) * i, 0), new Rectangle(39 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
+                	else
+                	    spriteBatch.Draw(sprites.tabTop, new Vector2((sprites.statBar.Width + 30) + ((sprites.tabTop.Width / 4) -1) * i, 0), new Rectangle(20 * 2, 0, 19 * 2, sprites.tabTop.Height), Color.White);
+                }
                 if (selectedHuman == i)
                 {
 					spriteBatch.Draw(sprites.humanSelectSprite, new Vector2((humanList[i].posX - 9) - camera.X, humanList[i].posY - ((sprites.humanSprites.mNoColor.Height / 2) - 8) - camera.Y), Color.White);
@@ -304,15 +308,15 @@ namespace Technochips.FreeSims.Game
                 {
                     tabColor = 0;
                 }
-				spriteBatch.Draw(sprites.humanSprites.tabEyes, new Vector2((sprites.statBar.Width + 28) + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), humanList[i].style.eyes);
-				spriteBatch.Draw(sprites.humanSprites.tabShirt, new Vector2((sprites.statBar.Width + 28) + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), humanList[i].style.shirt);
-				spriteBatch.Draw(sprites.humanSprites.tabSkin, new Vector2((sprites.statBar.Width + 28) + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), humanList[i].style.skin);
-				spriteBatch.Draw(sprites.humanSprites.tabNoColor, new Vector2((sprites.statBar.Width + 28) + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), Color.White);
+				spriteBatch.Draw(sprites.humanSprites.tabEyes, new Vector2((sprites.statBar.Width + 28) + ((sprites.tabTop.Width / 4) -1) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), humanList[i].style.eyes);
+				spriteBatch.Draw(sprites.humanSprites.tabShirt, new Vector2((sprites.statBar.Width + 28) + ((sprites.tabTop.Width / 4) -1) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), humanList[i].style.shirt);
+				spriteBatch.Draw(sprites.humanSprites.tabSkin, new Vector2((sprites.statBar.Width + 28) + ((sprites.tabTop.Width / 4) -1) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), humanList[i].style.skin);
+				spriteBatch.Draw(sprites.humanSprites.tabNoColor, new Vector2((sprites.statBar.Width + 28) + ((sprites.tabTop.Width / 4) -1) * i, sprites.tabTop.Height), new Rectangle(0, tabColor, sprites.humanSprites.tabNoColor.Width, sprites.humanSprites.tabNoColor.Height / 2), Color.White);
 
 				if (humanList[i].style.hairStyle != 0)
 				{
-					spriteBatch.Draw(sprites.humanSprites.tabHair, new Vector2((sprites.statBar.Width + 28) + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle((sprites.humanSprites.tabHair.Width / 2) * humanList[i].style.hairStyle - (sprites.humanSprites.tabHair.Width / 2), tabColor, sprites.humanSprites.tabHair.Width / 2, sprites.humanSprites.tabNoColor.Height / 2), humanList[i].style.hair);
-					spriteBatch.Draw(sprites.humanSprites.tabHairNoColor, new Vector2((sprites.statBar.Width + 28) + (sprites.tabTop.Width / 3) * i, sprites.tabTop.Height), new Rectangle((sprites.humanSprites.tabHairNoColor.Width / 2) * humanList[i].style.hairStyle - (sprites.humanSprites.tabHairNoColor.Width / 2), tabColor, sprites.humanSprites.tabHairNoColor.Width / 2, sprites.humanSprites.tabNoColor.Height / 2), Color.White);
+					spriteBatch.Draw(sprites.humanSprites.tabHair, new Vector2((sprites.statBar.Width + 28) + ((sprites.tabTop.Width / 4) -1) * i, sprites.tabTop.Height), new Rectangle((sprites.humanSprites.tabHair.Width / 2) * humanList[i].style.hairStyle - (sprites.humanSprites.tabHair.Width / 2), tabColor, sprites.humanSprites.tabHair.Width / 2, sprites.humanSprites.tabNoColor.Height / 2), humanList[i].style.hair);
+					spriteBatch.Draw(sprites.humanSprites.tabHairNoColor, new Vector2((sprites.statBar.Width + 28) + ((sprites.tabTop.Width / 4) -1) * i, sprites.tabTop.Height), new Rectangle((sprites.humanSprites.tabHairNoColor.Width / 2) * humanList[i].style.hairStyle - (sprites.humanSprites.tabHairNoColor.Width / 2), tabColor, sprites.humanSprites.tabHairNoColor.Width / 2, sprites.humanSprites.tabNoColor.Height / 2), Color.White);
 				}
             }
 
